@@ -1,0 +1,30 @@
+2010-05-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GlobalSuppressions.cs: New. FxCop-style global suppressions for
+	testing
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Framework.csproj: Activate makefile integration for all the
+	rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-08-28  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Test.Framework.mdp: Add BitmaskTest to MD project file
+
+2008-06-14  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Test.Framework.mdp: Add InstructionRocksTest to MD project file
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Test.Framework.mdp: Add FieldRocksTest to MD project file
+
+2008-01-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Test.Framework.mdp: Add AssemblyRocksTest to MD project file
+
+2007-12-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Test.Framework.mdp: MonoDevelop project file for unit tests

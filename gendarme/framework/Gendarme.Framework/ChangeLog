@@ -1,0 +1,470 @@
+2010-06-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Rule.cs:
+	* Runner.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-08  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ThreadModelAttribute.cs: Avoid using Enum.IsDefined since it is
+	very slow and allocates memory (reflection/boxing). Save 237kb
+	while running self-test
+
+2010-06-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ThreadModelAttribute.cs: Provide a single (source) ThreadModel
+	Attribute and make it the most complete one (documentation still
+	has the smaller version)
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Add a faster path (without multiple casting)
+	for IsIgnored, falling back to existing (slow) code path if needed.
+	Add support to ignore defects based on namespaces
+	* Runner.cs: Remove tearing_down field and its FIXME
+
+2010-05-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EngineController.cs: Handle custom attributes on every 
+	IMetadataTokenProvider
+	* Runner.cs: Give a reference of the runner to the engine 
+	controller
+
+2010-05-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Adjust for IIgnoreList changes. Remove 
+	Metadata inner type since all targets are now considered identical.
+	Make sure each type of IMetadataTokenProvider can be ignored and
+	chained to its parent.
+	* IIgnoreList.cs: Simplity IsIgnored to accept any IMetadata
+	TokenProvider. Add new Runner propertu and Add method.
+	* IRunner.cs: Add IIgnoreList property.
+	* Runner.cs: Adjust for IIgnoreList changes. Check ignored while
+	filtering (to avoid executing the rule when possible) and when a
+	defect is added.
+
+2010-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyResolver.cs: Apply CheckParametersNullityInVisibleMethods
+	Rule on public methods
+
+2010-01-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Don't bail out of loops since the same 
+	assembly, type or method could be found more than one time.
+	* Runner.cs: Add a FIXME about rules who report defects at 
+	TearDown
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ThreadModelAttribute.cs: Apply MarkEnumerationsAsSerializableRule
+
+2009-08-13  Jesse Jones  <jesjones@mindspring.com>
+
+	* BasicIgnoreList.cs: Fixed AddType so that it works correctly when
+	multiple assemblies have the same type name.
+
+2009-06-10  Jesse Jones  <jesjones@mindspring.com>
+
+	* BasicIgnoreList.cs: IsIgnored methods now handle null targets.
+	* Runner.cs: ignore list now works for defects reported during teardown.
+	Added a TearDown method for unit tests.
+
+2009-01-28  Jb Evain  <jbevain@novell.com>
+
+	* AssemblyResolver.cs: remove the Resolve methods
+	for types, fields and methods. That's now handled directly
+	by Cecil.
+
+2008-12-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Bitmask.cs: Changed GetHashCode to use unchecked
+	math.
+
+2008-12-28  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Symbols.cs: Allow reports to include the source information when
+	a defect is found wrt a method return type.
+
+2008-12-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Add support to ignore assembly based on Name, 
+	in addition to FullName, since the later include version numbers
+	which change too often for an ignore-file to be useful.
+
+2008-12-21  Cedric Vivier  <cedricv@neonux.com>
+
+	* AssemblyResolver.cs: Fix bug with method definition resolution on
+	constructors having an overload without parameter.
+
+2008-12-02  Jesse Jones  <jesjones@mindspring.com>
+
+	* Symbols.cs: Include the source line when GetSource is not called
+	with a method. ExtractFirst now returns the first instruction with
+	a sequence point instead of simply the first instruction.
+
+2008-12-01  Jesse Jones  <jesjones@mindspring.com>
+
+	* Symbols.cs: Added a comment describing some problems with
+	doing source line formatting in this file.
+
+2008-12-02  Jb Evain  <jbevain@novell.com>
+
+	* AssemblyResolver.cs: backport of r120410.
+	In AreSame(TypeReference,TypeReference), fix the case where we
+	compare two GenericInstanceType of the same element type
+	with differente generic arguments.
+
+2008-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyResolver.cs: Use Has{x} to avoid creating fields and 
+	parameters collections while resolving.
+	* EngineController.cs: Use Has{x} whenever possible to avoid the
+	creation of empty collections in Cecil.
+
+2008-11-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Rule.cs: Do not create a new Uri each time we ask for one (its 
+	not needed as it is read only).
+	* Runner.cs: Avoid needlessly calling IsVisible rock on types and 
+	methods when the runner is analyzing everything.
+
+2008-11-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EngineController.cs: Fix potential (if/when a runner use multiple
+	threads) race condition on raising events (self-test).
+
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ApplicabilityScope.cs, Confidence.cs, RuleResult.cs, 
+	Severity.cs: Clearly specify [Serializable] on enums (self-test)
+
+2008-10-29  Jesse Jones  <jesjones@mindspring.com>
+
+	* Bitmask.cs: Added unchecked statement to Bitmask.Clear so that
+	it works when compiling with checked arithmetic.
+
+2008-10-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Bitmask.cs: Handle null correctly to avoid NRE (self-test)
+
+2008-10-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* IRule.cs: Remove IRunner parameter from TearDown as it is
+	not helpful (we already have it as a member) and could be confusing
+	leading to bugs.
+	* Rule.cs: Add a null check in Initialize (self-test). Update 
+	TearDown call with API change.
+	* Runner.cs: Update TearDown call with API change.
+	* Symbols.cs: Add a null check in GetSource (self-test).
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Bitmask.cs: Implement IEquatable<T> (self-test).
+	* EngineController.cs: Add a new event when it's time to build
+	engine data from a type. Renamed existing events to match.
+
+2008-09-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Make Initialize method virtual so concrete runners
+	can override it.
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Bitmask.cs: Add Intersect and IsSubsetOf methods.
+	* EngineController.cs: New. Provide the main loop for engines
+	to do their job.
+	* Engine.cs: New. Abstract base class for engines.
+	* EngineDependencyAttribute.cs: New. Attribute that the rules
+	need to use to subscribe to an engine (so that the controller 
+	will execute it).
+	* EngineEventArgs.cs
+	* HierarchicalEventArgs.cs: New. Abstract base class for both 
+	EngineEventArgs and RunnerEventArgs.
+	* IRunner.cs: Add EngineController to the runner definition.
+	* Rule.cs: Add [un]subscribing to engines based on the [Engine
+	Dependency] attribute presence.
+	* Runner.cs: Add calls to EngineController to build any extra
+	stuff required by the rules. Reset SeverityBitmask and Confidence
+	Bitmask to set all bits (when runner is reused).
+	* RunnerEventArgs.cs: Now inherits from HierarchicalEventArgs
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Bitmask.cs: New. Class to use enums or integral types like a 
+	bitmask.
+	* IRunner.cs: Add bitmasks properties for Severity and Confidence.
+	* Runner.cs: Filter reported defects based on severity and 
+	confidence levels. By default all levels are accepted by the base
+	runner (i.e. identical behavior with earlier code).
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* IRunner.cs: Add DefectsLimit property and TearDown method to 
+	the interface.
+	* Runner.cs: Implement defaults for DefectsLimit and TearDown.
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Confidence.cs: Update Low comments.
+	* IRule.cs: Add TearDown(IRunner) to the interface.
+	* Rule.cs: Add default, empty, TearDown implementation.
+	* Severity.cs: Fix typo in comments.
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* FxCopCompatibilityAttribute.cs: New. Attribute to map between
+	the Gendarme rule and one, or many, semi-equivalent FxCop rule.
+	* Severity.cs: Add new Audit level.
+
+2008-08-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProblemAttribute.cs, SolutionAttribute.cs: Change Inherited to 
+	true, other wise we would miss some descriptions in a few rules.
+
+2008-08-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Rule.cs: Set default ApplicabilityScope value to All. Otherwise
+	the wizard would not report the same number of defects than the
+	console runner.
+
+2008-07-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Nullify currentRule and currentTarget in case an 
+	exception is thrown after Run was executed (e.g. while reporting)
+
+2008-07-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyResolver.cs: Catch FileNotFoundException coming from 
+	Cecil's	BaseAssemblyResolver. Look for assemblies where the current
+	one (being analyzed) was loaded. Return null when a Resolve call 
+	fails. Use generics where appropriate. Stop tracking changes from 
+	the original linker source code.
+	* Runner.cs: Use the CacheAssembly method instead of the collection
+	itself. This allows us to do a bit more work unrelated to the runners.
+
+2008-06-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Avoid exception if an ignored rule is not
+	part of the rule set being executed.
+
+2008-06-02  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ApplicabilityScope.cs: New, the enum for codify the different
+	applicability behaviours.
+	* IRule.cs: Added a getter and setter to the rule.
+	* Rule.cs: Added the getter and setter bodies.
+	* Runner.cs: According their applicability scope, the runner runs or not
+	runs the check against a target.
+
+2008-05-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Whine at the right stream (self-test).
+
+2008-05-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Defect.cs: Add new ctor without a string text parameter (since
+	we encourage not to use it unless it provide extra, non-static 
+	and useful information). Simplify ctor accepting Instruction.
+	* IRunner.cs, Runner.cs: Reduce number of Report overloads by 
+	using IMetadataTokenProvider. Convert some comments into XML
+	documentation.
+
+2008-05-19  Jb Evain  <jbevain@novell.com>
+
+	* IRunner.cs, Runner.cs: add a Report method that takes
+	a PropertyDefinition. Fixes the build.
+
+2008-05-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Delegate symbols loading to rocks.
+
+2008-05-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* IRunner.cs: Add a Report overload for EventDefinition.
+	* Runner.cs: Set and Clear Resolver cache (to reuse the runner).
+	Implement Report(EventDefinition...)
+
+2008-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* RunnerEventArgs.cs: Change setters to public since TestRunner
+	needs them.
+	* TestRunner.cs: Moving to Test.Rules.dll
+
+2008-05-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Defect.cs: Split debugging symbols resolution out of here.
+	* Symbols.cs: New. Symbols stuff moved here.
+
+2008-04-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Defect.cs: Deal with the special 0xFEEFEE value present in PDB 
+	files (for hidden or special case where the compiler does not want
+	the debugger to look in).
+
+2008-04-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Reset the events. The wizard runner can reuse the 
+	runner with a different rule set.
+
+2008-03-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Don't initialize rules that are not active. This is
+	useful when a runner decides to load a rule (e.g. to get more 
+	information about it) then decide not to use it (think UI ;-). 
+	This also makes it easier (well no change) to continue using 
+	Active for rule optimizations.
+
+2008-03-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Rule.cs: Cache Type. This saves 2% (about 16mb) of the memory 
+	required to process all Mono 2.0 assemblies.
+
+2008-03-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TestRunner.cs: Add methods to allow easier testing of the 
+	events.
+
+2008-03-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Rule.cs: Reduce code duplication between Problem and Solution
+	properties.
+
+2008-03-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Seal inner class.
+	* Runner.cs: Add back code removed in last commit.
+
+2008-02-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BasicIgnoreList.cs: Basic implementation, with storage, for
+	keeping an ignore list.
+	* IIgnoreList.cs: New. Interface to ignorance ;-)
+	* IRule.cs: Add FullName.
+	* Rule.cs: Implement FullName using the type full name.
+	* Runner.cs: Add support to ignore some known defects (or false 
+	positives).
+	* TestRunner.cs: Implement IIgnoreList.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyResolver.cs: Fix NRE when resolving some methods
+	* Defect.cs: Make ExtractFirst methods static. Rename 
+	Get[Type|Method]FromLocation to Find*
+	* Runner.cs: Handle case where MDB is unavailable.
+	* TestRunner.cs: Avoid code duplication in Check* methods.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyResolver.cs: Handle GenericParameter.
+	* Runner.cs: Handle the case where Mono.Cecil.Mdb.dll is not
+	available.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Runner.cs: Expose CurrentRule and CurrentTarget
+	* TestRunner.cs: Use newly exposed properties.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs
+	* MethodSignatures.cs
+	* StackEntryAnalysis.cs:
+		Moved into Gendarme.Framework.Helpers
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Runner.cs: Use Rocks to iterate all methods in a type.
+
+2008-02-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyResolver.cs: Shameless copy of Linker AssemblyResolver
+	(with minimal changes) until Cecil got his own. Gendarme resolve
+	will be done using rocks (so changes should not affect rules)
+
+2008-02-14  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Defect.cs: Remove IMetadataTokenProviderRock (moved to 
+	CecilRocks.cs). Add more logic to find source code associated
+	with the defect (even if we don't have the instruction for it).
+	* MinimalRunner.cs: Removed.
+	* Runner.cs: Make some stuff internal for TestRunner.cs
+	* TestRunner.cs: New. Runner useful for unit testing as it has
+	some internal knowledge about Runner state and provide helpers.
+
+2008-02-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Defect.cs: Merge Defect and Defect<T> into a non-generic class.
+	* MinimalRunner.cs: Move Reset method to Runner.
+	* Runner.cs: Adapt for Defect changes and add Reset method.
+
+2008-02-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Defect.cs: Fix exception argument.
+	* IRunner.cs: [ComVisible (false)] at class level (to be moved 
+	to assembly-level). Use Cecil's IAnnotationProvider and change 
+	back Assemblies to Collection<AssemblyDefinition>. Remove the 
+	need to supply IRule to Report overloads (the runner knows which
+	rules it is). Add CurrentRuleResult so it's easier to track 
+	Success and Failure when writing a rule.
+	* MinimalRunner.cs: Add Reset method to help unit testing.
+	* Rule.cs: Call String.Format with CultureInfo.InvariantCulture
+	* Runner.cs: Implement changes required by IRunner. Make use of
+	of On[Assembly|Type|Method] to execute rules. Simplify Run.
+	* RunnerEventArgs.cs: Change setters to internal. Rules are not
+	allowed to play with those values.
+
+2008-02-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Rule.cs: Renamed similar fields (smell) and don't throw an 
+	exception inside Problem and Solution properties (but return a
+	string that makes the lack of attribute clear).
+
+2008-02-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Rule.cs: Throw an exception if we try to use Problem or Solution 
+	on a rule without the needed attributes. Change Uri property to look
+	for DocumentUriAttribute. Make Active property usable.
+
+2008-02-12  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* DocumentationUriAttribute.cs, ProblemAttribute.cs, 
+	SolutionAttribute.cs: New files for the next version of the 
+	framework. Work in progress.
+
+2008-02-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Confidence.cs, Defect.cs, IAssemblyRule.cs, IMethodRule.cs, 
+	IRule.cs, IRunner.cs, ITypeRule.cs, MinimalRunner.cs, Rule.cs,
+	RuleResult.cs, Runner.cs, RunnerEventArgs.cs, Severity.cs: New files
+	for the next version of the framework. Work in progress.
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Shared class to analyse the stack by 
+	Andreas Noever.
+
+2008-01-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs: Modify API to ensure objects are immutable 
+	once created since we expose them as read-only in MethodSignatures.
+	Note: we need to rule to automate this check!
+
+2008-01-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs: Override ToString as this can be useful when 
+	reporting errors/warning.
+	* MethodSignatures.cs: Add GetHashCode and ToString, remove virtual 
+	from Equals (since it should happen to any of them, even "new" ones).
+
+2008-01-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignatures.cs: Change [No|One|Two]Parameter[s] to private
+	to avoid ArrayFieldsShouldNotBeReadOnlyRule on self-test.
+
+2008-01-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs: Allow to find a method using a signature
+	[Andreas Noever]
+	* MethodSignatures.cs: Various method signature to be used, and 
+	shared, by rules [Andreas Noever]

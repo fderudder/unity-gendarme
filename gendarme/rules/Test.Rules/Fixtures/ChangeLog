@@ -1,0 +1,40 @@
+2010-06-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* RuleTestFixture.cs: Allow tests to receive On* events from
+	the runner when necessary (rare but we don't want hacks into
+	rules to make them testable)
+
+2008-11-16  Andrés G. Aragoneses  <aaragoneses@novell.com>
+
+	* MethodRuleTestFixture.cs: Correct typo in the docs.
+
+2008-08-17  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AssemblyRuleTestFixture.cs: New.  A test fixture for checking
+	assembly rules.
+
+2008-08-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRuleTestFixture.cs: Add overload accepting a Type. This is
+	needed when using static types (since we can't use the nice generic
+	syntax on them).
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* RuleTestFixture.cs: Expose Rule and Runner properties for unit 
+	tests. Based on a patch from Cedric Vivier.
+
+2008-04-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRuleTestFixture.cs: Make sure all Assert* methods also
+	applies to constructors.
+
+2008-04-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRuleTestFixture.cs: Remove delegate support.
+
+2008-03-11  Daniel Abramov  <ex@vingrad.ru>
+
+	* MethodRuleTestFixture.cs: New.
+	* RuleTestFixture.cs: New.
+	* TypeRuleTestFixture.cs: New.

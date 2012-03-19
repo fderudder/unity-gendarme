@@ -1,0 +1,158 @@
+2010-06-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationTest.cs: Instruct TestRunner to
+	fire Analyze* events
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDestroyStackTraceTest.cs: Add test case with an empty method
+	and one where the exception local is overwritten by another exception
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationTest.cs: Add test cases for every 
+	locations and all opcodes - except ckfinite which, afaik, is never
+	generated from the C# compiler.
+
+2010-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstantiateArgumentExceptionCorrectlyTest.cs: Add test case for
+	indexers and be more precise (check severity) for "value".
+
+2009-03-15  Jesse Jones  <jesjones@mindspring.com> 
+
+	* UseObjectDisposedExceptionTest.cs: Added new rule.
+
+2009-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationTest.cs: TestFixture must be public
+
+2008-12-30  Jesse Jones  <jesjones@mindspring.com> 
+
+	* DoNotThrowInUnexpectedLocationTest.cs: Added.
+
+2008-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontSwallowErrorsCatchingNonspecificExceptionsTest.cs: Add 
+	a few test cases with goto and conditionals to (unsuccessfully) find
+	a root cause for #458173 (but we already have a workaround in place).
+	* InstantiateArgumentExceptionCorrectlyTest.cs: Add a few test
+	cases to simulate (unsuccessfully again) a reported false positive.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Exceptions.csproj: Activate makefile integration for all
+	the rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-10-28  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* InstantiateArgumentExceptionCorrectlyTest.cs: Add two test 
+	cases. One where yield/iterator is being used (this construct an 
+	inner type where the exception is throw, based on a field, in a 
+	MoveNext() parameter-less method). Second one where a check is done
+	locally but the exception is throw elsewhere (e.g. to share 
+	localization logic).	
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidArgumentExceptionDefaultConstructorTest.cs: Change result 
+	for methods that do not create objects (DoesNotApply).
+	* AvoidThrowingBasicExceptionsTest.cs: Change result for methods 
+	that do not create objects (DoesNotApply).
+	* DontDestroyStackTraceTest.cs: Update to the new, short, unit 
+	test syntax. Add more tests for better coverage.
+	* DontSwallowErrorsCatchingNonspecificExceptionsTest.cs: Update
+	to the new, short, unit test syntax.
+	* InstantiateArgumentExceptionCorrectlyTest.cs: Add test cases 
+	for method returning all targeted exceptions (from all constructors). 
+	Remove Ignore from one test. Add more test for properties.
+
+2008-08-16  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* InstantiateArgumentExceptionCorrectlyTest.cs: Added a test for the
+	false positive found when the message is loaded from a local.
+
+2008-08-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* InstantiateArgumentExceptionCorrectlyTest.cs: New. Unit tests for
+	InstantiateArgumentExceptionCorrectlyRule.
+
+2008-06-25  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotThrowReservedExceptionTest.cs: New. Unit tests for
+	DoNotThrowReservedExceptionRule.
+	* Test.Rules.Exceptions.mdp: Update MD project file.
+
+2008-05-26  Daniel Abramov  <ex@vingrad.ru>
+
+	* AvoidThrowingBasicExceptionsTest.cs: New. Unit tests for 
+	AvoidThrowingBasicExceptionsRule.
+	* Test.Rules.Exceptions.mdp, Tests.Rules.Exceptions.csproj:
+	Update project files.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MissingExceptionConstructorsTest.cs: New. Unit tests for 
+	MissingExceptionConstructorsRule.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExceptionShouldBeVisibleTest.cs: New. Unit tests for 
+	ExceptionShouldBeVisibleRule.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidArgumentExceptionDefaultConstructorTest.cs: New. Unit tests
+	for AvoidArgumentExceptionDefaultConstructorRule.
+	* Test.Rules.Exceptions.mdp: Add tests to MD project file.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDestroyStackTraceTest.cs: Rename to DoNotDestroyStackTrace
+	[Rule|Test]
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDestroyStackTraceTest.cs: (renamed from TestPatterns.cs)
+	* DontSwallowErrorsCatchingNonspecificExceptionsTest.cs:
+		Update unit tests wrt framework changes.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Exeptions.mdp: Update project file.
+
+2007-09-24  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* DontSwallowErrorsCatchingNonspecificExceptionsTest.cs:  Change rule
+	name for adhere to coding guidelines.  With this change, the rule
+        information in the xml file will be shown.
+
+2007-09-01  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* DontSwallowErrorsCatchingNonspecificExceptionsTest.cs: New.  Unit
+	tests for DontSwallowErrorsCatchingNonSpecificExceptionsRule.
+	
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-28  Christian Birkl  <christian.birkl@gmail.com>
+
+	* TestPatterns.cs: Migrated untyped IList messages collection	
+	to typed MessageCollection class.
+	
+2006-09-20  Jonathan Chambers  <joncham@gmail.com>
+
+	* Test.Rules.Exeptions.csproj: Make reference to nunit.framework
+	not a specific version for portability.
+	
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Exeptions.mdp: New. Project file for MonoDevelop.
+	* TestPatterns.cs: Renamed namespace and class to match other existing
+	unit tests. Fixed some compiler warnings.
+
+2006-06-19  Russell Morris  <russell@russellsprojects.com>
+
+	* Initial import of exception-management rule assembly

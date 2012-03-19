@@ -1,0 +1,293 @@
+2010-08-27  Rolf Bjarne Kvinge  <RKvinge@novell.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs: Mark leave.s
+	as safe (just as leave is safe too).
+
+2010-08-27  Rolf Bjarne Kvinge  <RKvinge@novell.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs:
+	Make the example code more extensive and explain the rule a bit better.
+	Initialize member variables in the the ctor to avoid null checks all
+	the time. Use HashSet instead of List when we only check for existence.
+	Use bitmasks to exclude methods to process, and generate the bitmasks
+	statically. Change rule logic to mark all code in a method that is
+	covered by a catch-all exception clause as safe - and the remaining
+	code must be included in a list of safe instructions for the rule to
+	accept it. Fix other minor issues as noted by either self-test or
+	peer-review.
+
+2010-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs:
+	* DoNotCastIntPtrToInt32Rule.cs:
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs:
+	* MarshalBooleansInPInvokeDeclarationsRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CentralizePInvokesIntoNativeMethodsTypeRule.cs:
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs:
+		Apply AvoidUnnecessarySpecializationRule
+
+2010-04-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs:
+	Don't assume a FieldDefinition instance after resolving. Fix
+	analysis against Muinshee.exe
+
+2010-04-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs:
+	Check method.HasBody before doing any memory allocation. Check
+	HasExceptionHandlers before iterating the ExceptionHandlers. 
+	Check called_method.HasParameters before iterating them. Don't
+	call GetDelegatePointers, nor access 'stack' if stack_count is 0.
+	The later solve the exception thrown while analyzing the 
+	jts-1.10.dll assembly.
+
+2010-04-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CentralizePInvokesIntoNativeMethodsTypeRule.cs: Static-ify
+	CanInstantiateType (make self-test)
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs:
+	Skip if we hit a negative 'stack_count' (workaround for #582823).
+	Fix some "make self-test" defects like: Seal ILRange. Remove some
+	unused parameters. Add #if DEBUG around debugging code. Do not 
+	throw Exception (changed to ArgumentException).
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Don't assume 
+	a MethodReference for FlowControl.Call. Calli, while uncommon, 
+	would provide a CallSite.
+	* MarshalStringsInPInvokeDeclarationsRule.cs: Check if PInvokeInfo
+	is null even if IsPInvokeImpl is true since some badly encoded
+	assemblies just do that (flag PInvokeImpl, but has no record in 
+	the ImplMapTable)
+
+2010-01-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CentralizePInvokesIntoNativeMethodsTypeRule.cs: New. Rule to
+	ensure the fx convention on where to define p/invoke declarations
+
+2009-07-31  Jesse Jones  <jesjones@mindspring.com>
+
+	* MarshalBooleansInPInvokeDeclarationsRule.csm 
+	MarshalStringsInPInvokeDeclarationsRule.cs: Edited the 
+	descriptions.
+
+2009-07-04  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-02-24  Jesse Jones  <jesjones@mindspring.com>
+
+    * DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule.cs: 
+    Fix for ldloca instructions.
+
+2008-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarshalBooleansInPInvokeDeclarationsRule.cs: Use HasParameters
+	* MarshalStringsInPInvokeDeclarationsRule.cs: Use HasParameters
+
+2008-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Fix the case
+	where we can't resolve the method (leading to a NRE).
+
+2008-11-18  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Avoid calling 
+	ToString on Method[Reference|Definition] since they are rebuilt
+	each time. Accept UIntPtr [in]equality operators.
+	* MarshalBooleansInPInvokeDeclarationsRule.cs: Specify 
+	StringComparison.Ordinal when calling StartsWith.
+	* UseManagedAlternativesToPInvokeRule.cs: Remove PInvokeCall struct
+	since it required an allocation (of a new struct) in order to search
+	alternatives. This is now replaced by using strings and a second
+	check later for the module and runtime version.
+
+2008-11-15  Jesse Jones  <jesjones@mindspring.com>
+
+    * DoNotCastIntPtrToInt32Rule.cs: Checks for overflow convert instructions.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Interoperability.mdp:
+	* Gendarme.Rules.Interoperability.csproj: Activate makefile integration
+	for all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-11-01  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MarshalBooleansInPInvokeDeclarationsRule.cs: New. Rule to warn if
+	no marshalling information is given for boolean parameters and return
+	values.
+	* Gendarme.Rules.Interoperability.mdp: Add rule to MD project file.
+	* Makefile.am: Add rule and test to build.
+
+2008-11-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Rule.cs: Now cover the case where Marshal.
+	ReadInt[32|64] is used to read pointers (i.e. casted into IntPtr). 
+	Renamed rule to (more general) DoNotAssumeIntPtrSizeRule
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Inherit EXTRA_TESTS_OPTIONS from common.make.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Interoperability.xml,
+	doc/Gendarme.Rules.Interoperability: With the new code in the Makefiles
+	we don't need to keep the documentation files in the repository.
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Make Branch
+	implement IEquatable<T> (self-test).
+	* UseManagedAlternativesToPInvokeRule.cs: Make PInvokeCall implement
+	IEquatable<T> (self-test).
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotCastIntPtrToInt32Rule.cs: Add XML documentation, 
+	the [FxCopCompatibility] attribute and use the OpCodeEngine.
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Add XML 
+	documentation, [FxCopCompatibility] attribute and use the 
+	OpCodeEngine.
+	* MarshalStringsInPInvokeDeclarationsRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute.
+	* PInvokeShouldNotBeVisibleRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute.
+	* UseManagedAlternativesToPInvokeRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute.
+
+2008-08-10  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* PInvokeShouldNotBeVisibleRule.cs: Add check for non-static
+	p/invokes.
+	* Makefile.am: Include all unit tests (typo)
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Remove 
+	unused field (self-test)
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Simplify 
+	logic a bit. Handle the case where Resolve returns null (cannot 
+	find the required assemblies)
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-05-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Rule.cs: Don't apply rule to GetHashCode
+	methods since it's unlikely that the downcast will cause problem
+	and this reduce the main source of false-positives.
+
+2008-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Rule.cs: Change Convert method to static
+	(self-test).
+
+2008-05-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Rule.cs: New. Rule to ensure we're not 
+	generating code limiting IntPtr to work on 32bits architectures.
+	* Makefile.am: Add rule and test to the build.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Add Equals,
+	GetHashCode and ==,!= operators on Branch to satisfy 
+	OverrideValueTypeDefaultsRule.
+	* UseManagedAlternativesToPInvokeRule.cs: Add Equals(PInvokeCall) 
+	method to satisfy ImplementEqualsTypeRule.
+
+2008-02-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Change to static
+	and initialize it directly.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Fix the case
+	where the p/invoke is inside another assembly using the 
+	AssemblyResolver.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs
+	* MarshalStringsInPInvokeDeclarationsRule.cs
+	* PInvokeShouldNotBeVisibleRule.cs
+	* UseManagedAlternativesToPInvokeRule.cs:
+		Update rules wrt framework changes.
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Changed to
+	use the new shared StackEntryAnalysis by Andreas Noever. Refactored
+	(split) by me to reduce self-test complaints ;-)
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarshalStringsInPInvokeDeclarationsRule.cs: New. Rule to ensure 
+	all string and StringBuilder have marshalling information 
+	[Daniel Abramov]
+	* Gendarme.Rules.Interoperability.xml.in: Add rule description and
+	update Uri for all of them.
+	* Makefile.am: Add rule and test to the build.
+
+2008-01-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseManagedAlternativesToPInvokeRule.cs: Override operators == and
+	!= since the struct PInvokeCall overrides Equals (Gendarme rule).
+
+2008-01-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseManagedAlternativesToPInvokeRule.cs: New. Rule to check if
+	p/invoke calls can be replaced with managed alternatives 
+	[Daniel Abramov]. Removed dead code and simplified GetHashCode (sp)
+	* Makefile.am: Add rule and test to the build.
+	* Gendarme.Rules.Interoperability.xml.in: Add rule description.
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Use new 
+	Location ctors.
+
+2008-01-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: Change two 
+	methods to static (self-test)
+	* Gendarme.Rules.Interoperability.mdp: New. MonoDevelop project file.
+
+2007-12-30  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeRule.cs: New. Rule to 
+	ensure GetLastError is called soon enough after a p.invoke call.
+	Rule by Andreas Noever
+	* PInvokeShouldNotBeVisibleRule.cs: New. Rule to check that all
+	p/invoke declaration aren't directly visible from assemblies.
+	* Gendarme.Rules.Interoperability.xml.in: Rules descritions.
+	* Makefile.am: New. Build file for rules and tests.

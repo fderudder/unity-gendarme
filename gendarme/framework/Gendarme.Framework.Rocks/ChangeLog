@@ -1,0 +1,413 @@
+2010-06-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Adjust to API change
+
+2010-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CecilRocks.cs:
+	* InstructionRocks.cs:
+	* MethodRocks.cs:
+	* ModuleRocks.cs:
+	* TypeRocks.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* CecilRocks.cs: Types should not start with an I (self-test)
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* FieldRock.cs: Check if a field's type is generated code (CSC
+	does that) and report this correctly (fix some false positive
+	on CSC compiled code, e.g. for WriteStaticFieldFromInstanceMethodRule)
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CecilRock.cs: Add a faster path (without multiple casting) for
+	GetAssembly, fallback to existing (slow) code path if needed.
+	Support all IMetadataTokenProvider types. Make Equals namespace
+	aware and better deal with null assemblies.
+
+2010-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyRocks.cs:
+	* CecilRocks.cs:
+	* CommonRocks.cs:
+	* CustomAttributeRocks.cs:
+	* FieldRocks.cs:
+	* InstructionRocks.cs:
+	* MethodRocks.cs:
+	* ModuleRocks.cs:
+	* TypeRocks.cs:
+	* VariableDefinitionRocks.cs:
+		Apply fix for CheckParametersNullityInVisibleMethodsRule
+
+2010-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRocks.cs (IsMain): Apply AvoidRepetitiveCallsToPropertiesRule
+	on MethodDefinition.Parameters property.
+	* TypeRocks.cs: Apply CheckParametersNullityInVisibleMethodsRule 
+	on several rocks.  Apply AvoidRepetitiveCallsToPropertiesRule
+	on MethodDefinition.Parameters on both GetMethod and IsFloatingPoint
+	rocks
+
+2010-05-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CecilRocks.cs: Add IMetadataTokenProvider.Equals(IMetadataToken
+	Provider) rock
+	* InstructionRocks.cs: Apply AvoidUnnecessarySpecializationRule
+	on some methods (where it's not confusing)
+	* VariableDefinitionRocks.cs: Apply AvoidUnnecessarySpecialization
+	Rule
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Add a new Is(Code) rock to enhance rule
+	readability.
+
+2010-04-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Stop a backward trace if we encounter an
+	instruction doing an unconditional branch
+
+2010-01-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ParameterRocks.cs: New. IsRef and IsParams rocks to use like
+	IsOut property.
+
+2009-12-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ModuleRocks.cs: Ignore InvalidOperationException (used by the 
+	new PdbCCiReader implementation) if the PDB is does not match 
+	the assembly (DLL/EXE)
+
+2009-06-10  Jesse Jones  <jesjones@mindspring.com>
+
+	* TypeRocks.cs: Added AllSuperTypes rock.
+
+2009-04-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* VariableDefinitionRocks.cs: Added IsGeneratedName rock.
+
+2009-01-28  Jb Evain  <jbevain@novell.com>
+
+	* TypeRocks.cs: Resolve: remove. Implements: handle types
+	with a null BaseType.
+	* MethodRocks.cs: Resolve: remove. IsOverride: handle types
+	with a null BaseType.
+	* FieldRocks.cs: remove Resolve.
+
+2008-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRocks.cs (IsProperty, IsVisible): Check that resolved method
+	is non null before continuing. Based on patch from Tamara Roberson.
+	[partial fix for #462925]
+
+2008-12-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CustomAttributeRocks.cs: Use HasCustomAttributes
+	* InstructionRocks.cs: Use HasParameters
+	* MethodRocks.cs: Use HasConstraints and HasParameters
+	* TypeRocks.cs: Use HasInterfaces, HasParameters, HasMethods and
+	HasConstructors.
+
+2008-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FieldRocks.cs: Use HasCustomAttributes in IsGeneratedCode. Handle
+	unresolvable fields in IsVisible.
+	* MethodRocks.cs: Use HasCustomAttributes in IsGeneratedCode. Use
+	HasParameters in IsEventCallback.
+	* TypeRocks.cs: Use HasCustomAttributes in IsGeneratedCode. Handle
+	unresolvable fields in IsFlag.
+
+2008-11-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeRocks.cs: Make GetMethod smarter and check only the methods
+	or the constructors when possible. Split Implements in two parts
+	to remove some checks when recursion is needed. Also avoid recursion
+	for checking the base types. Add IsPrimitive rock.
+
+2008-11-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ModuleRocks.cs: Change the catch-all for a catch(FormatException)
+	since Cecil has been fixed on HEAD.
+
+2008-11-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRocks.cs: Make IsEventCallback safe if the method cannot be
+	resolved.
+
+2008-11-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRocks.cs: Fix IsEventCallback to work with generic TEventArgs
+
+2008-11-02  Jesse Jones  <jesjones@mindspring.com>
+
+	* InstructionRocks.cs: Fixed TraceBack so that it only goes back
+	if the stack is non empty (the old code had problems with nullary
+	static methods for example).
+
+2008-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ModuleRocks.cs: Add a catch-all since we can't catch the
+	MonoSymbolFileException throw for earlier version of the MDB
+	debugging symbols.
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CommonRocks.cs: Add Version.IsEmpty() rock
+
+2008-10-25  Cedric Vivier <cedricv@neonux.com>
+
+	* TypeRocks.cs: Make Implements() look at parent interfaces too.
+	This avoid false negatives on assemblies generated by compilers
+	which do not explicitely list interfaces implemented by inheritance
+	(such as booc).
+
+2008-10-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Simplify GetField by using OperandType.
+	Simplify getting a FieldType in GetOperandType since there is no
+	need to resolve the field into a FieldDefinition.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* InstructionRocks.cs: Handle 'this' correctly in GetOperandType 
+	rock. Add new rock to check for an operand loading the constant zero.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Add GetOperandType rock to be able, quickly,
+	to determine on which type an instruction works.
+
+2008-10-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRocks.cs: Add IsOverride rock.
+
+2008-08-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Simplify some rocks (Is*) by using the new
+	OpCodeBitmask helper class.
+
+2008-08-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyRocks.cs: Remove HasAttribute
+	* CustomAttributeRocks.cs: Add HasAttribute extension method on 
+	ICustomAttributeProvider
+	* FieldRocks.cs: Remove HasAttribute
+	* MethodRocks.cs: Remove HasAttribute
+	* TypeRocks.cs: Remove HasAttribute
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* TypeRocks.cs: Fix parameter type comparison wrt generics.
+
+2008-08-03  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* InstructionRocks.cs: Add an overload to TraceBack that accept an
+	offset. This makes it easier to find all parameters to a method call.
+
+2008-07-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ModuleRocks.cs: Exit early from LoadDebuggingSymbols if the symbols
+	are already loaded (i.e. the reader was created). This avoid an 
+	exception for the wizard since this is called each time a new analysis
+	is performed (without the need to reload the assemblies).
+
+2008-07-15  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ModuleRocks.cs: Look up the Mono.Cecil.Mdb.dll in the GAC if can't be
+	found in the current folder.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeRocks.cs: Added IsStatic for static types (2.0+). Fixed 
+	IsVisible to work when resolving is required (or not possible).
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* InstructionRocks.cs: Change GetOperand to case Ldc_I4_S to an
+	integer before returing it since it simplify the rules, e.g. when
+	the value is used in a collection.
+
+2008-07-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CommonRocks.cs: Change rocks from IList<T> to ICollection<T> 
+	since they will be more useful this way.
+	* TypeRocks.cs: Avoid exceptions when a Resolve call fails.
+	IsDelegate fix by Cedric Vivier.
+
+2008-07-05  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* InstructionRocks.cs: Add a special case for PopAll so we can
+	abort the track back (without an exception). Fix XML documentation
+	warning.
+
+2008-07-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Add IsLoadElement, IsLoadIndirect and
+	TraceBack rocks.
+
+2008-06-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Change GetOperand to return a 
+	TypeReference when "this" (ldarg_0 in an instance method) is 
+	found.
+
+2008-06-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Add GetParameter, IsLoadArgument and 
+	IsStoreArgument rocks. Move GetPopCount and GetPushCount from 
+	StackEntryAnalysis.
+
+2008-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: Add GetOperand rock to simplify the analysis
+	of macro instructions.
+
+2008-06-14 Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionRocks.cs: New. Extension methods for Instruction.
+
+2008-05-17 Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ModuleRocks.cs: New. Extension methods for ModuleDefinition.
+
+2008-04-27 Jb Evain  <jbevain@novell.com>
+
+	* MethodRocks.cs: Add a IsEventCallback method rock. Used
+	to detect methods whose signature are of the form:
+	void Method (object sender, EventArgs ea).
+
+2008-03-30 Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeRocks.cs: Handle generic interfaces in Implements.
+
+2008-03-30 Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* TypeRocks.cs: Don't break but continue if parameters don't match.
+	There could be a matching overload just waiting to be found.
+
+2008-03-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* TypeRocks.cs: Add null check in Resolve.
+
+2008-03-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* TypeRocks.cs: Add Contains[Any]Type method extentions for 
+	TypeReferenceCollection
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AssemblyRocks.cs: Add References rock.
+	* CommonRocks.cs: Add AddRangeIfNew<T> rock.
+	* TypeRocks.cs: re-enable Gendarme.Framework.Helpers
+
+2008-02-14  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* FieldRocks.cs: Add Resolve (FieldReference to FieldDefinition) and
+	change other rocks to accept FieldReference (and Resolve themselves).
+	* MethodRocks.cs: Add Resolve (MethodReference to MethodDefinition) 
+	and change other rocks to accept MethodReference (and Resolve 
+	themselves).
+	* TypeRocks.cs: Add Resolve (TypeReference to TypeDefinition) and
+	change other rocks to accept TypeReference (and Resolve themselves).
+
+2008-02-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CecilRocks.cs: New. Shared rocks on other Cecil types 
+	(IMetadataTokenProviderRock).
+	* CustomAttributeRocks.cs: Fix exception argument.
+	* TypeRocks.cs: Added AllMethods to return an IEnumerable with
+	all methods *and* constructors. Fixed GetMethod methods to use it.
+	Add IsDelegate.
+
+2008-02-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodRocks.cs: Remove IsGetter and IsSetter since they are now 
+	properties in Cecil (SVH HEAD) and break the build.
+	* TypeRocks.cs: Remove obsoleted GetFinalizer since Nestor fixed all
+	their uses in the rules.
+
+2008-02-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeRocks.cs: IsAttribute now works on a TypeReference. Fix 
+	IsVisible documentation (it needs a TypeDefinition). Rework 
+	IsGeneratedCode to ensure it catch the <Module> type (which is not
+	marked with an attribute).
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CommonRocks.cs: New. Shared but not Gendarme/Cecil specific rocks.
+	ListRocks by Andreas Noever.
+
+2008-01-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* FieldRocks.cs: Add IsVisible rock [Andreas Noever]
+	* MethodRocks.cs: Add IsVisible rock [Andreas Noever]
+	* TypeRocks.cs: Add IsVisible rock [Andreas Noever]
+
+2008-01-19  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* TypeRocks.cs: Handle nested types in IsGeneratedCode for all
+	framework versions.
+
+2008-01-18  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* TypeRocks.cs: Add [Get|Has]Method rocks from Andreas Noever. Mark
+	GetFinalizer as obsolete (will be removed soon).
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MethodRocks.cs: Add IsFinalizer [Daniel Abramov]
+	* TypeRocks.cs: Rework GetFinalizer to use MethodRocks.IsFinalizer
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeRocks.cs: Add IsNative [Andreas Noever]
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeRocks.cs: Add IsFloatingPoint rock and update IsGeneratedCode
+	to deal with code compiled before 2.0
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyRocks.cs: Rename calls to Contains[Any] -> Contains[Any]Type
+	* CustomAttributeRocks.cs: Rename Contains to ContainsType (and
+	ContainsAny to ContainsAnyType) to avoid an extension methods that
+	would also be an overload to a Cecil method (revert JB's confusion ;-)
+	* FieldRocks.cs: New. Extension methods for Cecil's FieldDefinition
+	class.
+	* MethodRocks.cs: Rename calls to Contains[Any] -> Contains[Any]Type
+	* TypeRocks.cs: Rename calls to Contains[Any] -> Contains[Any]Type
+
+2008-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyRocks.cs: New. Extension methods for Cecil's 
+	AssemblyDefinition class.
+	* CustomAttributeRocks.cs: Add ContainsAny method that checks if 
+	any of the specified attributes are present in the collection.
+	* MethodRocks.cs: Replace IsCompilerGenerated by the more general
+	IsGeneratedCode, which check for two similar attributes and also 
+	checks if the type was generated.
+	* TypeRocks.cs: Add GetFinalizer to return the type finalizer (if 
+	any). Add IsGeneratedCode (similar to MethodRocks). Change 
+	HasAttribute to work on a TypeReference (instead of TypeDefinition)
+
+2008-01-02  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MethodRocks.cs: Added IsArray extension method (based on code 
+	from Adrian Tsai).
+	* TypeRocks.cs: Added IsAttribute and Inherits extensions methods
+	(based on code from Daniel Abramov) and IsProperty (based on code
+	from Adrian Tsai).
+
+2007-12-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* CustomAttributeRocks.cs: New. Extension methods for Cecil's 
+	CustomAttribute[Collection] classes.
+	* MethodRocks.cs: New. Extension methods for Cecil's 
+	Method[Reference|Definition][Collection] classes.
+	* TypeRocks.cs: New. Extension methods for Cecil's 
+	Type[Reference|Definition][Collection] classes.

@@ -1,0 +1,113 @@
+2009-07-07  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Ui.mdp:
+	* Gendarme.Rules.Ui.csproj: Activate makefile integration for all the
+	rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.UI.xml, doc/Gendarme.Rules.UI:
+	With the new code in the Makefiles we don't need to keep the
+	documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GtkSharpExecutableTargetRule.cs, 
+	SystemWindowsFormsExecutableTargetRule.cs,
+	UseSTAThreadAttributeOnSWFEntryPointsRule.cs: Add XML documentation 
+	for the rules (then converted into media wiki format).
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseSTAThreadAttributeOnSWFEntryPointsRule.cs: Add mapping to CA2232
+	using [FxCopCompatibility] attribute.
+
+2008-08-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutableTargetRule.cs: Use new overload instead of using a 
+	String.Empty parameter.
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* .cs: Renamed namespace from Ui to UI
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutableTargetRule.cs, GtkSharpExecutableTargetRule.cs, 
+	SystemWindowsFormsExecutableTargetRule.cs: Remove Toolkit property
+	since it's not required anymore.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutableTargetRule.cs
+	* GtkSharpExecutableTargetRule.cs
+	* SystemWindowsFormsExecutableTargetRule.cs
+	* UseSTAThreadAttributeOnSWFEntryPointsRule.cs:
+		Update rules wrt framework changes.
+
+2008-01-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseSTAThreadAttributeOnSWFEntryPointsRule.cs: New. Rule to check
+	that SWF apps have the [STAThread] attribute on their entry point.
+	[Daniel Abramov]
+	* Makefile.am: Add rule and test to the build.
+	* Gendarme.Rules.Ui.xml.in: Add rule description.
+
+2007-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutableTargetRule.cs: Move assembly reference checking code in
+	order to reduce code duplication for both rules.
+	* GtkSharpExecutableTargetRule.cs: Avoid code duplication.
+	* SystemWindowsFormsExecutableTargetRule.cs: Avoid code duplication.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Ui.mdp: Update project file.
+
+2006-11-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Ui.csproj: New. Build file for VS.NET
+
+2006-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Ui.xml.in: Fix description for SWF target rule.
+
+2006-11-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ChangeLog: New. Track changes to UI rules.
+	* ExecutableTargetRule.cs: New. Abstract rule to detect /target:winexe
+	in GUI applications.
+	* Gendarme.Rules.Ui.mdp: New. MonoDevelop project file for rules.
+	* Gendarme.Rules.Ui.xml.in: New. XML description of the rules.
+	* GtkSharpExecutableTargetRule.cs: New. Rule for Gtk#.
+	* Makefile.am: New. Build file.
+	* SystemWindowsFormsExecutableTargetRule.cs: New. Rule for SWF.

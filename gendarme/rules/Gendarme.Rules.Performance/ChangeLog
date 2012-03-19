@@ -1,0 +1,968 @@
+2010-06-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCallsToPropertiesRule.cs: Fix properties access
+	* ReviewLinqMethodRule.cs: Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCallsToPropertiesRule.cs: Filter out some well 
+	known properties that are often called several times
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidReturningArraysOnPropertiesRule.cs: Skip rule if the type 
+	has no properties.
+
+2010-06-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferCharOverloadRule.cs: Apply AvoidUnnecessarySpecializationRule
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConcatenatingCharsRule.cs:
+	* AvoidRepetitiveCallsToPropertiesRule.cs:
+	* PreferCharOverloadRule.cs:
+	* ReviewLinqMethodRule.cs:
+ 		Apply AvoidUnnecessarySpecializationRule
+
+2010-05-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedParametersRule.cs: Documented (MSDN) as a Performance
+	rule but it's actually in the Usage category (e.g. when suppressing
+	a defect) and we need to be compatible with the later.
+	* Makefile.am: Add define for CODE_ANALYSIS on unit tests (required
+	for [SuppressMessage] to be present) and add GlobalSuppressions.cs
+	to the build
+
+2010-05-14  Antoine Vandecreme  <avandecreme@sopragroup.com>
+
+	* ReviewLinqMethodRule.cs: Add support to detect use of
+	Count() instead of Any() in conditions
+
+2010-05-14  Antoine Vandecreme  <avandecreme@sopragroup.com> 
+
+	* ReviewLinqMethodRule.cs: Fix NullReferenceException,
+	I haven't analysed the reason of the null value but I
+	guess it happens in Linq queries such as :
+	myEnumerable.Where(v => v.IsCondition()).OrderBy(v => v.Value)
+	when searching the type of the object on which OrderBy is
+	applied (actually, always IEnumerable<T>, so no defect possible)
+
+2010-05-14  Antoine Vandecreme  <avandecreme@sopragroup.com>
+
+	* ReviewLinqMethodRule.cs: Fix the optimisation test
+	which was skipping .Net 3.5 assemblies.
+
+2010-04-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedParametersRule.cs: Ignore methods decorated with a 
+	[Conditional] attribute.
+
+2010-04-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Ignore methods decorated with
+	a [Conditional] attribute.
+	* AvoidUninstantiatedInternalClassesRule.cs: Ignore internal types
+	named NamespaceDoc since they are used by monodoc to include
+	namespace-related documentation (suggested by Jesse Jones)
+
+2010-04-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCallsToPropertiesRule.cs: Don't assume a 
+	MethodReference for FlowControl.Call. Calli, while uncommon, 
+	would provide a CallSite.
+
+2010-01-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCallsToPropertiesRule.cs: Fix false positives on
+	long message chains. Make InlineLimit a configurable property.
+
+2010-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConcatenatingCharsRule.cs: Apply AvoidMessageChainsRule and 
+	make the check safer against names starting with Object*
+	* AvoidUncalledPrivateCodeRule.cs: Apply AvoidRepetitive
+	CallsToPropertiesRule
+	* AvoidUninstantiatedInternalClassesRule.cs: Apply AvoidRepetitive
+	CallsToPropertiesRule
+	* AvoidUnneededCallsOnStringRule.cs: Apply PreferEmptyInstanceOver
+	NullRule
+	* AvoidUnneededUnboxingRule.cs: Apply PreferEmptyInstanceOverNullRule
+	* AvoidUnsealedUninheritedInternalClassesRule.cs: Apply Avoid
+	RepetitiveCallsToPropertiesRule
+	* AvoidUnusedParametersRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule
+	* MathMinMaxCandidateRule.cs: Apply PreferEmptyInstanceOverNullRule
+	* PreferCharOverloadRule.cs: Apply AvoidRepetitiveCallsToProperties
+	Rule and add extra HasParameters check
+	* RemoveUnusedLocalVariablesRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule
+
+2010-01-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCallsToPropertiesRule.cs: Apply 
+	MethodCanBeMadeStaticRule
+	* ReviewLinqMethodRule.cs: Apply AvoidUnusedParametersRule and
+	AvoidRepetitiveCallsToPropertiesRule
+
+2010-01-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConcatenatingCharsRule.cs: New. Rule will warn if boxing
+	is required to concatenate string.
+	* Makefile.am: Add new rule and tests to the build.
+
+2010-01-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCallsToPropertiesRule.cs: New rule to warn if a
+	virtual or non-likely inline-able properties (getter) are called
+	several times by a method.
+	* Makefile.am: Add new rule and tests to the build.
+
+2010-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add new rule and tests to the build.
+
+2010-01-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLocalDataStoreSlotRule.cs: New. Rule to promote the use of
+	[ThreadStatic] and [ContextStatic] attributes over the slower 
+	LocalDataStoreSlot-based API.
+	* Makefile.am: Add new rule and tests to the build.
+
+2009-08-16  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidLargeNumberOfLocalVariablesRule.cs, 
+	IDisposableWithDestructorWithoutSuppressFinalizeRule, 
+	AvoidLargeStructureRule.cs, DontIgnoreMethodResultRule.cs, 
+	AvoidUnusedParametersRule.cs, AvoidUnsealedConcreteAttributesRule.cs, 
+	PreferCharOverloadRule.cs: Edited descriptions.
+
+2009-07-08  Jesse Jones  <jesjones@mindspring.com>
+
+	* CompareWithStringEmptyEfficientlyRule.cs: Use .NET instead of
+	.Net in a doc comment.
+
+2009-07-05  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-05-14  Jb Evain  <jbevain@novell.com>
+
+	* AvoidMethodWithLargeMaximumStackSize.cs: new rule.
+
+2009-03-20  Daniel Nauck  <dna@mono-project.de>
+
+	* PreferLiteralOverInitOnlyFieldsRule.cs: Fixed "good example" documentation.
+
+2009-01-27  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewLinqMethodRule.cs, Makefile.am: Added new rule.
+
+2008-12-24  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* PreferCharOverloadRule.cs: New. Rule to promote the use of the
+	char-based overload for String.[IndexOf|LastIndexOf|Replace] over
+	the string-based ones (when the string is one character long).
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-12-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Clear cache on TearDown so the
+	wizard won't reuse it if executed again (since it could be broken).
+
+2008-12-13  Jesse Jones  <jesjones@mindspring.com> 
+
+	* RemoveUnusedLocalVariablesRule.cs: Fix AnalyzeModule so that it 
+	activates the rule properly when multiple assemblies or modules are 
+	being checked.
+
+2008-12-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Array have special methods (e.g. 
+	Address) that cannot be resolved and, if not ignored, would cause NRE
+	[Fix bug #458178]
+
+2008-12-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidTypeGetTypeForConstantStringsRule.cs: Use HasParameters
+	* AvoidUncalledPrivateCodeRule.cs: Use HasGenericParameters, 
+	HasOverrides, HasInterfaces, HasNestedTypes, HasCustomAttributes,
+	HasMethods and HasConstructors
+	* AvoidUninstantiatedInternalClassesRule.cs: Use HasParameters,
+	HasFields, HasMethods and HasConstructors
+	* AvoidUnneededCallsOnStringRule.cs: Use HasParameters
+	* AvoidUnusedParametersRule.cs: Use HasOverrides and HasParameters
+	* AvoidUnusedPrivateFieldsRule.cs: Use HasFields
+	* ConsiderCustomAccessorsForNonVisibleEventsRule.cs: Use HasEvents
+
+2008-11-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Simplify call into 
+	CheckAssemblyForMethodUsage
+
+2008-11-16  Andrés G. Aragoneses  <aaragoneses@novell.com>
+
+	* AvoidRepetitiveCastsRule.cs: Adding two more examples (as this rule
+	also warns about normal cast).
+
+2008-11-16  Andrés G. Aragoneses  <aaragoneses@novell.com>
+
+	* AvoidRepetitiveCastsRule.cs: Update comment.
+
+2008-11-13  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidTypeGetTypeForConstantStrings.cs: Do not emit a false positive
+	when using the supported way to detect if running on Mono runtime.
+
+2008-11-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCastsRule.cs: Remove unneeded parameter on GetOrigin
+	method (self-test).
+
+2008-11-07  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidRepetitiveCastsRule.cs: Fixed three different false positive 
+	cases. Note that we did lose an arguably valid warning in 
+	StackEntryAnalysis which we may be able to recover by doing a 
+	TraceBack on nullary method calls.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Performance.mdp:
+	* Gendarme.Rules.Performance.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Append onto the inherited EXTRA_RULES_OPTIONS.
+
+2008-10-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLargeStructureRule.cs: Add null check in SizeOfStruct (self
+	test)
+	* AvoidUninstantiatedInternalClassesRule.cs: Change visibility of
+	ProcessType and ProcessMethod to private.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Performance.xml,
+	doc/Gendarme.Rules.Performance: With the new code in the Makefiles we
+	don't need to keep the documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-10-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCastsRule.cs: Fix XML documentation.
+	* ConsiderCustomAccessorsForNonVisibleEventsRule.cs: Add XML
+	documentation.
+	* EmptyDestructorRule.cs: Renamed to RemoveUnneededFinalizerRule.
+	Now consider a finalizer empty if it only nullify fields. Add XML 
+	documentation and [FxCopCompatibility] attribute.
+	* IDisposableWithDestructorWithoutSuppressFinalizeRule.cs:
+	Renamed to UseSuppressFinalizeOnIDisposableTypeWithFinalizerRule. Add 
+	XML documentation. Check both Dipose (implicit and explicit) when the
+	two methods are present. Use OpCodeEngine to skip Dispose that do not
+	contains any call[virt] instructions.
+	* ImplementEqualsTypeRule.cs: Add XML documentation. Under 2.0 or
+	later suggest implementing IEquatable<T> (for the same end result).
+	* OverrideValueTypeDefaultsRule.cs: Add [FxCopCompatibility] 
+	attribute.
+	* RemoveUnusedLocalVariablesRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute. Use recent GetVariable rock to
+	simplify the logic.
+
+2008-10-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedPrivateFieldsRule.cs: : Add XML documentation 
+	and [FxCopCompatibility] attribute. Use OpCodeEngine to	skip methods
+	without instruction that involves fields. Ignore delegates.
+	* CompareWithStringEmptyEfficientlyRule.cs: Add XML documentation
+	and [FxCopCompatibility] attribute. Use OpCodeEngine to	skip methods
+	without Call[virt] instruction. Handle the case where Object.Equals
+	is being called (csc).
+	* DontIgnoreMethodResultRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute. Use OpCodeEngine to	skip methods
+	without Pop instruction.
+	* OverrideValueTypeDefaultsRule.cs: Add XML documentation.
+
+2008-10-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUnneededFieldInitializationRule.cs: New. Rule to check
+	if constructor needlessly initialize some fields to their default
+	values.
+	* PreferLiteralOverInitOnlyFieldsRule.cs: New. Rule to check
+	if some "static readonly" fields could be changed into "const".
+	* Makefile.am: add new rules and tests to the build.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUnneededCallsOnStringRule.cs: Simplification by using the
+	new Instruction's rocks.
+	* AvoidUnsealedUninheritedInternalClassesRule.cs: Report the 
+	determined confidence level.
+	* MathMinMaxCandidateRule.cs: Add XML documentation. Use 
+	OpCodeEngine and OpCodeBitmask to simplify the rule.
+	* UseIsOperatorRule.cs: Add XML documentation. Use OpCodeEngine to
+	skip methods without a Isinst, Ldnull *and* Ceq instruction.
+	* UseStringEmptyRule.cs: Add XML documentation. Use OpCodeEngine to
+	skip methods without a Ldstr instruction.
+	* UseTypeEmptyTypesRule.cs: Add XML documentation. Use OpCodeEngine
+	to skip methods without a Newarr and Ldc_I4[_S|0] instructions. Use
+	new rock to simplify rule.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnneededUnboxingRule.cs: Add XML documentation. Use 
+	OpCodeEngine to skip methods without Unbox[_Any] instructions.
+	* AvoidUnsealedConcreteAttributesRule.cs: Add XML documentation
+	and [FxCopCompatibility] attribute. Remove unneeded string in Report.
+	* AvoidUnsealedUninheritedInternalClassesRule.cs: Add XML 
+	documentation. Adjust confidence based on the presence (or absence)
+	of [InternalsVisibleTo]. Remove unneeded string in Report.
+	* AvoidUnusedParametersRule.cs: Use OpCodeEngine to find methods
+	that loads another method (delegate) using Ldftn. Add XML 
+	documentation and [FxCopCompatibility] attribute.
+
+2008-10-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidTypeGetTypeForConstantStringsRule.cs: Add XML documentation.
+	Use OpCodeEngine to skip methods without Call or Callvirt instructions
+	and without an Ldstr instruction.
+	* AvoidUncalledPrivateCodeRule.cs: Add XML documentation
+	and [FxCopCompatibility] attribute.
+	* AvoidUninstantiatedInternalClassesRule.cs: Add XML documentation
+	and [FxCopCompatibility] attribute. Remove CheckSpecialTypes method 
+	since <Module> is now checked by IsGeneratedCode. Base confidence 
+	level on whether the assembly is decorated with [InternalsVisibleTo]
+	or not.
+	* AvoidUnneededCallsOnStringRule.cs: Add XML documentation. Use 
+	OpCodeEngine to skip methods without Call or Callvirt instructions.
+	Split core into separate methods and check more instructions.
+
+2008-10-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLargeNumberOfLocalVariablesRule.cs: Add XML documentation
+	and [FxCopCompatibility] attribute.
+	* AvoidLargeStructureRule.cs: Add XML documentation. Change logic
+	to be easier to test completely.
+	* AvoidRepetitiveCastsRule.cs: Rewrote logic so it is possible
+	to report line numbers with the defects. Add OpCodeEngine to skip 
+	methods	that do not have Castclass or IsInst instructions. Add XML 
+	documentation and [FxCopCompatibility] attribute.
+	* AvoidReturningArraysOnPropertiesRule.cs: Add XML documentation
+	and [FxCopCompatibility] attribute. Return DoesNotApply if the method
+	is not a getter.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test/ImplementEqualsTypeTest.cs: Add test case with generics.
+
+2008-08-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnneededUnboxingRule.cs: Fix case for static parameter-less
+	methods.
+
+2008-08-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidReturningArraysOnPropertiesRule.cs: Use shorter overload.
+	* AvoidUncalledPrivateCodeRule.cs: Split DoesNotApply-checks into a
+	separate method. Avoid unneeded	specialization on some methods (self
+	tests)
+	* AvoidUninstantiatedInternalClassesRule.cs: Avoid unneeded 
+	specialization on CheckSpecialTypes (self-test). Use shorter overload.
+	* CompareWithStringEmptyEfficientlyRule.cs: Use shorter overload.
+	* ImplementEqualsTypeRule.cs: Use shorter overload.
+	* MathMinMaxCandidateRule.cs: Add missing Ldind_I2. Use shorter 
+	overload.
+	* UseStringEmptyRule.cs: Use shorter overload.
+
+2008-08-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCastsRule.cs: Fix calls to methods.
+
+2008-08-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedParametersRule.cs: Use a bitmask (maximum of 64 
+	parameters) to see which parameter gets used (or not). Save more 
+	than 84MB (12%) of memory allocated over all Mono 2.0 assemblies
+
+2008-08-05  Peter Johanson  <peter@peterjohanson.com>
+
+	* AvoidUnusedParametersRule.cs: Properly check every delegate
+	created inside a method, to see if a certain method is used
+	in a delegate instance.
+
+2008-08-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Fix rule not to apply for
+	compiler generated add/remove methods on events.
+
+2008-07-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Don't ignore properties and
+	detect use when generics are used.
+	[Fix bug #410000]
+
+2008-07-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedPrivateFieldsRule.cs: Fix [Problem] and [Solution]
+	to match the rule (wrong copy-paste). Don't process literals (e.g. 
+	const) since their value is copied into IL and this results in many
+	false positives (handled or not).
+	* Makefile.am: Compile without optimization since newer gmcs is
+	now converting "" into String.Empty automagically (making our test 
+	cases fails).
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLargeNumberOfLocalVariablesRule.cs: Rule to warn if a method
+	has a very large of local variables - since it's likely the JIT won't be
+	able to do a good job assigning registers to them.
+	* Makefile.am: add rule and tests to the build.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedPrivateFieldsRule.cs: Rule to warn if a private field
+	is unused in a type.
+	* Makefile.am: add rule and tests to the build.
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidTypeGetTypeForConstantStringsRule.cs: Handle the case 
+	where Resolve returns null (cannot find the required assemblies)
+	* AvoidUncalledPrivateCodeRule.cs: Handle the case where Resolve 
+	returns null (cannot find the required assemblies)
+	* CompareWithStringEmptyEfficientlyRule.cs: Handle the case where
+	Resolve returns null (cannot find the required assemblies)
+	* MonoCompatibilityReviewRule.cs: Dispose as soon as possible.
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-07-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRepetitiveCastsRule.cs: New. Rule to check if the code 
+	repeat some cast operations more than one time.
+	* AvoidUncalledPrivateCodeRule.cs: Apply AvoidRepetitiveCastsRule
+	to rule (self-test).
+	* Gendarme.Rules.Performance.mdp: Update MD project file.
+	* Makefile.am: add rule and tests to the build.
+
+2008-06-28  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLargeStructureRule.cs: Handle arrays correctly.
+
+2008-06-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLargeStructureRule.cs: Add missing [Problem] and [Solution]
+	attributes to the rule.
+
+2008-06-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidTypeGetTypeForConstantStringsRule.cs: New. Rule to check
+	if calls to Type.GetType(string), which requires reflection, could 
+	be changed into, faster, typeof(x).
+	* Gendarme.Rules.Performance.mdp: Update MD project file.
+	* Makefile.am: add rule and tests to the build.
+
+2008-06-11  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: when facing
+	an internal sealed class, with a single private ctor, the
+	rule does not apply, it's basically a static class.
+
+2008-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderCustomAccessorsForNonVisibleEventsRule.cs: New. Rule 
+	that checks type non-visible events and report them if they are 
+	marked as synchronized (making it possible to remove the lock, if
+	unneeded, and remove the lock performance penality).
+	* Gendarme.Rules.Performance.mdp: Update MD project file.
+	* Makefile.am: add rule and tests to the build.
+
+2008-05-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnneededUnboxingRule.cs: New. Rule to warn about multiple,
+	unneeded, unboxing inside methods.
+	* Makefile.am: add rule and tests to the build.
+
+2008-05-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* RemoveUnusedLocalVariablesRule.cs: New. Rule to warn about unused
+	variables inside methods.
+	* Makefile.am: add rule and tests to the build.
+
+2008-05-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DontIgnoreMethodResultRule.cs: Change logic to check for specific
+	cases (black list) instead of everything minus exceptions (white-
+	listing). Cut down a lot on false positives.
+
+2008-05-01  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLargeStructureRule.cs: Remove unused GetPackSize method.
+	Use IsPrimitive definition (inside a collection, the switch case 
+	was big enough to do the same) for well known values.
+
+2008-04-27  Andres G. Aragoneses  <aaragoneses@novell.com>
+
+	* Gendarme.Rules.Performance.mdp: updated.
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUnusedParametersRule.cs: replace IsEventCallback
+	method by a call to the rock of the same name.
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUnusedParametersRule.cs: refactoring work.
+	Rule does not apply any more to even callbacks of kind
+	Callback (object sender, *EventArgs ea).
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: remove
+	duplicated code using the AllMethods rocks.
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: use an HashSet instead
+	of a List for faster lookup.
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: use an
+	HashSet instead of a List to keep track of types,
+	for faster lookups.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLargeStructureRule.cs: New. Rule to check for oversized 
+	structures.
+	* CompareWithStringEmptyEfficientlyRule.cs: Fix false positives.
+	* Makefile.am: add rule and tests to the build.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CompareWithStringEmptyEfficientlyRule.cs: Remove debugging NIE
+	hack.
+
+2008-04-26  Jb Evain  <jbevain@novell.com>
+
+	* UseTypeEmptyTypesRule.cs: New rule that checks for unecessary
+	creation of empty array of types (used a lot for reflection), while
+	we can use Type.EmptyTypes.
+	* Makefile.am: add the new guy to the build.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CompareWithStringEmptyEfficientlyRule.cs: Replace the existing
+	UsingStringLengthInsteadOfCheckingEmptyStringRule rule. Add checks
+	for String.Empty and Equality and Inequality operators.
+	* UsingStringLengthInsteadOfCheckingEmptyStringRule.cs: Removed
+	* Makefile.am: Update build with new names.
+
+2008-04-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidReturningArraysOnPropertiesRule.cs: Add an alternate
+	solution (to return a collection) and remove details as it does
+	not provide more information (than the [Solution] already provides).
+	* UseStringEmptyRule.cs: Remove variable to track defect state 
+	and use Runner.CurrentRuleResult instead. Remove details as it
+	does not provide more information (than the [Solution] already 
+	provides).
+
+2008-04-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeTest.cs: Use the token in the cache 
+	(instead of the MethodReference). Does not work on Mono when
+	using generics.
+
+2008-04-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeTest.cs: Refactor to cache results (and
+	save tons of memory). Now check for public/protected methods inside
+	non-visible types.
+
+2008-04-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeTest.cs: Fix false positives when a
+	private method is used in its declaring type's nested type(s)
+	[Cedric Vivier]
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUninstantiatedInternalClassesTest.cs: Report generic types
+	correctly.
+	* DontIgnoreMethodResultTest: Exclude Stack.Pop (and it's generic
+	version).
+
+2008-04-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MathMinMaxCandidateRule.cs: New. Rule that checks for code
+	patterns that should be replaced by Math.Min or Math.Max since the
+	JIT can inline them for better performance (wrt manually inlining
+	them). Suggestion from Marek Safar (bug #373269)
+	* Gendarme.Rules.Performance.mdp: Add rule to MD project file.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-03-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementEqualsTypeRule.cs: New. Rule to suggest providing an
+	Equals(type) method if Equals(object) is overriden. This can make a
+	bug difference for ValueType since this remove boxing.
+	* Gendarme.Rules.Performance.mdp: Add rule to MD project file.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-03-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnusedParametersRule.cs: Don't report defects on methods
+	that contains parameter inheriting from EventArgs. GUI apps use
+	them a lot and, while not real "false positive", the method 
+	signature is outside the developer's control so it cannot be 
+	fixed (signature-wise) and rarely denotes a real problem. Fix
+	bug #350288
+
+2008-03-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnneededCallsOnStringRule.cs: Source file renamed from 
+	AvoidToStringOnStringsRule.cs since the rule has been generalized
+	to cover more similar cases. E.g. Clone(), Substring(0) and 
+	ToString(IFormatProvider).
+	* Makefile.am: Rename rule and test files.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Remove {0} from [Problem] attribute
+	* AvoidUninstantiatedInternalClassesRule.cs: Remove unused parameter.
+
+2008-02-16  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidUnusedParametersRule.cs: Removed unused variable.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EmptyDestructorRule.cs
+	* IDisposableWithDestructorWithoutSuppressFinalizeRule.cs:
+		Fix namespace change.
+
+2008-02-15  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Test/*.cs: Refactor the tests for accept the new rule's format.
+	* *.cs: Adapt the rules to the new framework.
+	* Makefile.am: Removed the -langversion:linq option. You should use at
+	least the 1.9 gmcs version to compile.
+
+2008-02-07  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* DisposableTypesShouldHaveFinalizerRule.cs,
+	FinalizersShouldCallBaseClassFinalizerRule.cs,
+	FinalizersShouldBeProtectedRule.cs: Replaced TypeDefinition.GetFinalizer
+	with TypeDefinition.GetMethod for avoid some warnings when compiling.
+
+2008-02-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnsealedUninheritedInternalClassesRule.cs: New. Rule to check
+	for non-sealed and non-visible types [Scott Peterson]
+	* UseIsOperatorRule.cs: New. Rule to check when using the "is" 
+	operator would be better than a cast+null check [Seo Sanghyeon]
+	* Gendarme.Rules.Performance.xml.in: Add rule description.
+	* Gendarme.Rules.Performance.mdp: Add rule to MonoDevelop project 
+	file.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-02-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Reworked to reduce
+	false positives.
+	* DontIgnoreMethodResultRule.cs: Add more exceptions to reduce
+	false positives.
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontIgnoreMethodResultRule.cs: Don't report on compiler/tools 
+	generated code since this is out of the developer's control.
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Reduce false positives
+	a bit more by handling "out" and variable types.
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EmptyDestructorRule.cs: Use new IsFinalizer rock.
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUncalledPrivateCodeRule.cs: Use new Location ctors.
+	* AvoidUninstantiatedInternalClassesRule.cs: Use new Location ctors.
+	* UseStringEmptyRule.cs: Use new Location ctors.
+	* UsingStringLengthInsteadOfCheckingEmptyStringRule.cs: Don't 
+	create MessageCollection until needed. Use new Location ctors.
+
+2008-01-08  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUncalledPrivateCodeRule.cs: Don't report any serialization
+	constructors since they are invoked by the runtime.
+	* DontIgnoreMethodResultRule.cs: Don't report BeginInvoke methods
+	that accept a Delegate (for any type). Better error reporting when a
+	new unused instance is created.
+
+2008-01-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidToStringOnStringsRule.cs: Fix false positives on corlib (when
+	an overloaded ToString, with parameters, is used).
+	* AvoidUnusedParametersRule.cs: Fix false positives on corlib (where
+	icalls were reported)
+	* EmptyDestructorRule.cs: Simplify using rocks.
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Don't report this if 
+	the class holds the assembly entry point (i.e. Main method).
+	* DontIgnoreMethodResultRule.cs: Add Directory.CreateDirectory to
+	stuff we can safely ignore. Change some methods to static.
+	* Gendarme.Rules.Performance.mdp: Add linq to compiler options.
+
+2008-01-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidToStringOnStringsRule.cs: Simplified to use rocks
+	* AvoidUncalledPrivateCodeRule.cs: Use IsGeneratedCode instead of 
+	the older IsCompilerGenerated to avoid more false-positives.
+	* AvoidUninstantiatedInternalClassesRule.cs: Simplified to use rocks
+	* AvoidUnsealedConcreteAttributesRule.cs: New. Rule to check that 
+	concrete attribute classes are sealed [Daniel Abramov]
+	* AvoidUnusedParametersRule.cs: Simplified to use rocks and to avoid
+	creating (most time) an unneeded MessageCollection.
+	* IDisposableWithDestructorWithoutSuppressFinalizeRule.cs: 
+	Simplified to use rocks
+	* Gendarme.Rules.Performance.mdp: Add rule to MonoDevelop project 
+	file.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-01-03  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUncalledPrivateCodeRule.cs: Updated/simplified to use rocks.
+	* AvoidUninstantiatedInternalClassesRule.cs: Fix rule to handle
+	enums correctly.
+
+2008-01-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidReturningArraysOnPropertiesRule.cs: New. Rule to warn for 
+	properties that returns arrays. By Adrian Tsai.
+	* Gendarme.Rules.Performance.xml.in: Add rule description.
+	* Gendarme.Rules.Performance.mdp: Add rule to MonoDevelop project 
+	file.
+	* Makefile.am: Add rule and tests to the build.
+
+2007-12-21  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidUnusedParameterRule.cs: If the method is anonymous then, gendarme
+	will skip it.
+
+2007-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Reworked to make the
+	rule works with all types defined in the assembly. Information for
+	each assembly is cached to speed up searches.
+
+2007-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Reworked to check for
+	the more general CompilerGeneratedAttribute (removing the direct 
+	check required for <PrivateImplementationDetails>). Refactor to 
+	reduce code duplication for checking attributes.
+
+2007-11-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Ignore special types 
+	like <Module> and <PrivateImplementationDetails>. Also check for
+	nested types (like array defs) and use constants instead of strings.
+
+2007-11-29  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidUncalledPrivateCodeRule: Allow if the method is a compiler
+	generated method.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Allow unused private ctor.
+	* AvoidUnusedParametersRule.cs: Add checks for Ldarga[_S] IL opcodes.
+	Don't create a MessageCollection unless we have at least one message
+	to return to the runner.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Don't report unused code for
+	explicit interface implementation.
+	* Makefile.am: Use nunit-console2 to run tests
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DontIgnoreMethodResultRule.cs: Don't create a MessageCollection 
+	unless we have at least one message to return to the runner. Reduce
+	false positives by handling all Append* methods from StringBuilder
+	and add exception for PermissionSet.[Add|Remove]Permission.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Use MethodReference (not 
+	MethodDefinition) when iterating thru overrides.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* UseStringEmptyRule.cs: Don't create a MessageCollection unless we 
+	have at least one message to return to the runner.
+
+2007-11-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUninstantiatedInternalClassesRule.cs: Simplified logic. 
+	Avoid using strings. IsInstantiated logic looks incomplete in scope
+	(needs more tests).
+
+2007-11-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUncalledPrivateCodeRule.cs: Simplified logic. Avoid using 
+	strings. Consider finalizers (since it's normal that they look 
+	uncalled). 
+
+2007-11-18  Nestor Salceca  <nestor.salceda@gmail.com>
+	
+	* Gendarme.Rules.Performance.xml.in: Fix the problem closing tag in
+	AvoidStringOnStringsRule description.
+
+2007-11-10  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Gendarme.Rules.Performance.xml.in: Added Uri for
+	UsingStringLengthInsteadOfEmptyStringRule,
+	AvoidUninstantiatedInternalClassesRule, AvoidUncalledPrivateCodeRule,
+	AvoidToStringOnStringsRule and DontIgnoreMethodResultRule.
+
+2007-11-10  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Gendarme.Rules.Performance.xml.in:  Added documentation for
+	AvoidToStringOnStringsRule and DontIgnoreMethodResultRule.
+
+2007-10-08  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidToStringOnStringsRule.cs: Fix in case where the method has no
+	body (e.g. p/invoke, icalls...);
+	* UsingStringLengthInsteadOfCheckingEmptyStringRule.cs: Fix in case 
+	where the method has no	body (e.g. p/invoke, icalls...);
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidToStringOnStringsRule.cs: New rule (Lukasz Knop, GSoC 2007)
+	* AvoidUncalledPrivateCodeRule.cs: New rule (Nidhi Rawal, GSoC 2007)
+	* AvoidUninstantiatedInternalClassesRule.cs: New rule (Nidhi Rawal, 
+	GSoC 2007)
+	* DontIgnoreMethodResultRule.cs: New rule (Lukasz Knop, GSoC 2007)
+	* UsingStringLengthInsteadOfCheckingEmptyStringRule.cs: New rule
+	(Nidhi Rawal, GSoC 2007)
+	* Gendarme.Rules.Performance.xml.in: Update rule descriptions.
+	* Makefile.am: Add new rules/tests to build.
+	* Gendarme.Rules.Performance.mdp: Update project file.
+
+2007-10-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Performance.mdp, Test.Rules.Performance.mdp:  Added 
+	AvoidUnusedParametersRule and the respective unit test to 
+	MonoDevelop project file.
+
+2007-09-29  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Performance.xml.in:  Added Uri for
+	AvoidUnusedParametersRule.
+
+2007-09-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidUnusedParametersRule.cs: Fixes a NullReference exception if the
+	method hasn't body.
+
+2007-08-31  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidUnusedParametersRule.cs: Following the Jb Evain comments, I used
+	a guard pattern for the method.HasBody in the
+	ContainsReferenceDelegateInstructionFor method.  I also avoid 2 cast
+	instructions in IsReferencedByDelegateMethod.
+
+2007-08-31  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Performance.xml.in: Added the rule information in the
+	xml file.
+	
+2007-08-31  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidUnusedParametersRule.cs: New rule to check for unused parameters
+	in a method.
+	* Makefile.am: Added the sources of the rule and the unit tests.
+
+2006-10-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Performance.xml.in: Update Uri for rules (to generate
+	more useful reports).	
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-28  Christian Birkl  <christian.birkl@gmail.com>
+
+	* Gendarme.Rules.Performance.csproj: Included ChangeLog
+	* EmptyDestructorRule.cs, 
+	IDisposableWithDestructorWithoutSuppressFinalizeRule.cs,
+	UseStringEmptyRule.cs: Migrated untyped IList messages collection
+	to typed MessageCollection class.
+	
+2006-09-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseStringEmptyRule.cs: Deal with [g]mcs generating leave instruction
+	(instead of leave.s). Updated rule to use RuleSuccess and RuleFailure
+	(easier to read).
+
+2006-09-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Performance.xml.in: Update name and description for
+	UseStringEmptyRule.
+	* UseStringEmptyRule.cs: Update rule to provide location (which 
+	results in better reports).
+
+2006-08-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Performance.xml.in: Add description for new rule.
+	* Gendarme.Rules.Performance.mdp: Add new rule to MonoDevelop project.
+	* Makefile.am: Add UseStringEmptyRule.cs and UseStringEmptyTest.cs to
+	the build.
+	* UseStringEmptyRule.cs: New rule to check for the use of "" literal
+	instead of String.Empty.
+
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Performance.mdp: New. Project file for MonoDevelop.
+
+2006-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Use -pkg:mono-nunit to reference nunit assemblies.
+	Added self-test target to promote compliance ;-)
+
+2006-03-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Fix deps on run-test

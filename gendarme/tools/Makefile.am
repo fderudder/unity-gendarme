@@ -1,0 +1,4 @@
+SUBDIRS = supported unsupported
+
+all:
+

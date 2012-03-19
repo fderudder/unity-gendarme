@@ -1,0 +1,203 @@
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullTest.cs:
+	* PreferEmptyInstanceOverNullTest.cs:
+	* ToStringReturnsNullTest.cs:
+		Add test cases where an immediate if is used. xMCS use
+		a ldnull+branch while CSC branch then load null
+
+2010-01-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferTryParseTest.cs: New. Unit tests for PreferTryParseRule
+
+2010-01-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferParamsArrayForVariableArgumentsTest.cs: New. Unit tests 
+	for PreferParamsArrayForVariableArgumentsRule
+
+2009-02-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* OnlyUseDisposeForIDisposableTypesTest.cs: Added new rule.
+
+2009-01-30  Jb Evain  <jbevain@novell.com>
+
+	* DoNotUseEnumIsAssignableFromTest.cs: add tests for
+	DoNotUseEnumIsAssignableFromRule.
+
+2009-01-20  Jesse Jones  <jesjones@mindspring.com>
+
+	* PreferSafeHandleTest.cs: Added.
+
+2008-11-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullTest.cs: Adjust fixture since the
+	rule now check methods.
+
+2008-11-14  Jesse Jones  <jesjones@mindspring.com>
+
+	* DisableDebuggingCodeTest.cs: Tweaked to allow it to work when
+	compiled in release.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.BadPractice.csproj: Activate makefile integration for all
+	the rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotUseGetInterfaceToCheckAssignabilityTest.cs: New. Unit 
+	tests for DoNotUseGetInterfaceToCheckAssignabilityRule.
+
+2008-09-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidAssemblyVersionMismatchTest.cs: New. Unit tests for 
+	AvoidAssemblyVersionMismatchRule.
+
+2008-09-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCallingProblematicMethodsTest.cs: Add more coverage.
+	* CheckNewExceptionWithoutThrowingTest.cs: Add more coverage.
+	* CheckNewThreadWithoutStartTest.cs: Add more coverage.
+	* CloneMethodShouldNotReturnNullTest.cs: Update to the new, 
+	shorter, test syntax. Change some Success to DoesNotApply since the
+	rule is now able to skip more cases. Add more coverage.
+	* ConstructorShouldNotCallVirtualMethodsTest.cs: Add more coverage.
+	* DisableDebuggingCodeTest.cs: Update to the new, shorter, test
+	syntax. Add more coverage.
+	* DoNotForgetNotImplementedMethodsTest.cs: Change some Success 
+	to DoesNotApply since the rule is now able to skip more cases. Add 
+	more coverage.
+	* GetEntryAssemblyMayReturnNullTest.cs: Update to the new, 
+	shorter, test syntax. Add more coverage.
+	* ReplaceIncompleteOddnessCheckTest.cs: Change some Success to 
+	DoesNotApply since the rule is now able to skip more cases. Add 
+	more coverage.
+	* ToStringReturnsNullTest.cs: Update to the new, shorter, test
+	syntax. Change some Success to DoesNotApply since the rule is now
+	able to skip more cases. Add more coverage.
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotForgetNotImplementedMethodsTest.cs: Test cases for
+	DoNotForgetNotImplementedMethodsRule [committed for Cedric Vivier]
+	* Test.Rules.BadPractice.mdp: Update MD project file.
+
+2008-07-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCallingProblematicMethodsTest.cs: Add two more test cases
+	to achieve 100% coverage of the rule.
+
+2008-07-03  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidCallingProblematicMethodsTest.cs: New.  Unit tests for
+	AvoidCallingProblematicMethodsRule.
+	* Test.Rules.BadPractice.mdp: Update MD project file.
+
+2008-06-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidVisibleConstantFieldRule.cs: New. Unit tests for 
+	AvoidVisibleConstantFieldRule
+	* Test.Rules.BadPractice.mdp: Update MD project file.
+
+2008-06-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReplaceIncompleteOddnessCheckTest.cs: New. Unit tests for 
+	ReplaceIncompleteOddnessCheckRule
+	* Test.Rules.BadPractice.mdp: Update MD project file.
+
+2008-05-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ObsoleteMessagesShouldNotBeEmptyTest.cs: New. Unit tests for
+	ObsoleteMessagesShouldNotBeEmptyRule
+
+2008-05-10  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* CheckNewExceptionWithoutThrowingTest.cs,
+	  CloneMethodShouldNotReturnNullTest.cs,
+	  ConstructorShouldNotCallVirtualMethodsTest.cs,
+	  CheckNewThreadWithoutStartTest.cs,
+	  GetEntryAssemblyMayReturnNullTest.cs, Test.Rules.BadPractice.mdp,
+	  ToStringReturnsNullTest.cs, DisableDebuggingCodeTest.cs: Update (to
+	  fix build): somebody forgot to include the new namespace when
+	  moving TestRunner.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EqualShouldHandleNullArgTest.cs: Convert test cases to new 
+	format. Add new test cases based on Mono BCL (old) false positives.
+
+2008-04-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisableDebuggingCodeTest.cs: Adapt to change for Initialize 
+	behavior. If a runner desactivate a rule then it should not 
+	re-activate itself.
+
+2008-03-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisableDebuggingCodeTest.cs: New. Unit tests for 
+	DisableDebuggingCodeRule.
+	* Test.Rules.BadPractice.mdp: Update MD project file.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckNewExceptionWithoutThrowingTest.cs
+	* CheckNewThreadWithoutStartTest.cs
+	* CloneMethodShouldNotReturnNullTest.cs
+	* ConstructorShouldNotCallVirtualMethodsTest.cs
+	* EqualShouldHandleNullArgTest.cs
+	* GetEntryAssemblyMayReturnNullTest.cs
+	* ToStringReturnsNullTest.cs
+		Update unit tests wrt framework changes.
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckNewExceptionWithoutThrowingTest.cs: New. Unit tests by 
+	Andreas Noever.
+	* CheckNewThreadWithoutStartTest.cs: New. Unit tests by Andreas 
+	Noever.
+
+2008-01-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EqualShouldHandleNullArgTest.cs: Changed my mind about "new" ;-)
+	* ImplementingEqualsButNotGetHashCodeAndViceVersaTest.cs: Tests
+	move (with rules) into Design since it affects the API.
+	* ToStringReturnsNullTest.cs: Add a bunch of new test cases.
+
+2008-01-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConstructorShouldNotCallVirtualMethodsTest.cs: Add a bunch
+	of test cases to exclude final, include non-virtual calls leading
+	to virtual calls, instance versus member/field calls...
+	* EqualShouldHandleNullArgTest.cs: Add a bunch of test cases
+	to duplicate common patterns (from class lib) leading to false 
+	positives.
+
+2008-01-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConstructorShouldNotCallVirtualMethodsTest.cs: New. Unit 
+	tests by Daniel Abramov. 
+	* GetEntryAssemblyMayReturnNullTest.cs: New. Unit tests by	
+	Daniel Abramov. 
+	* Test.Rules.BadPractice.mdp: Update MonoDevelop project file.
+
+2007-11-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EqualShouldHandleNullArgTest.cs: Add a test case where Equals 
+	simply return false.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EqualShouldHandleNullArgTest.cs: Add little variations in the null
+	checks.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullTest.cs: Unit tests (Nidhi Rawal, 
+	GSoC 2007)
+	* EqualShouldHandleNullArgTest.cs: Unit tests (Nidhi Rawal, GSoC 2007)
+	* ImplementingEqualsButNotGetHashCodeAndViceVersaTest.cs: Unit tests 
+	(Nidhi Rawal, GSoC 2007)
+	* ToStringReturnsNullTest.cs: Unit tests (Nidhi Rawal, GSoC 2007)
+	* Test.Rules.BadPractice.mdp: Project file for MonoDevelop
+	* Makefile.am: Build file.

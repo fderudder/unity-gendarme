@@ -1,0 +1,830 @@
+2010-08-06  Antoine Vandecreme  <avandecreme@sopragroup.com>
+
+	* Makefile.am : Add support for resources
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs : Add
+	support of string resources as format
+
+2010-06-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeRule.cs: Apply 
+	AvoidLargeClassesRule
+
+2010-06-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideValidXmlStringRule.cs:
+	* ProvideValidXPathExpressionRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* BadRecursiveInvocationRule.cs: Fix regression if a type
+	cannot be resolved (the original name is still available)
+
+2010-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs:
+	* DoNotRecurseInEqualityRule.cs:
+	* DoNotRoundIntegersRule.cs:
+	* EnsureLocalDisposalRule.cs:
+	* ProvideCorrectRegexPatternRule.cs:
+	* ProvideValidXmlStringRule.cs:
+	* ProvideValidXPathExpressionRule.cs:
+	* ReviewSelfAssignmentRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeRule.cs: Update
+	comment in xmldoc wrt FX4
+	* ReviewInconsistentIdentityRule.cs: Fix several defects (self 
+	test) and reduce memory usage (e.g. array creation)
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontCompareWithNaNRule.cs: Skip rule if the assembly does not
+	refer (or define for mscorlib) Single or Double types
+	* UseValueInPropertySetterRule.cs: Skip rule if the type has
+	no properties.
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeRule.cs:
+	* EnsureLocalDisposalRule.cs:
+	* ReviewInconsistentIdentityRule.cs:
+ 		Apply AvoidUnnecessarySpecializationRule
+
+2010-05-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsRule.cs: Fix when 
+	"ldarg 0" is used instead of the, much more common, "ldarg_0"
+	* MethodCanBeMadeStaticRule.cs: Fix when "ldarg 0" is used 
+	instead of the, much more common, "ldarg_0"
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeRule.cs: Apply 
+	AvoidRepetitiveCallsToPropertiesRule on MethodDefinition::
+	get_DeclaringType and get_Name and TypeReference::Get_FullName
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Apply Avoid
+	RepetitiveCallsToPropertiesRule on MethodDefinition::Parameters.
+	Check (expectedParameters == 0) only once
+	* ProvideValidXmlStringRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule on MethodDefinition::get_Parameters
+	* ProvideValidXPathExpressionRule.cs: Remove duplicate check on
+	SelectSingleNode
+	* ReviewInconsistentIdentityRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule on Type::get_FullName
+
+2010-04-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCanBeMadeStaticRule.cs: Re-order conditions from the
+	fastest to the slowest to return DoesNotApply. Ignore methods
+	decorated with [Conditional("X")] since they could be empty (i.e.
+	not using 'this') in IL while impossible, source wise, to change
+	to static.
+	* ProvideCorrectRegexPatternRule.cs: Change TryComputeArraySize
+	to static (self-test)
+
+2010-04-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedRule.cs: Handle compiler 
+	generated fields (e.g. used in C# 3 automatic properties).
+
+2010-04-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectRegexPatternRule.cs: Make rule consistent in case
+	where the argument looks like: boolean_condition ? "good" : "bad"
+	i.e. same result (first or second bad string) and compiler 
+	independant. However since we're less sure of the second case we 
+	lower our confidence on that defect.
+
+2010-04-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Fix false
+	positives when globalization, arrays / 'params' are used. Patch
+	by Antoine Vandecrème
+
+2010-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentRule: Apply PreferEmptyInstanceOverNullRule
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeRule.cs: Apply
+	MethodCanBeMadeStaticRule
+	* CallingEqualsWithNullArgRule.cs: Apply rule to Equals that are
+	not public.
+	* ReviewInconsistentIdentityRule.cs: Apply rules to CompareTo 
+	that are not public.
+
+2010-01-06  Jb Evain  <jbevain@novell.com>
+
+	* UseNoInliningWithGetCallingAssemblyRule.cs: Fix the
+	documentation and do some refactoring.
+
+2010-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsRule.cs: Handle boxing
+	correctly (e.g. when dealing with generics). Fix bug #567817
+
+2010-01-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseNoInliningWithGetCallingAssemblyRule.cs: New. Rule to ensure
+	Assembly.GetCallingAssembly is called from a method decorated 
+	with [MethodImpl (MethodImplOptions.NoInlining)]
+	* Makefile.am: Add new rule and tests to the build. Add -d:DEBUG
+	to unit tests assembly to remove the three failures in 
+	AvoidMethodsWithSideEffectsInConditionalCodeTest
+
+2009-11-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewInconsistentIdentityTest.cs: Don't process methods 
+	without bodies (e.g. abstract, pinvoke...)
+
+2009-07-28  Cedric Vivier  <cedricv@neonux.com>
+
+	* EnsureLocalDisposalRule.cs: Do not issue false positives for value type disposables.
+
+2009-07-24  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidFloatingPointEqualityRule.cs: Rewrote the description and
+	examples.
+
+2009-07-01  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-06-10  Cedric Vivier <cedricv@neonux.com>
+
+	* BadRecursiveInvocationRule.cs: Catch recursion on static properties/methods
+	when the call is the first instruction (excluding arguments if any).
+
+2008-04-30  Jesse Jones  <jesjones@mindspring.com> 
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeRule.cs: 
+	Added new rule.
+
+2008-03-19  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewInconsistentIdentityRule.cs: Handle Ldflda so we notice
+	when value type fields are used. Complain if GetHashCode uses
+	no fields/properties but equality methods do (this catches the
+	important case where GetHashCode code merely calls base).
+
+2009-02-19  Cedric Vivier  <cedricv@neonux.com>
+
+	* ProvideCorrectXPathExpressionRule.cs: New. Rule that checks
+	valid XPath expressions are provided to methods.
+
+2009-02-19  Cedric Vivier  <cedricv@neonux.com>
+
+	* ProvideValidXmlStringRule.cs: New. Rule that checks valid XML
+	strings are provided to methods and properties.
+
+2009-01-03  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* CheckParametersNullityInVisibleMethodsRule.cs: Refactor to
+	extract new methods from CheckMethod (self-test). Fix the typo in 
+	solution (mentioned in bug #463003).
+
+2009-01-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsRule.cs: Fix case
+	for out parameters which were not ignored for arrays.
+	[Fix #463003]
+
+2008-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EnsureLocalDisposalRule.cs: Resolve early (since IsProperty 
+	rock would do it anyway) and use the MethodDefinition afterward.
+	Based on patch from Tamara Roberson.
+	* ProvideCorrectRegexPatternRule.cs: Move some checks after
+	calling Resolve (to avoid calling it twice with IsProperty).
+	[partial fix for #462925]
+
+2008-12-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewSelfAssignmentRule.cs: Fix the check when a call chain
+	containing an indexer is used.
+
+2008-12-28  Cedric Vivier  <cedricv@neonux.com>
+
+	* EnsureLocalDisposalRule.cs: New. Rule that checks if locals
+	are guaranteed to be disposed of before the method returns.
+
+2008-12-27  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewInconsistentIdentityRule.cs: Added an assert to verify that
+	equalityMethods's reserve size is sufficient.
+
+2008-12-23  Cedric Vivier  <cedricv@neonux.com>
+
+	* ProvideCorrectRegexPatternRule.cs: New. Rule that checks if
+	methods/constructors are provided a valid regular expression pattern.
+
+2008-12-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsRule.cs: Make sure (null ==
+	obj) is treated identically to (obj == null). Note: code generated by
+	mcs does not produce IL that resulted in false positives.
+
+2008-12-19  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewInconsistentIdentityRule.cs: Added.
+
+2008-12-13  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewUseOfInt64BitsToDoubleRule.cs: Fix AnalyzeModule so that it 
+	activates the rule properly when multiple assemblies or modules are 
+	being checked.
+
+2008-12-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Don't check
+	the last char of a string for '{' since it's too late to read a digit
+	after it.
+	[Fix #458175]
+
+2008-12-07  Jesse Jones  <jesjones@mindspring.com>
+ 
+	* DoNotRecurseInEqualityRule.cs, Makefile.am: Added new rule.
+
+2008-12-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyRule.cs: Use 
+	HasParameters
+	* CheckParametersNullityInVisibleMethodsRule.cs: Use 
+	HasParameters
+
+2008-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyRule.cs: Use 
+	Has{x} methods to avoid creating empty collections in Cecil. Remove 
+	the checks leading to DoesNotApply since they were too complex to
+	improve readability (with added Has{x} calls) and did not help 
+	performance.
+	* AvoidConstructorsInStaticTypesRule.cs: Use HasConstructors, 
+	HasMethods and HasFields.
+	* CheckParametersNullityInVisibleMethodsRule.cs: Use HasParameters
+	* DisposableFieldsShouldBeDisposedRule.cs: Use HasFields to skip
+	the second half of the rule.
+	
+2008-11-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs: Avoid calling Body.Instructions 
+	property chain so many times (24% of the calls to get_Body came
+	from here).
+
+2008-11-13  Jesse Jones  <jesjones@mindspring.com>
+
+	* NullDerefAnalysis.cs: Added a comment describing one way we can fix
+	the latest problem with the rule.
+
+2008-11-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* dataflow/CFG.cs: Extract helper class MethodPrinter. Patch by
+	Jesse Jones
+
+2008-11-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* NullDerefAnalysis.cs, dataflow/Dataflow.cs: Write debug output 
+	using Trace instead of Console.
+	* NullDerefRule.cs: write the dot file only if triply verbose.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Correctness.mdp:
+	* Gendarme.Rules.Correctness.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-11-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsRule.cs: New. Simple rule
+	to look for missing null check on method's parameters. Porbably short
+	lived wrt NullDerefRule being worked on actively but still a near-zero
+	false positive solution for 2.2.
+	* Makefile.am: Add moved rule and test to the build.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* dataflow/*.cs: Tweaked the verbose logging in the NullDerefRule 
+	and associated classes so that the output is easier to parse and 
+	explains where failures occurred.
+	* NullDerefAnalysis.cs: 
+	   - Endfinally should not pop anything off the stack.
+	   - Leave should pop everything off the stack, not one frame.
+	     (This was causing fatal exceptions in self-test).
+	   - Leave should pop everything off the stack.
+	   - Don't report a failure if the this argument to a method call
+	     is Nullity.Unknown.
+
+2008-10-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedRule.cs: Changed to use 
+	OpCodeEngine and MethodSignature.
+	* FinalizersShouldCallBaseClassFinalizerRule.cs: Moved from Design.
+	Updated namespace and added support for OpCodeEngine.
+	* FloatComparisonRule.cs: Add null check in IsApplicable method
+	* Gendarme.Rules.Correctness.mdp: Add new rule to MD project file.
+	* Makefile.am: Add moved rule and test to the build.
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedRule.cs: Moved from Design.
+	* Makefile.am: Add new rule and test to the build.
+
+2008-10-23  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyRule.cs: Refactored the
+	methods CheckAttributesIn.  Returning a RuleResult doesn't make sense
+	and it introduces a CodeDuplicated in self-test. 
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Correctness.xml,
+	doc/Gendarme.Rules.Correctness: With the new code in the Makefiles we
+	don't need to keep the documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-10-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Add [FxCopCompatibility] 
+	attribute.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCanBeMadeStaticRule.cs: Add [FxCopCompatibility] attribute.
+	* ReviewCastOnIntegerDivisionRule.cs: New. Rule that check for
+	wrong casts when integers are divided, resulting in truncated floating
+	point values.
+	* ReviewCastOnIntegerMultiplicationRule.cs: New. Rule that check
+	for wrong cast when multiplying integers, potentially resulting in an
+	overflow before the cast is done to a larger type.
+	* Makefile.am: Add new rules and tests to the build.
+
+2008-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyRule.cs: Add
+	the [FxCopCompatibility] attribute and a few minor changes to the 
+	XML documentation.
+
+2008-10-06  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyRule.cs: New.  Rule for
+	ensuring the correct arguments passed as string to attributes.
+	* Gendarme.Rules.Correctness.mdp: Update MD project file.
+	* Makefile.am: Added the rule and test to the build.
+
+2008-09-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FloatComparisonRule.cs: Change IsApplicable to static (self-test)
+	* MethodCanBeMadeStaticRule.cs: Add XML documentation. Remove
+	extra cast into a MethodReference in CheckMethod (self-test).
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs
+	* ReviewDoubleAssignmentRule.cs: Add OpCodeEngine to require a 
+	DUP instruction before analyzing a method. Add XML documentation.
+	* ReviewSelfAssignmentRule.cs: Add OpCodeEngine to require a
+	Stfld, Stsfld, Starg or Starg_S instruction before analyzing a 
+	method. Add XML documentation.
+	* ReviewUselessControlFlowRule.cs: Add OpCodeEngine to require a
+	conditional branch instruction before analyzing a method. Add XML 
+	documentation.
+	* ReviewUseOfInt64BitsToDoubleRule.cs: Add OpCodeEngine to 	
+	require a CALL[VIRT] *and* CONV*8* instructions before analyzing 
+	a method. Add XML documentation.
+	* ReviewUseOfModuloOneOnIntegersRule.cs: Add OpCodeEngine to 
+	require a REM[_UN] instruction before analyzing a method. Add XML 
+	documentation.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* FloatComparisonRule.cs: Make it abstract so the non-test runners
+	don't try to use it.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Add missing/fix existing
+	code examples.
+	* AvoidFloatingPointEqualityRule.cs: New file for the renamed
+	FloatComparisonRule rule. Now use FloatComparisonRule as it's base
+	class. Add XML documentation.
+	* CallingEqualsWithNullArgRule.cs: Fix missing ')' in XML docs.
+	* DontCompareWithNaNRule.cs: Use FloatComparisonRule as base 
+	class. Add extra bitmask checks for LDC_R[4|8] to ignore more methods.
+	Add XML documentation.
+	* FloatComparisonRule.cs: Now used as a base class for both 
+	AvoidFloatingPointEqualityRule and DoNotCompareWithNaNRule. Make it
+	use the OpCodeEngine to avoid analyzing methods that cannot have
+	defects.
+	* UseValueInPropertySetterRule.cs: Add XML documentation.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Add XML documentation.
+	* BadRecursiveInvocationRule.cs: Add OpCodeEngine to require a
+	Call[virt] or Newobj instruction before analyzing a method. Fixed
+	case where a lot of parameters are used. Add XML documentation.
+	* CallingEqualsWithNullArgRule.cs: Add OpCodeEngine to require a
+	Call or Callvirt and a Ldnull instruction before analyzing a method.
+	Add XML documentation.
+	* DoNotRoundIntegersRule.cs: Add XML documentation.
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Use 
+	OpCodeEngine to avoid methods without call[virt] instruction. Fix 
+	false positives when using a method's return value as an argument
+	to a String.Format call. Handle special "{{" formatting code.
+
+2008-08-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CallingEqualsWithNullArgRule.cs: Use TraceBack rock to reduce (and
+	simplify) source code. Use simpler overload for Report.
+	* UseValueInPropertySetterRule.cs: Use GetParameter rock to (and
+	simplify) source code. Use simpler overload for Report.
+
+2008-08-12  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Clean up and
+	optimize some code.  This patch uses a BitArray instead of HashSet, and
+	uses less memory.
+
+2008-08-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Fix case where we can't 
+	resolve the base type when checking for static types.
+	* BadRecursiveInvocationRule.cs: Fix case where we can't resolve
+	a type.
+	* ReviewSelfAssignmentRule.cs: Fix two cases where the field's 
+	types cannot be resolved.
+
+2008-07-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotRoundIntegersRule.cs: Move up break condition to make sure
+	we're not missing the return value of a previous call before Round.
+
+2008-07-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs: Fix false positives when generics
+	or explicit interfaces are being used. Optimized CompareMethods to use
+	MetadataToken (when possible) and removed Instructions.IndexOf call.
+
+2008-07-22  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Remove the use
+	Regexp, and use a HashSet<char> as Dan suggested.
+
+2008-07-18  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: New. Rule to check
+	the correct fields passed to a formatting method.
+	* Makefile.am: Add rule/test to the build.
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+
+2008-07-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs: Fix typo in [Problem] as noted
+	by Richard Birkby.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidConstructorsInStaticTypesRule.cs: Rework the rule to
+	be more specific to 1.x code - where we want to the possibility 
+	to instantiate "static" types by avoiding a visible default ctor.
+	* Makefile.am: Fix typo that limited the number of tests being 
+	built and executed.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewUseOfModuloOneOnIntegersRule.cs: Remove unused field 
+	(self-test)
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs,
+	* DoNotRoundIntegersRule.cs,
+	* DontCompareWithNaNRule.cs,
+	* FloatComparisonRule.cs: Deal with possible null values if
+	resolving fails.
+	* Makefile.am: Refactor to extract common stuff into new 
+	../common.make file. Rebuild if the framework has changed.
+
+2008-07-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentRule.cs: Simplify logic using the new 
+	TraceBack rock.
+	* ReviewSelfAssignmentRule.cs: New. Rule to check if a field
+	or parameter is being assigned to itself (resulting in no change).
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-06-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewUseOfInt64BitsToDoubleRule.cs: New. Rule to check if the
+	BitConverter.Int64BitsToDouble is used in it's intended sense (i.e.
+	converting bits).
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-06-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotRoundIntegersRule.cs: New. Rule to detect cases where a
+	rounding method (like Floor, Ceiling, Truncate or Round) is being
+	used on an integer value.
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-06-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewUselessControlFlowRule.cs: New. Rule to detect useless
+	control flow in the method IL. They are either (potentially dangerous)
+	typos or empty code block (e.g. forgotten, or not, TODO).
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentRule.cs: Handle same fields from different 
+	instances.
+	* ReviewUseOfModuloOneOnIntegersRule.cs: New. Rule to detect modulo
+	1 (x % 0) on integral types. This always return 0 and is probably a typo.
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-06-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentRule.cs: New. Rule to detect double 
+	assignments on fields or variables (e.g. x = x = 42;)
+	* Gendarme.Rules.Correctness.mdp: Add rule to MD project file.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* MethodCanBeMadeStaticRule.cs: Disable this rule
+	when analyzing event callbacks.
+
+2008-04-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontCompareWithNaNRule.cs, FloatComparisonRule.cs: mscorlib
+	defines, not refer, to System.Single|Double (and the rule must
+	apply to it too!)
+
+2008-03-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DontCompareWithNaNRule.cs, FloatComparisonRule.cs: Don't 
+	execute rules if the module does not use floating point types.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Remove NullDerefRule from build until it's fixed (and
+	avoid the noise it cause in self-tests)
+
+2008-02-16  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Makefile.am: Removed the -langversion:linq option. You should use at
+        least the 1.9 gmcs version to compile.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs
+	* BadRecursiveInvocationRule.cs
+	* CallingEqualsWithNullArgRule.cs
+	* DontCompareWithNaNRule.cs
+	* FloatComparisonRule.cs
+	* MethodCanBeMadeStaticRule.cs
+	* NullDerefAnalysis.cs
+	* NullDerefFrame.cs
+	* NullDerefRule.cs
+	* Nullity.cs
+	* UseValueInPropertySetterRule.cs:
+		Update rules wrt framework changes.
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FloatComparisonRule.cs: Handle "this" and don't report defects on
+	System.Single or System.Double (useful for mono itself :)
+	* UseValueInPropertySetterRule.cs: Handle this[] with multiple
+	parameters.
+
+2008-01-16  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Compile the rules with -langversion:linq flag.  This
+	fixes the compiler error building the Correctness set.
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Use new Location ctor.
+	* CallingEqualsWithNullArgRule.cs: Change three methods to static.
+	Use new Location ctor.
+	* DontCompareWithNaNRule.cs: New. Rule that reports comparing (with 
+	either ==, != or Equals) a floating-point value with NaN.
+	* FloatComparisonRule.cs: Remove the recently added checks for NaN 
+	(see new rule). Simplify error reporting.
+	* NonNullAttributeCollector.cs: Change one method to static.
+	* NullDerefAnalysis.cs: Change two methods to static. Use new 
+	Location ctor.
+	* NullDerefFrame.cs: Change one method to static.
+	* UseValueInPropertySetterRule.cs: Don't report empty setters. 
+	There's too many of them, mostly on purpose, so it hides the real
+	problems.
+	* dataflow/BasicBlock.cs: Change fields to internal.
+	* dataflow/CFG.cs: Change four methods to static.
+	* Gendarme.Rules.Correctness.xml.in: Add rule description.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-01-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* BadRecursiveInvocationRule.cs: Detect more case of endless 
+	recursion, even where parameters aren't identical. Still not perfect
+	(see ignored unit tests) but can process corlib without false
+	positives.
+	* FloatComparisonRule.cs: Remove object array of special values 
+	(float and double constants). Change OpCode array to static
+	(to reduce memory allocations). Add support to detect Double.Equals
+	and support for Conv_R_Un, Ldarg_0 (for static methods), Ldelem_R4
+	and Ldelem_R8 instructions (for arrays).
+	* MethodCanBeMadeStaticRule.cs: Avoid checking constructors.
+	* UseValueInPropertySetterRule.cs: Add support for Ldarga[_S] when
+	checking for value. Report a different message for empty setters (to
+	ease the reviewer job ;-) since it's less likely an error.
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCanBeMadeStaticRule.cs: Ignore generated code. Return a 
+	complete message (not just a failure).
+	* NonNullAttribute.cs: seal the attribute (fix warning)
+	* UseValueInPropertySetterRule.cs: Fix rule to work properly with
+	static methods.
+
+2008-01-05  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Use rocks for check if a method
+	is autogenerated.
+
+2008-01-05  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Makefile.am: Compile with -langversion:linq parameter.
+	* UseValueInPropertySetterRule.cs: Use rocks for check if the method
+	is a setter property.
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Remove OpCodeConstants.cs from build.
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidConstructorsInStaticTypesRule.cs: The rule doesn't apply for
+	compiler generated types. Avoid creating MessageCollection if 
+	unneeded (e.g. no error).
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs: Use Cecil definitions, not
+	OpCodeConstants.
+	* NullDerefAnalysis.cs: Use Cecil definitions, not OpCodeConstants.
+	Remove bunch of unneeded code duplication in switch.
+	* pCodeConstants.c: Removed. Cecil provides them.
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* NullDerefAnalysis.cs: Avoid InvalidCastException
+	* UseValueInPropertySetterRule.cs: Don't report error when a setter
+	is simply throwing an exception.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* FloatComparisonRule.cs: Extract a method for avoid the Long Method
+	smell.  This fixes the warning in the self-test.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* NullDerefFrame.cs: Remove use of /n using StringBuilder.AppendLine
+	* dataflow/CFG.cs: Remove use of /n using StreamWriter.WriteLine
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseValueInPropertySetterRule.cs: Apply JB's suggestion to use
+	SemanticsAttributes instead of the SpecialName + "set_" checks.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* UseValueInPropertySetterRule.cs: Avoid creating MessageCollection
+	if unneeded (e.g. no error). Stop looping instruction when we 
+	determine that value has been accessed.
+
+2007-11-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* CallingEqualsWithNullArgRule.cs: Avoid creating MessageCollection 
+	if unneeded (e.g. no error). Check for calli (along with call and 
+	callvirt). Check previous instructions (not just the last one) for
+	ldnull (skipping NOP and constrained). Fix bug on MS.NET where a 
+	constrained instruction could be found just before).
+
+2007-11-03  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Gendarme.Rules.Correctness.xml.in: Added the Uri for
+	CallingEqualsWithNullArgRule, AvoidConstructorsInStaticTypesRule,
+	FloatComparisonRule, UseValueInPropertySetterRule.
+
+2007-11-03  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs:  Added the code for avoid false
+	positives if the class doesn't contains fields and methods.
+
+2007-10-28  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Correctness.xml.in: Added documentation for
+	AvoidConstructorsInStaticTypes, FloatComparisonRule and
+	UseValueInPropertySetterRule.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* UseValueInPropertySetterRule.cs:  If a method is empty, then the rule
+	will skip this method, because could be an stub or empty method.  This
+	fixes the NullReferenceException if the method body is empty.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* FloatComparisonRule.cs: Before get the instructions from the method
+	body, the existence of method body should be checked.  This fixes the
+	NullReferenceException.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* CallingEqualsWithNullArgRule.cs:  Before get the instructions from a
+	method body, the existence of method body should be checked.  Perhaps
+	exists better solutions for this case, but this solution fixes the
+	NullReferenceException.
+
+2007-10-09  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Remove the duplicate entry of 
+	CallingEqualsWithNullArgRule.cs in the building process.  This fixes a
+	compiler warning.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesRule.cs: Unit tests (Lukasz Knop, 
+	GSoC 2007)
+	* CallingEqualsWithNullArgRule.cs: New rule (Nidhi Rawal, GSoC 2007)
+	* FloatComparisonRule.cs: Unit tests (Lukasz Knop, GSoC 2007)
+	* UseValueInPropertySetterRule.cs: Unit tests (Lukasz Knop, GSoC 2007)
+	* Gendarme.Rules.Correctness.xml.in: Update rule description.
+	* Gendarme.Rules.Correctness.mdp: Update project file.
+	* Makefile.am: Update build file.
+
+2007-03-12  Alp Toker  <alp@atoker.com>
+
+	* Gendarme.Rules.Correctness.xml.in: Typo fix.
+
+2007-02-27  Jb Evain  <jbevain@gmail.com>
+
+	* MethodCanBeMadeStatic.cs:
+		Add new rule.
+
+2006-10-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationRule.cs: Fix case where the compiler (CSC)
+	selects the base class to call (fix by Aaron Tomb). Also remove the
+	check for parameter names which may not match in the base class.
+
+2006-10-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Concurrency.xml.in: Update Uri for rules (to generate
+	more useful reports).	
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-28  Christian Birkl  <christian.birkl@gmail.com>
+
+	* Gendarme.Rules.Correctness.csproj: Included ChangeLog
+	* BadRecursiveInvocationRule.cs, NullDerefRule.cs, 
+	NullDerefAnalysis.cs: Migrated untyped IList messages collection to 
+	typed MessageCollection	class.
+	  
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Correctness.mdp: New. Project file for MonoDevelop.
+
+2006-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Use -pkg:mono-nunit to reference nunit assemblies.
+	Added self-test target to promote compliance ;-)

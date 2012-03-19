@@ -1,0 +1,54 @@
+2010-06-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SuppressMessageEngine.cs: Apply AvoidLargeClassesRule
+
+2010-06-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* OpCodeEngine.cs: Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SuppressMessageEngine.cs: Skip ctors or methods on types that don't
+	have them (and avoid creating empty collections)
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SuppressMessageEngine.cs: Apply AvoidUnnecessarySpecializationRule
+
+2010-05-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SuppressMessageEngine.cs: Add partial support for Target= where
+	FxCop use a different syntax from Cecil
+
+2010-05-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SuppressMessageEngine.cs: New. Engine to read [SuppressMessage]
+	attributes and create ignore entries from them.
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NamespaceEngine.cs: Apply AvoidRepetitiveCallsToPropertiesRule 
+	on TypeReference::get_Namespace
+
+2008-11-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NamespaceEngine.cs: Add Exists method to check the existance of
+	a namespace withint the assembly set.
+
+2008-10-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NamespaceEngine.cs: Handle null arguments for [Namespaces|Types]
+	Inside methods (self-test).
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NamespaceEngine.cs: New. Engine that build a list of all 
+	namespaces. It makes it possible to query all namespaces, namespaces
+	inside an assembly and all types inside a namespace.
+	* OpCodeEngine.cs: Adjust for event rename.
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* OpCodeEngine.cs: New. First engine. It constuct a bitmask of 
+	every IL instruction used inside a method. This allows rules to
+	check, quickly, if they need to parse the IL of a method.

@@ -1,0 +1,489 @@
+2010-08-27  Rolf Bjarne Kvinge  <RKvinge@novell.com>
+
+	* self-test.ignore: Add an entry to allow
+	DelegatesPassedToNativeCodeMustIncludeExceptionHandlingRule to catch all
+	exceptions it may throw.
+
+2010-08-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AUTHORS: Add Antoine Vandecreme
+	* self-test.ignore: Add entry to ignore PreferEmptyInstanceOverNullRule
+	on ProvideCorrectArgumentsToFormattingMethodsRule since null and 
+	empty have different meaning in the rule
+
+2010-06-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Remove entries fixed on the console runner, one
+	that does not apply to recent Mono and add comments about defects
+	that can/will be fixed with FX4.0
+
+2010-06-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Remove entries fixed with AvoidLargeClassesRule
+
+2010-06-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Remove entries fixed with AvoidComplexMethodsRule
+	* README.vsnet: Add the wizard to the self-test instructions
+
+2010-06-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* README.vsnet: Add more detailled instructions on how to get and
+	build all required source code
+	* win32-setup/*: Removed - wix is being used since 2.6
+
+2010-06-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Remove more AvoidRepetitiveCallsToPropertiesRule
+	entries
+
+2010-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Remove some fixed AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Be precise for AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* self-test.ignore: Remove mode defects and add some that would
+	show up if compiling with FX4 (like VS2010)
+
+2010-06-09  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* self-test.ignore: Remove some (fixed) defects and update some
+	descriptions
+
+2010-06-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Use new gd2i to be totally precise for all
+	CheckParametersNullityInVisibleMethodsRule entries.
+	* Makefile.am: Remove win32-setup from dist and replace it with 
+	wix. Also add tools (well gd2i for now) to the dist. Make
+	self-test produce xml (along with html) so we can semi-automate
+	gd2i updates on Gendarme
+
+2010-06-07  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* self-test.ignore: Add GendarmeWizard (Windows name) for
+	AvoidRepetitiveCallsToPropertiesRule. Fix a copy-paste typo.
+	Remove two entries for bugs in AvoidUnnecessarySpecializationRule
+
+2010-06-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* self-test.ignore: Better document a bug in AvoidUnnecessary
+	SpecializationRule. Remove a (not a) bug on same rule. Add a CSC
+	specific entry
+
+2010-06-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Add some CSC-specific ignore entries (different
+	IL being generated) and a new NDesk.Options entry related to the
+	fix to ReturnNullRule.
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Ignore AvoidSmallNamespaceRule on Gendarme.
+	Framework.Engines namespace
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Add more precise entries to avoid hiding
+	defects that could/should be fixed.
+
+2010-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AUTHORS: Add Rolf Bjarne Kvinge
+	* Makefile.am: Add helpers to test regression against private 
+	collection of "weird" assemblies and to get the logs out of
+	ohloh.
+
+2010-01-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Update defects to ignore wrt Options.cs 2.1
+
+2010-01-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyStaticInfo.cs: Update copyright notice up to 2010
+	* README: Update name/url of our build infrastructure
+	* MIT.X11: Update copyright notice up to 2010
+
+2009-12-20  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* NEWS: Updated for 2.6
+
+2009-12-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Bundle gendarme.5
+
+2009-08-19  Jesse Jones  <jesjones@mindspring.com>
+
+	* self-test.ignore: Added a bunch more entries to allow self-test to
+	run cleanly. At least some of these should be replaced with real fixes
+	in the future.
+
+2009-07-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* self-test.ignore: Ignore DecorateThreadsRule defects for wizard 
+	methods that call into gendarme from a thread.
+
+2009-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyStaticInfo.cs: Adjust version and copyright
+	* NEWS: Add news for 2.4
+
+2009-01-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefike.am: added .PHONY to console target (required on os-x
+	because a console directory exists).
+
+2009-01-03  Jesse Jones  <jesjones@mindspring.com>
+
+	* options.make: use checked math only in debug.
+
+2008-12-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Ignore AvoidSwitchStatementsRule on Gendarme
+	assemblies since we're using switch extensively and in a way that 
+	would be hard to OO-ize while keeping performance and readability
+
+2008-12-23  Cedric Vivier  <cedricv@neonux.com>
+
+	* self-test.ignore: Add entries for ProvideCorrectRegexPatternRule.
+
+2008-12-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Avoid depending on targets at the high level, when
+	the lower level also do (which reduce directory traversals time).
+	Add a bin (all binaries) and console (console and dependencies only)
+	to the target list (this part based on a patch from Jesse Jones).
+	Change zip-bin to depend on bin and not all.
+
+2008-12-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* README, README.vsnet: Update information about the solution files
+	provided for Gendarme.
+
+2008-11-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.svg: Update logo.
+	* gendarme.mds: Remove unused MD solution (use gendarme.sln)
+	* Makefile.am: Drop gendarme.mds from dist. Add targets to build
+	the zip of binaries and push to ohloh.
+
+2008-11-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: If bin/gendarme.exe.config does not exist copy the
+	console/gendarme.exe.config file. Add options.make to EXTRA_DIST.
+
+2008-11-15  Jesse Jones  <jesjones@mindspring.com>
+
+	* options.make: Release and debug now use -checked+.
+
+2008-11-14  Jesse Jones  <jesjones@mindspring.com>
+
+	* options.make: Added to allow all of our assemblies to be built with
+	a common set of gmcs options
+	* Makefile.am: Added new DEBUG variable to help target.
+
+2008-11-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyStaticInfo.cs: Update "special" (VS setup) version 2.3
+
+2008-11-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Old xml.in files were removed from SVN so there's no
+	need to clean the xml files anymore.
+
+2008-11-09  Andrés G. Aragoneses  <aaragoneses@novell.com>
+
+	* README: More info.
+
+2008-11-09  Andrés G. Aragoneses  <aaragoneses@novell.com>
+
+	* TODO:
+	* README: Correcting broken link to Roadmap.
+
+2008-11-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NEWS: Update information and date before 2.2 branch.
+
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Add entry for NDesk.Options.OptionValueType wrt
+	Gendarme.Rules.Serialization.MarkEnumerationsAsSerializableRule
+
+2008-11-08  Cedric Vivier  <cedricv@neonux.com>
+
+	* NEWS: Add just landed AvoidRedundancyInTypeNameRule to new rules list.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* gendarme.sln: Activate makefile integration for all the rules
+	projects. Remove the old mdp files as they are no longer needed.
+
+2008-11-03  Cedric Vivier  <cedricv@neonux.com>
+
+	* NEWS: Add just landed AvoidRedundancyInMethodNameRule to new rules list.
+
+2008-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NEWS: Update before 2.2 branch.
+
+2008-11-02  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Added test1 and help targets. test1 builds just enough
+	to run a single rule test dll and runs a single text fixture in the dll
+	(using a TEST1 variable).
+
+2008-10-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme-wizard.desktop: Moved into swf-wizard-runner directory
+	* Makefile.am: Add gendarme.svg to pixmaps
+
+2008-10-30  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AUTHORS: Add Jesse Jones to the list.
+
+2008-10-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Update to fix entry for ReturnNullRule versus
+	ConsiderAddingInterfaceRule and add a new one for OptionSet suffix
+
+2008-10-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Update to add an entry about MethodSignatures
+	readonly fields containing the '_' character (which is "by design" 
+	since the signatures are for operator methods).
+
+2008-10-22  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: This target is not longer needed because we generate the
+	documentation in the same way than rules.
+
+2008-10-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme-wizard.in: Support MONO_OPTIONS too (like gendarme does)
+
+2008-10-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Update (and add) some ignore entries.
+
+2008-08-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Change self-test to report all defects (i.e. not
+	to filter out any defect based on severity or confidence).
+
+2008-07-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NEWS: Update for the next release.
+	* self-test.ignore: Update (and add) some ignore entries.
+
+2008-06-15  Daniel Nauck  <dna@mono-project.de>
+
+	* gendarme-wizard.desktop: add desktop file
+
+2008-05-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.in: Add $MONO_OPTIONS since this is more common than
+	the $MONO_EXTRA_ARGS we have been using (and keeping for 
+	compatibility)
+
+2008-04-18  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* README: Add (the periodic remainder ;-) that Makefiles are 
+	*the* official build system used by Gendarme while others
+	(MonoDevelop and VS.NET) are user-supported.
+	* self-test.ignore: Add ignore entry AvoidDeepInheritanceTreeRule
+	since some FX provided types will never work with the default (4)
+	value.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* self-test.ignore: Remove ignore entry for 
+	ExitCodeIsLimitedOnUnixRule
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* self-test.ignore: Ignore NDesk.Options.OptionSet::Add wrt
+	Gendarme.Rules.Performance.DoNotIgnoreMethodResultRule
+
+2008-04-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.mds: Add wizard to the MD solution.
+
+2008-03-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* rules/Gendarme.Rules.Security/Makefile.am
+	* rules/Gendarme.Rules.Design/Makefile.am
+	* rules/Gendarme.Rules.Naming/Makefile.am
+	* rules/Gendarme.Rules.Serialization/Makefile.am
+	* rules/Gendarme.Rules.Ui/Makefile.am
+	* rules/Gendarme.Rules.Exceptions/Makefile.am
+	* rules/Gendarme.Rules.Interoperability/Makefile.am
+	* rules/Gendarme.Rules.Concurrency/Makefile.am
+	* rules/Gendarme.Rules.Correctness/Makefile.am
+	* rules/Gendarme.Rules.Smells/Makefile.am
+	* rules/Gendarme.Rules.BadPractice/Makefile.am
+	* rules/Gendarme.Rules.Performance/Makefile.am
+	* rules/Gendarme.Rules.Portability/Makefile.am
+	* framework/Makefile.am
+	* console/Makefile.am
+	* swf-wizard-runner/Makefile.am:
+		Refer directly to Mono.Cecil assembly, not to a local copy,
+		of it.
+
+2008-03-22  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* gendarme-wizard.in: New. Script to call the Gendarme SWF Wizard
+	* Makefile.am: Add swf-wizard-runner and win32-setup to the build
+
+2008-03-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.svg: Put GHOP's Steve P. logo into repository.
+
+2008-02-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyInfo.cs.in: Remove static stuff and keep only the version.
+	* AssemblyStaticInfo.cs: New. Keep static/shared stuff here.
+	* self-test.ignore: New. Start an ignore list for self-test.
+	* gendarme.mds: Update MonoDevelop project file.
+	* Makefile.am: Update build file.
+
+2008-02-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MIT.X11: Update copyrights up to 2008
+	* TODO: Link to the roadmap available in the Google Group 
+	* README: List the most common resources for Gendarme
+
+2008-02-09  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: When we target clean, we should also delete doc
+	directory.
+
+2008-02-09  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Makefile.am: Added tasks for API documentation generation.  One for
+	generating documentation and other for assembling the documentation for
+	distrubution puroposes.
+
+2008-02-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AUTHORS: Welcome new Gendarme hackers: Seo Sanghyeon and
+	Scott Peterson
+
+2008-02-01  Andrew Jorgensen  <ajorgensen@novell.com>
+
+	* Makefile.am: Fixes to import gendarme into mono-tools
+	and a good amount of autotools love as well
+
+2008-01-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NEWS: Ready for 0.0.5
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Run framework tests on "make run-test" and ignore
+	non-Gendarme assemblies on "make self-test".
+
+2007-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* configure.ac: Add Gendarme.Rules.Interoperability
+
+2007-12-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NEWS: Finally 0.0.4 :)
+
+2007-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Change self-test to use the self-test set of rules
+	instead of the default one.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AUTHORS: Add the GSoC 2007 crew!
+	* configure.ac: Add new assemblies. Bump version number for (soon to
+	be ready) next version.
+	* gendarme.mds: Update MonoDevelop solution.
+
+2007-09-14  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* configure.ad: Add Gendarme.Rules.Smells to the build.
+
+2007-09-13  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* configure.ac: Add Gendarme.Rules.Naming to the build.
+
+2007-08-31  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* configure.ac: Install Gendarme.Framework to be reusable (pkg-config)
+	with other runners.
+
+2006-11-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.sln: Update solution file for VS.NET
+
+2006-11-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* configure.ac: Add Gendarme.Rules.Ui to the build and bump version
+	number to 0.0.3.1 (just to avoid confusion with released 0.0.3).
+
+2006-10-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* configure.ac: Bump for 0.0.3 release.
+	* NEWS: Update for 0.0.3 release.
+	* README: Update for 0.0.3 release.
+	* TODO: New. Merge my own TODO file with Christian ideas.
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.sln, *.csproj: New files. Added solution and project files
+	for VS.NET 2005. You can now build, test and debug under Windows too
+
+2006-09-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AUTHORS: Added Christian Birkl to the list.
+	* gendarme.in: Move MONO_EXTRA_ARGS after mono (and before 
+	gendarme.exe).
+	* Makefile.am: Remove duplicate DISTCLEANFILES.
+
+2006-09-05  Jb Evain  <jbevain@gmail.com>
+
+	* Update to latest Cecil API.
+
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.mds: New. Solution file for MonoDevelop.
+
+2006-06-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AUTHORS: Added Russell Morris to the author's list.
+	* configure.ac: Updated version to 0.0.2.0.
+	* NEWS: Updated for second release.
+	* README: Updated for second release.
+
+2006-06-19  Russell Morris <russell@russellsprojects.com>
+
+	* configure.ac: Merged initial build of exception-usage checks rule(s)
+
+2006-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyInfo.cs.in: Updated copyright notice (as this is the string
+	that will be displayed by the Gendarme's console runner).
+	* Makefile.am: Added self-test target to run gendarme on itself (in
+	order to promote compliance ;-). Added an alias for dist to dist-zip
+	so all files can be added into the distribution (zip) archive.
+
+2005-12-09  Aaron Tomb  <atomb@soe.ucsc.edu>
+
+	* Merged rules for double-check locking and bad recursive
+	invocation checking.
+
+2005-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Initial import into SVN.

@@ -1,0 +1,81 @@
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExceptionBlockParser.cs, SEHCatchBlock.cs, SEHGuardedBlock.cs,
+	SEHHandlerBlock.cs: bye-bye
+
+2008-10-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutionPath.cs: Change ctor to accept IEnumerable<ExecutionBlock>
+	instead of ExecutionPathCollection
+
+2008-10-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutionBlock.cs, ExecutionPath.cs: Internalize type inside
+	the internal namespace (self-test) and also seal them (2nd self-test)
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutionPathFactory.cs: Seal type. Remove unused (except for
+	debugging) MethodDefinition field (self-test).
+
+2008-10-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutionBlock.cs: Don't initialize fields to null inside ctor
+	(self-test).
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExceptionBlockParser.cs, SEHCatchBlock.cs, SEHGuardedBlock.cs,
+	SEHHandlerBlock.cs: Comment stuff that is not needed for the rules
+	(self-test).
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExceptionBlockParser.cs: Use generics and return a collection.
+	* ExecutionPathFactory.cs: Avoid temporary array (and use the 
+	collection). #if out debug checks (can be re-enabled for debugging)
+	* SEHGuardedBlock.cs: Add useful ctor to help consumers.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExceptionBlockParser.cs, ExecutionBlock.cs, ExecutionPath.cs,
+	ExecutionPathFactory.cs, SEHCatchBlock.cs, SEHGuardedBlock.cs, 
+	SEHHandlerBlock.cs: Refactor to remove interfaces and use generic 
+	collections (work in progress).
+	* SEHHandlerBlockCollection.cs: Removed (generics are now used).
+
+2008-05-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutionPath.cs: Refactor to simplify and use generics 
+	fix ImplementGenericCollectionInterfacesRule defect on type.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutionPath.cs: Add Equals(ExecutionPath) method to satisfy 
+	ImplementEqualsTypeRule. Renamed class to ExecutionPathCollection 
+	to satisfy UseCorrectSuffixRule
+	* ExecutionPathFactory.cs: Rename ExecutionPath to *Collection.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SEHCatchBlock.cs: Seal internal class.
+	* SEHGuardedBlock.cs: Seal internal class.
+	* SEHHandlerBlockCollection.cs: Seal internal class. Rename some 
+	parameters to match base class.
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExceptionBlockParser.cs: Since we now compile with >= 2.0 changed
+	this class to static.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ExecutionPath.cs: Removed some unused code.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ExecutionPath.cs: Handle the null argument in the Equals method.
+
+2006-06-19  Russell Morris  <russell@russellsprojects.com>
+
+	* Initial import of exception-management rule assembly

@@ -1,0 +1,52 @@
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Ui.csproj: Activate makefile integration for all the rules
+	projects. Remove the old mdp files as they are no longer needed.
+
+2008-11-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* .cs: Rename back to Ui (from UI) to let the new test1 make 
+	target work correctly (namespace must match directory name)
+
+2008-05-11  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.Ui.mdp: Fix references.
+
+2008-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* .cs: Renamed namespaces from Ui to UI
+
+2008-03-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExecutableTargetTest.cs, GtkSharpExecutableTargetTest.cs,
+	SystemWindowsFormsExecutableTargetTest.cs: Fix namespace to be 
+	identical to other unit tests.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GtkSharpExecutableTargetTest.cs
+	* SystemWindowsFormsExecutableTargetTest.cs
+	* UseSTAThreadAttributeOnSWFEntryPointsTest.cs
+		Updated unit tests wrt framework changes.
+
+2008-01-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseSTAThreadAttributeOnSWFEntryPointsTest.cs: New. Unit tests 
+	from Daniel Abramov (with a bit more coverage by myself).
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Ui.mdp: Update project file.
+
+2006-11-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Tests.Rules.Ui.csproj: New. Build file for VS.NET
+
+2006-11-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ChangeLog: New. Track changes to UI rules.
+	* ExecutableTargetTest.cs: New. Data (assemblies) for tests.
+	* GtkSharpExecutableTargetTest.cs: New. Tests for Gtk# apps.
+	* Makefile.am: New. Build file.
+	* SystemWindowsFormsExecutableTargetTest.cs: New. Tests for SWF apps.
+	* Test.Rules.Ui.mdp: New. MonoDevelop project file for unit tests.

@@ -1,0 +1,108 @@
+2010-08-27  Rolf Bjarne Kvinge  <RKvinge@novell.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingTest.cs:
+	Remove CWL's from catch blocks in methods that are safe, and add
+	CWL's to methods that should not be safe. In general update to
+	make the tests work with the more correct version of the rule.
+
+2010-04-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingTest.cs:
+	Make sure the delegates content cannot be optimized away (e.g. 
+	CSC) because they have no side effects (i.e. dead code). Fix unit
+	tests under Windows (CSC)
+
+2010-01-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CentralizePInvokesIntoNativeMethodsTypeTest.cs: New. Unit tests
+	for CentralizePInvokesIntoNativeMethodsTypeRule
+
+2009-02-24  Jesse Jones  <jesjones@mindspring.com>
+
+	* DelegatesPassedToNativeCodeMustIncludeExceptionHandlingTest.cs: 
+	Rename a bunch of methods so the test doesn't die with old versions
+	of nunit.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Interoperability.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-11-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarshalBooleansInPInvokeDeclarationsTest.cs: New. Unit tests for
+	MarshalBooleansInPInvokeDeclarationsRule
+	* Test.Rules.Interoperability.mdp: Add new test to MD project file
+
+2008-11-01  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotCastIntPtrToInt32Test.cs: Add test case for Marshal.
+	ReadInt[32|64] methods casted into IntPtr. Rename fixture to 
+	DoNotAssumeIntPtrSizeTest.
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotCastIntPtrToInt32Test.cs: Change some results from Success
+	to DoesNotApply since the use of the OpCodeEngine is able to short
+	circuit more cases.
+
+2008-08-10  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* PInvokeShouldNotBeVisibleTest.cs: Convert tests to new syntax.
+	Add test case for instance-based (non static) p/invoke.
+
+2008-05-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Test.cs: Add test case for methods 
+	without IL and for GetHashCode (does not apply in both cases)
+
+2008-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Test.cs: Re-enable test case since
+	Marek fixed bug #389073
+
+2008-05-11  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.Interoperability.mdp: Fix references.
+
+2008-05-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotCastIntPtrToInt32Test.cs: New. Test cases for 
+	DoNotCastIntPtrToInt32Rule.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeTest.cs
+	* MarshalStringsInPInvokeDeclarationsTest.cs
+	* PInvokeShouldNotBeVisibleTest.cs
+	* UseManagedAlternativesToPInvokeTest.cs:
+		Update unit tests wrt framework changes.
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeTest.cs: More unit 
+	tests by Andreas Noever to reduce false-positives.
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarshalStringsInPInvokeDeclarationsTest.cs: New. Unit tests
+	from Daniel Abramov.
+
+2008-01-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseManagedAlternativesToPInvokeTest.cs: New. Unit tests 
+	from Daniel Abramov (with a bit more coverage by myself).
+
+2008-01-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Include new file in dist
+	* Test.Rules.Interoperability.mdp: New. MonoDevelop project file.
+
+2007-12-30  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* GetLastErrorMustBeCalledRightAfterPInvokeTest.cs: New. Unit tests 
+	for GetLastErrorMustBeCalledRightAfterPInvokeRule by Andreas Noever
+	* PInvokeShouldNotBeVisibleTest.cs: New. Unit tests for 
+	PInvokeShouldNotBeVisibleRule by Andreas Noever
+	* Makefile.am: New. Makefile for tests

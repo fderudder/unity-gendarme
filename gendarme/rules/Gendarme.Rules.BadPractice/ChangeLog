@@ -1,0 +1,460 @@
+2010-06-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferEmptyInstanceOverNullRule.cs: Apply AvoidLargeClassesRule
+
+2010-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisableDebuggingCodeRule.cs: 
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConstructorShouldNotCallVirtualMethodsRule.cs: Avoid calling
+	MethodReference.ToString since we already have the value
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReturnNullRule.cs: Fix case where an immediate if (?:) would 
+	not be reported
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferEmptyInstanceOverNullRule.cs: Keep state around since it
+	can be needed if we report a defect. Rename GetReturnTypeSuggestion
+	to SuggestReturnType (apply ConsiderConvertingMethodToPropertyRule)
+
+2010-01-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferTryParseRule.cs: Simplify and reduce code duplication by
+	using the new MethodSignatures.[Try]Parse
+
+2010-01-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferSafeHandleRule.cs: Apply MethodCanBeMadeStaticRule
+	* PreferTryParseRule.cs: New. Rule to encourage the use of TryParse
+	methods (when available) over Parse methods.
+
+2010-01-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferParamsArrayForVariableArgumentsRule.cs: New rule to warn
+	about methods using the vararg calling convention and not used 
+	for interoperability purpose.
+
+2009-07-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* GetEntryAssemblyMayReturnNullRule.cs, DisableDebuggingCodeRule.cs: 
+	Rewrote descriptions.
+
+2009-07-01  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-02-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* OnlyUseDisposeForIDisposableTypesRule.cs, Makefile.am: 
+	Added new rule.
+
+2009-01-30  Jb Evain  <jbevain@novell.com>
+
+	* Makefile.am: add new DoNotUseEnumIsAssignableFrom rule and tests.
+
+2009-01-30  Jb Evain  <jbevain@novell.com>
+
+	* DoNotUseEnumIsAssignableFromRule.cs: add new rule.
+
+2009-01-20  Jesse Jones  <jesjones@mindspring.com>
+
+	* PreferSafeHandleRule.cs: Added.
+
+2008-12-23  Cedric Vivier  <cedricv@neonux.com>
+
+	* CloneMethodShouldNotReturnNull.cs:
+	* ToStringReturnsNullRule.cs:
+	* PreferEmptyInstanceOverNullRule.cs:
+	* ReturnNullRule.cs: Improve text and consistency between ReturnNullRule inheritors.
+	* ToStringReturnsNullRule.cs: Rename to ToStringShouldNotReturnNullRule.
+
+2008-12-23  Cedric Vivier  <cedricv@neonux.com>
+
+	* PreferEmptyInstanceOverNullRule.cs: New. This rule checks that
+	methods/properties returning a string, an array, a collection, or
+	an enumerable, do not return null.
+
+2008-12-13  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs, 
+	CloneMethodShouldNotReturnNullRule.cs, 
+	GetEntryAssemblyMayReturnNullRule.cs, 
+	DisableDebuggingCodeRule.cs: Fix AnalyzeModule so that it 
+	activates the rule properly when multiple assemblies or modules are 
+	being checked.
+
+2008-12-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidAssemblyVersionMismatchRule.cs: Tweaked the language in the
+	description.
+
+2008-12-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs: Avoid using two conditions
+	leading to the exact same code.
+
+2008-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidAssemblyVersionMismatchRule.cs: Use HasCustomAttributes
+	* AvoidVisibleConstantFieldRule.cs: Use HasFields
+	* CheckNewExceptionWithoutThrowingRule.cs: Use HasParameters
+	* CheckNewThreadWithoutStartRule.cs: Use HasParameters
+	* DisableDebuggingCodeRule.cs: Use HasCustomAttributes
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs: Use HasCustomAttributes,
+	HasEvents, HasFields, HasProperties, HasConstructors and HasMethods
+
+2008-11-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCallingProblematicMethodsRule.cs: Rework SortedDictionary not
+	to require the full name, which avoid calling MethodReference so 
+	many times (each time creating a string).
+	* CloneMethodShouldNotReturnNullRule.cs: Only apply rules if the 
+	module refers to System.ICloneable (only 23 out of 86 assemblies 
+	of Mono 2.0 profile do). Change rule to IMethodRule since calling
+	Implements is rather expensive (recursive).
+	* DisableDebuggingCodeRule.cs: Specify StringComparison.Ordinal when
+	calling String.StartsWith.
+	* ReturnNullRule.cs: Change CheckMethod to virtual.
+
+2008-11-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidAssemblyVersionMismatchRule.cs, 
+	ObsoleteMessagesShouldNotBeEmptyRule.cs: Small changes to XML docs.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.BadPractice.mdp:
+	* Gendarme.Rules.BadPractice.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Append onto the inherited EXTRA_RULES_OPTIONS.
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidAssemblyVersionMismatchRule.cs: Use the new IsEmpty rock.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.BadPractice.xml,
+	doc/Gendarme.Rules.BadPractice: With the new code in the Makefiles we
+	don't need to store the documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotUseGetInterfaceToCheckAssignabilityRule.cs: New. Rule to
+	check if Type.GetInterface is being used to defect the presence, or
+	absence, of an interface (wrt getting back a Type instance). There is
+	a better way to check for this when the interface name is known at
+	compile time.
+	* Makefile.am: Add rule/test to the build.
+
+2008-09-20  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidAssemblyVersionMismatchRule.cs: New. Rule to check if the
+	version numbers in both [AssemblyVersion] and [AssemblyFileVersion]
+	match.
+	* Makefile.am: Add rule/test to the build.
+
+2008-09-19  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ReplaceIncompleteOddnessCheckRule.cs: Reduce the OpCodeBitmask
+	properties visibility [self-test]
+
+2008-09-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCallingProblematicMethodsRule.cs: Use OpCodeEngine to
+	analyze only if both a Call or Callvirt are present in the method's
+	IL. Added XML documentation.
+	* AvoidVisibleConstantFieldRule.cs: Added XML documentation.
+	* CheckNewExceptionWithoutThrowingRule.cs: Use OpCodeEngine to 
+	analyze only if a Newobj instruction is present in the method's IL. 
+	Added XML documentation. Use shorter override for Runner.Report.
+	* CheckNewThreadWithoutStartRule.cs: Use OpCodeEngine to analyze 
+	only if a Newobj instruction is present in the method's IL. Added XML
+	documentation.
+	* CloneMethodShouldNotReturnNullRule.cs: Big simplification by 
+	using the new ReturnNullRule. Added XML documentation.
+	* ConstructorShouldNotCallVirtualMethodsRule.cs: Use OpCodeEngine
+	to analyze only if both a Call or Callvirt are present in the 
+	method's IL. Added XML documentation.
+	* DisableDebuggingCodeRule.cs: Use OpCodeEngine to analyze only 
+	if both a Call or Callvirt are present in the method's IL. Added 
+	XML documentation.
+	* DoNotForgetNotImplementedMethodsRule.cs: Use OpCodeEngine to
+	analyze	only if both a Newobj and Throw are present in the method's
+	IL. Change logic to handle more cases (small methods with branches
+	versus large methods without conditional branches). Added XML 
+	documentation.
+	* EqualShouldHandleNullArgRule.cs: Added XML documentation. Use
+	shorter override for Runner.Report.
+	* GetEntryAssemblyMayReturnNullRule.cs: Use OpCodeEngine to
+	analyze	only if both a Call or Callvirt are present in the method's
+	IL. Added XML documentation.
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs: Added XML documentation.
+	Use shorter override for Runner.Report.
+	* ReplaceIncompleteOddnessCheckRule.cs: Use OpCodeEngine to
+	analyze	only if a Rem or Rem_Un instruction are present in the 
+	method's IL. Use OpCodeBitmask to simplify the rule (and cover more 
+	conversion cases). Added XML documentation.
+	* ReturnNullRule.cs: New. Abstract base class for both
+	CloneMethodShouldNotReturnNullRule and ToStringReturnsNullRule.
+	Use OpCodeEngine and InstructionRocks.TraceBack to to its job. 
+	The later allows CSC non-optimized code to work correctly (no 
+	more false positive) with both rules.
+	* ToStringReturnsNullRule.cs: Big simplification by using the
+	new ReturnNullRule. Added XML documentation.
+	* Makefile.am: Add abstract ReturnNullRule to the build. Compile
+	tests with DEBUG and TRACE defined since the rule return value,
+	Success versus DoesNotApply, now makes a difference.
+
+2008-07-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs: Speed up rule. Only
+	18 out of 72 assemblies (Mono 2.0 profile) refers to the
+	ObsoleteAttribute type (+1 for mscorlib that defines it).
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotForgetNotImplementedMethodsRule.cs: New. Rule to check if
+	some method are incomplete (e.g. throwing NotImplementedException)
+	[committed for Cedric Vivier with a few changes from myself]
+	* Gendarme.Rules.BadPractice.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs: Remove unused field
+	(self-test)
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-04  Jb Evain  <jbevain@novell.com>
+
+	* AvoidCallingProblematicMethodsRule.cs: refactor to avoid
+	creating a new delegate type by using Func<,>, and use the
+	lambda syntax to shorten anonymous methods declarations.
+
+2008-07-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCallingProblematicMethodsRule.cs: Use IComparer instead
+	of IEqualityComparer and avoid the "constant" GetHashCode hack.
+	Use a custom delagate in order to remove the struct allocations 
+	and make the source code smaller (and easier to test).
+
+2008-07-03  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidCallingProblematicMethodsRule.cs: New. Rule that check for
+	potentially damaging / dangerous methods calls.
+	* Gendarme.Rules.BadPractice.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-06-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidVisibleConstantFieldRule.cs: New. Rule that check
+	for a constant fields visible to other assemblies. Using them
+	makes the value, not a reference to the field, part of the 
+	assemblies that reference the field. This requires all those
+	assemblies to be recompiled if the value change.
+	* Gendarme.Rules.BadPractice.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-06-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReplaceIncompleteOddnessCheckRule.cs: New. Rule that check
+	for a common, yet incomplete, oddness check (that fails when 
+	using negative numbers).
+	* Gendarme.Rules.BadPractice.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-06-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckNewExceptionWithoutThrowingRule.cs: Rename 
+	StackEntryAnalysis.UsageResult to StackEntryUsageResult
+	* CheckNewThreadWithoutStartRule.cs: Rename 
+	StackEntryAnalysis.UsageResult to StackEntryUsageResult
+
+2008-05-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ObsoleteMessagesShouldNotBeEmptyRule.cs: New. Check that 
+	when [Obsolete] is used a description is provided.
+	* Makefile.am: Add rule/test to the build.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EqualShouldHandleNullArgRule.cs: Simplify method (self-test cc).
+	Fix all known positives (3) that were still found in Mono BCL.
+
+2008-04-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckNewThreadWithoutStartRule.cs: Use Initialize to avoid 
+	executing the rule on some assemblies (52 out of 72 for Mono 2.0)
+	* GetEntryAssemblyMayReturnNullRule.cs: Use Initialize to avoid
+	executing the rule on some assemblies (36 out of 72 for Mono 2.0)
+	and when the assembly is an EXE.
+
+2008-04-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisableDebuggingCodeRule.cs: Change Initialize so the rule 
+	applies to corlib too (which defines, not refer to Console type).
+	* CheckNewExceptionWithoutThrowingRule.cs: Use Inherits (instead
+	of checking name suffix) to find Exception-devired types.
+
+2008-03-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisableDebuggingCodeRule.cs: New. Rule to check for debugging
+	CWL left inside assemblies (ref: bug #366450)
+	* Gendarme.Rules.BadPractice.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullRule: Remove unused method.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckNewExceptionWithoutThrowingRule.cs
+	* CheckNewThreadWithoutStartRule.cs
+	* CloneMethodShouldNotReturnNullRule.cs
+	* ConstructorShouldNotCallVirtualMethodsRule.cs
+	* EqualShouldHandleNullArgRule.cs
+	* GetEntryAssemblyMayReturnNullRule.cs
+	* ToStringReturnsNullRule.cs
+		Update rules wrt framework changes.
+
+2008-01-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckNewExceptionWithoutThrowingRule.cs: New. Rule to check that
+	all exception we create are thrown (or returned) from all methods. 
+	[Andreas Noever]
+	* CheckNewThreadWithoutStartRule.cs: New. Rule to check that all
+	threads we create are started (or returned) from all methods.
+	[Andreas Noever]
+	* Gendarme.Rules.BadPractice.xml.in: Add rules descriptions.
+	* Makefile.am: Add rules/tests to the build.
+
+2008-01-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementingEqualsButNotGetHashCodeAndViceVersaRule.cs: Rule
+	moves (with tests) into Design since it affects the API.
+	* ToStringReturnsNullRule.cs: Simplification to avoid uncommon cases
+	that added *LOTS* of false positives while still missing some 
+	real defects. Now a rock-ified ITypeRule with much lower memory 
+	requirements.
+	* Gendarme.Rules.BadPractice.xml.in: Remove (moved) definition.
+	* Makefile.am: Remove (moved) rule and tests
+
+2008-01-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConstructorShouldNotCallVirtualMethodsRule.cs: Add recursive 
+	checks for non-virtual calls (as they can lead to virtual calls). Add
+	check for final methods. Add check for calling 'this' sub-classes 
+	(versus calling them on other instances, other types)
+	* EqualShouldHandleNullArgRule.cs: Change to ITypeRule (and locate
+	Equals) and to use rocks. Reimplemented HandlesNullArg based on more
+	extensive unit tests. False positives are mostly history :)
+
+2008-01-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConstructorShouldNotCallVirtualMethodsRule.cs: New. Rule to
+	find every virtual calls made inside constructor of unsealed types.
+	* GetEntryAssemblyMayReturnNullRule.cs: New. Rule to detect usage
+	of Assembly.GetEntryAssembly which returns null when called outside 
+	the root application domain [Daniel Abramov]
+	* Gendarme.Rules.BadPractice.mdp: Update MD project file.
+	* Gendarme.Rules.BadPractice.xml.in: Add rules descriptions.
+	* Makefile.am: Add rules/tests to the build.
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullRule.cs: Use new Location ctor.
+	* EqualShouldHandleNullArgRule.cs: Use new Location ctor.
+	* ImplementingEqualsButNotGetHashCodeAndViceVersaRule.cs: Use new 
+	Location ctor.
+	* ToStringReturnsNullRule.cs: Use new Location ctor.
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullRule.cs: Use rocks and turn a method
+	to static.
+	* EqualShouldHandleNullArgRule.cs: Turn some methods to static.
+	* ToStringReturnsNullRule.cs: Turn some methods to static.
+
+2008-01-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ToStringReturnsNullRule.cs: Avoid creating MessageCollection 
+	until/unless it's needed.
+
+2007-11-23  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* EqualShouldHandleNullArgRule.cs: Don't create a MessageCollection
+	unless we return a message. Avoid NRE if Equals simply return a 
+	boolean. Add FIXME to rework logic for MS compilers in debug mode.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* CloneMethodShouldNotReturnNullRule.cs: Don't create a 
+	MessageCollection unless we return a message. IL check logic is too
+	simplistic, added a little more logic (but it's still needs to be 
+	fixed) so the test run correctly under Windows (VS in Debug mode 
+	really generates crap).
+	* ImplementingEqualsButNotGetHashCodeAndViceVersaRule.cs: Avoid 
+	creating MessageCollection unless needed.
+
+2007-11-18  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ToStringReturnsNullRule.cs: Fixed NullReferenceException when doesn't
+	exist the key in the hash table.  Some internal refactoring (fix the
+	selection for the ToString () method).
+
+2007-10-24  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.BadPractice.xml.in: Put the version attribute with 
+	autotools helpers. Added documentation for these rules.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* CloneMethodShouldNotReturnNullRule.cs: Fixed NullReferenceException
+	when try to inspect a method without body.
+
+2007-10-16  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* ToStringReturnsNullRule.cs: Fixed NullReferenceException when try
+	to inspect a method without instructions.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CloneMethodShouldNotReturnNullRule.cs: New rule (Nidhi Rawal, GSoC 
+	2007)
+	* EqualShouldHandleNullArgRule.cs: New rule (Nidhi Rawal, GSoC 2007)
+	* ImplementingEqualsButNotGetHashCodeAndViceVersaRule.cs: New rule
+	(Nidhi Rawal, GSoC 2007)
+	* ToStringReturnsNullRule.cs: New rule (Nidhi Rawal, GSoC 2007)
+	* Gendarme.Rules.BadPractice.mdp: Project file for MonoDevelop.
+	* Makefile.am: Build file.

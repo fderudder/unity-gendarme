@@ -1,0 +1,172 @@
+2010-06-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PrimitiveReferences.cs: Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Log.cs: Reduce code duplication a bit - fix AvoidCodeDuplicated
+	InSameClassRule when compiled with CSC
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Namespace.cs: API update completed - make ctor private so we 
+	can be sure NamespaceDefinition are unique
+
+2010-06-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Namespace.cs: Ensure namespace definition are unique and provide
+	a usable, if not perfect, MetadataToken.
+
+2010-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodPrinter.cs: Apply fix for CheckParametersNullityInVisible
+	MethodsRule 
+	* MethodSignature.cs, MethodSignatures.cs: workaround for gmcs
+	regression #603454
+
+2010-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs (Matches): Apply AvoidRepetitiveCallsTo
+	PropertiesRule on MethodDefinition.Parameters property.
+	* StackEntryAnalysis.cs: Apply CheckParametersNullityInVisible
+	MethodsRule on public methods. Use HasExceptionHandlers to avoid
+	creating needless collections.
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs: Remove MethodAttribute support and add a
+	delegate based option to extend matching for more complex needs.
+	* MethodSignatures.cs: Add Parse and TryParse signatures. Convert
+	more complex signatures to use delegates for matching.
+
+2010-01-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Avoid boxing when concatenating strings
+
+2008-12-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* StackEntryAnalysis.cs: Changed GetHashCode to use unchecked
+	math.
+
+2008-12-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs: Use HasParameters
+
+2008-11-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Namespace.cs: Specify StringComparison.Ordinal when calling
+	String.StartsWith.
+
+2008-11-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* Log.cs: Added.
+
+2008-11-13  Jesse Jones  <jesjones@mindspring.com>
+
+	* MethodPrinter.cs: Added. Used to convert a method body into a
+	string. Factored out of the CFG class.
+
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Clearly specify [Serializable] on 
+	enums (self-test)
+
+2008-10-25  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Namespace.cs: Renamed to NamespaceDefinition to better match Cecil
+	names (and void confusing with common keyword).
+	* OpCodeBitmask.cs: Add null checks in Equals(OpCodeBitmap) and
+	UnionWith methods. Refactor Equals(object) wrt change.
+
+2008-10-21  Cedric Vivier  <cedricv@neonux.com>
+
+	* OpCodeBitmask.cs: Add public method UnionWith.
+	Add FlowControlBranch and FlowControlReturn bitmasks.
+
+2008-10-19  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Namespace.cs: Add helper method to check for specialized namespaces.
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Namespace.cs: New. Helper class so we can report defects against 
+	namespaces just like any other metadata object.
+	* OpCodeBitmask.cs: Implement IEquatable<T>.
+	* StackEntryAnalysis.cs: Implement IEquatable<T> for StoreSlot and
+	InstructionWithLeave inner structures.
+	* StackEntryUsageResult.cs: Implement IEquatable<T>.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MethodSignatures.cs: Prefer a const over a static readonly for the
+	OperatorAttributes private field (self-test).
+	* OpCodeBitmask.cs: Add a bitmask that cover all conversion (Conv_*)
+	instructions.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PrimitiveReferences.cs: New. Helper class to get, shared, 
+	TypeReference of the primitive types of the framework (expend as
+	needed).
+
+2008-09-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* OpCodeBitmask.cs: Add IsSubsetOf method.
+
+2008-09-18  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* MethodSignatures.cs: Added a new method signature for the delegate
+	Invoke method.
+
+2008-08-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* OpCodeBitmask.cs: New. Specialized class to handle a bitmask on
+	Cecil's Code enum (which is too large for Bitmask<T>).
+
+2008-07-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Fix case where the LeaveStack is empty,
+	i.e. null, when Pop is called.
+
+2008-07-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignature.cs: Change Match method to behave more like 
+	Equals, i.e. return false for null, not an exception.
+
+2008-06-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Move out GetPopCount and GetPushCount 
+	(into InstructionRocks). Simplify some switch/case to generate
+	less code.
+
+2008-06-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Move out nested UsageResult type. Also
+	return a list, not an array, from FindLoad. [self-test]
+	* StackEntryUsageResult.cs: New. Un-nested, renamed, UsageResult
+
+2008-04-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Prevent possible NRE in 
+	InstructionWithLeave.Equals. 
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysis.cs: Add Equals,	GetHashCode and ==, != 
+	operators on InstructionWithLeave and UsageResult to satisfy 
+	OverrideValueTypeDefaultsRule. Add Equals(StoreSlot) method to 
+	satisfy ImplementEqualsTypeRule.
+
+2008-02-16  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* MethodSignature.cs: Fix the cref reference.  Now points to
+	Gendarme.Framework.Helpers.MethodSignatures.
+	* StackEntryAnalysis.cs: Fix the parameters name for the correct
+	generation of documentation.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MethodSignature.cs
+	* MethodSignatures.cs
+	* StackEntryAnalysis.cs:
+		Move helper classes into new namespace.

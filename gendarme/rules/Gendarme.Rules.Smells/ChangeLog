@@ -1,0 +1,634 @@
+2010-06-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMessageChainsRule.cs: Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLargeClassesRule.cs:
+	* AvoidSpeculativeGeneralityRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLargeClassesRule.cs: Be more accurate when reporting. E.g.
+	report all common prefixes with a count
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongParameterListsRule.cs: Move HasConstructor check before
+	a call. Rename two methods (Smaller->Smallest)
+	* CodeDuplicatedLocator.cs: Don't create more than one empty List
+	of patterns and avoid some allocations. Saves 74kb on self-test
+	* Pattern.cs: Reuse the instructions array when possible. Saves 
+	1320kb while executing self-test
+
+2010-06-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CodeDuplicatedLocator.cs: Ignore duplicated code located inside
+	generated code.
+	* InstructionMatcher.cs: Refactor AreEquivalent. Parameters and
+	variables do not need to the "at the same index" to be a match.
+	Matching now also include STLOC* (not just LDLOC*)
+	* Pattern.cs: Rework ComputePrefixes to set/reset Target on
+	InstructionMatcher since this could lead to looking at instruction
+	from another method (than Target) leading to exceptions or false
+	positives
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCodeDuplicatedInSiblingClassesRule.cs:
+	* AvoidLargeClassesRule.cs:
+	* AvoidLongParameterListsRule.cs:
+	* CodeDuplicatedLocator.cs:
+ 		Apply AvoidUnnecessarySpecializationRule
+	* Pattern.cs:
+		Apply ConsiderConvertingMethodToPropertyRule
+
+2010-05-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongParameterListsRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule on the use of TypeDefinition.Constructors property
+	* InstructionMatcher.cs: Fix when "ldarg 0" is used instead of 
+	the, much more common, "ldarg_0"
+
+2010-05-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstructionMatcher.cs: Rework AreEquivalent to avoid memory
+	allocations when comparing operands (like MethodReferences).
+	This makes the rules using the matcher 2 times faster.
+
+2010-04-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLargeClassesRule.cs: Apply AvoidRepetitiveCallsToProperties
+	Rule on MemberReference::get_Name (6)
+	* AvoidLongParameterListsRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule on MemberReference::get_Name
+
+2010-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMessageChainsRule.cs: Change MaxChainLength from 5 to 4 
+	and condition from >= to > (same effect) so the rule description
+	(and documentation) makes more sense.
+
+2010-03-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CodeDuplicatedLocator.cs: Add [Conditional("DEBUG")] on 
+	WriteToOutput. Fix typo IsExtractableToMethodBlock
+	* InstructionMatcher.cs: Use rocks to cover all LDARG* and LDLOC*
+	* Pattern.cs: Don't try to be too precise when checking compiler
+	generated patterns since this only makes it difficult to support
+	many compilers and adds false positives. New logic is more 
+	permissive (IL wise), more (operand wise) and less (IL wise)
+	precise and should cover more compilers while reducing false 
+	positive (but it could fail to report some cases - which is less
+	problematic than reporting false positive IMO)
+
+2010-03-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongMethodsRule.cs: Add more types (from Workflow and 
+	Silverlight) that use InitializeComponent to be ignored. Patch
+	by Jeff Craig.
+
+2010-01-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidSwitchStatementsRule.cs: Ignore all generated code since 
+	their name will be compiler dependant. Fix unit test under Windows
+	(well when compiled with CSC)
+
+2009-07-07  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-02-23  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Fix a typo.  Thanks to Mat
+	Steeples.
+
+2008-12-22  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidSwitchStatementsRule.cs: Added the code for handling the
+	table-driven switches.
+
+2008-12-22  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidSwitchStatementsRule.cs: Fix some typos.  Thanks Sebastien !!
+
+2008-12-22  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidSwitchStatementsRule.cs: New.  Rule for avoid the switch
+	statments smell.
+	* Makefile.am: Add tests and rule to the build.
+
+2008-12-17  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongParameterListsRule.cs: Remove the extra checking which only
+	introduces confussion.
+
+2008-12-17  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidCodeDuplicatedInSameClassRule.cs: Use the new nose for its
+	checkings.
+	* AvoidCodeDuplicatedInSiblingClassesRule.cs: Use the new nose for its
+	checkings.
+	* CodeDuplicatedLocator.cs: Use the new algorithm in this code.
+	* ExpressionCollection.cs: Removed the old system.
+	* ExpressionFillerVisitor.cs: Removed the old system.
+	* InstructionMatcher.cs: The new nose.
+	* Makefile.am: Adjust the changes to the build system.
+	* Pattern.cs: An abstraction for a pattern of instructions.  The common
+	patterns (Disposables, foreach, returns ...) are here in order to check
+	if a pattern can be extracted.
+
+2008-12-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCodeDuplicatedInSameClassRule.cs: Use IsEnum, IsInterface
+	and HasMethods
+	* AvoidCodeDuplicatedInSiblingClassesRule.cs: Use HasMethods,
+	IsEnum and IsInterface
+	* AvoidLargeClassesRule.cs: Use HasFields
+	* AvoidLongMethodsRule.cs: Use HasParameters and HasFields
+	* AvoidLongParameterListsRule.cs: Use HasMethods, HasParameters
+	and HasConstructors
+	* AvoidSpeculativeGeneralityRule.cs: Use HasInterfaces, HasMethods
+	and IsEnum
+	* CodeDuplicatedLocator.cs: Use HasMethods
+
+2008-11-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidMessageChainsRule.cs: Use Log instead of Trace.
+
+2008-11-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Smells.csproj: Change AvoidMessageChainsRule to 
+	Compile. Fix the "remove from Makefile.am".
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Smells.mdp:
+	* Gendarme.Rules.Smells.csproj: Activate makefile integration for all
+	the rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-11-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Use OpCodeEngine and avoid
+	specializing (and public-izing) CountInheritedClassesFrom.
+
+2008-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMessageChainsRule.cs: Change ValidLink to static (self-test)
+
+2008-11-02  Jesse Jones  <jesjones@mindspring.com>
+ 
+	* AvoidMessageChainsRule.cs: Clean up the Problem text a bit. When 
+	working backwards along a chain stop when we reach a static method.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Append onto the inherited EXTRA_RULES_OPTIONS.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Smells.xml,
+	doc/Gendarme.Rules.Smells: With the new code in the Makefiles we don't
+	need to keep the documentation files in the repository.
+
+2008-10-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCodeDuplicatedInSiblingClassesRule.cs: Small changes in 
+	XML documentation to make it render more correctly in the wiki.
+	* AvoidLongMethodsRule.cs: Small changes in XML documentation to
+	make it render more correctly in the wiki. Remove XML doc that is not
+	documenting the I*Rule.
+	* AvoidLongParameterListsRule.cs: Accept a TypeReference (instead 
+	of a definition) in CheckDelegate.
+	* AvoidSpeculativeGeneralityRule.cs: Small changes in XML 
+	documentation to make it render more correctly in the wiki.
+	* ExpressionCollection.cs: Implement IEquatable<T> (self-test)
+	* Utilities.cs: Accept a TypeReference (instead of a definition) in 
+	GetInheritedClassesFrom (self-test).
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidMessageChainsRule.cs: Added XML documentation.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Added XML documentation.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongParameterListsRule.cs: Added XML documentation.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongMethodsRule.cs: Added XML documentation.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs: Added XML documentation.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidCodeDuplicatedInSiblingClassesRule.cs: Added XML documentation.
+
+2008-10-14  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidCodeDuplicatedInSameClassRule.cs: Added XML documentation.
+
+2008-09-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMessageChainsRule.cs: Use TraceBack rock to fix false 
+	positives. Use OpCodeBitmask to simplify the rule. Add OpCodeEngine
+	to avoid executing the rule when possible.
+	* Gendarme.Rules.Smells.mdp: Add rule to MD project file.
+	* Makefile.am: Re-enable the rule now that the known false 
+	positives are fixed.
+
+2008-08-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Avoid creating an instance of
+	AvoidUnusedParametersRule at each CheckType call if the rule is not
+	already scheduled for execution.
+
+2008-08-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongMethodsRule.cs: Change rule to count logical source line
+	of code by default, i.e. when debugging symbols are available. 
+	Otherwise rule continue to use IL-SLOC approximation.
+	* CodeDuplicatedLocator.cs: Use IRule interface, instead of Rule, 
+	inside CompareMethodAgainstTypeMethods (since rules don't need to be
+	based on the abstract Rule "convenience" class).
+
+2008-08-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongMethodsRule.cs: Use generic collections.
+
+2008-07-21  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongMethodsRule.cs: Checking only the static fields and constants
+	will avoid the false positive with readonly fields.
+
+2008-07-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongParameterListsRule.cs: Fix CheckDelegate to work on
+	MulticastDelegate definition (no Invoke method is present).
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make. Do not build 
+	AvoidMessageChainsRule until its false positive rate is lower.
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCodeDuplicatedInSameClassRule.cs: Don't add duplicate entries.
+	* AvoidCodeDuplicatedInSiblingClassesRule.cs: Reuse (after clearing)
+	the existing CodeDuplicatedLocator. Don't add duplicate entries.
+	* CodeDuplicatedLocator.cs: Use generic based HashSet instead of 
+	StringCollection. Add a Clear method so the instance can be reused.
+	* Utilities.cs: Use generics.
+	[using both rules on System.dll (2.0 profile) now takes 10 seconds
+	instead of 16 seconds]
+
+2008-06-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongMethodsRule.cs: Fix typo for IsStatic check. Report
+	the actual versus maximum IL instruction found (since this is 
+	useful to the end user that wants to fix his code).
+
+2008-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Avoid calling Utilities.
+	GetInheritedClassesFrom (since it returns a collection and we only 
+	need the count) and replace it by CountInheritedClassesFrom which
+	works across all the assembly set of the runner (fix false positive
+	in self-test). Also skip inactive rules when checking if the rule
+	AvoidUnusedParametersRule is scheduled for execution.
+
+2008-05-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongParameterListsTest.cs: Don't consider static constructors
+	when counting the smallest (# parameters) constructor.
+
+2008-05-03  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLongParameterListsRule.cs: Change some methods to static.
+	* AvoidMessageChainsRule.cs: Made IsDelimiter static and compare 
+	Code (enum) not OpCodes (struct) as this generate half the IL. Don't
+	report a static string (dupes with Problem and Solution) since it
+	make reports longer than needed. Add extra details when -v -v is 
+	supplied (chain length and maximum).
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLargeClassesRule.cs: Fix string empty check.
+
+2008-04-26  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidMessageChainsRule.cs: Use descriptive messages when report a
+	violation.
+
+2008-04-26  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidMessageChainsRule.cs: Trimming down several false positives.
+	* Test/AviodMessageChainsTest.cs: Replaced tests with better ones.  The
+	latest gives us a lot of false positives.
+	
+2008-04-26  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidMessageChainsRule.cs: Some fixes for avoid the exceptions in self
+	test target.
+
+2008-04-26  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidMessageChainsRule.cs: Implemented logic for detect chains created
+	with local variables.  By the moment it's a bit constrained, only 5
+	local variables and without reassignments.
+	* Test/AvoidMessageChainsTest.cs: Added test for check chains created
+	with local variables.
+
+2008-04-26  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidMessageChainsRule.cs: New.  First rule in the Rule Day :)
+	* Test/AvoidMessageChainsTest.cs: New.  Tests for AvoidMessageChains
+	rule.
+	* Makefile.am: Added both to the build.
+
+2008-04-23  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidLongMethodsRule.cs: The C# compiler was optimized in order to
+	reduce the number of instructions, and then this rule failed.  I have
+	decremented the default MaxInstructions value, and all tests are passed
+	successfully with the SVN HEAD and the 1.9 release.
+
+2008-04-18  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongParameterListsRule.cs: Implemented delegate checking.
+	* Test/AvoidLongParameterListsRule.cs: Added tests for delegate special
+	checking.
+
+2008-04-18  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongParameterListsRule.cs: Refactored to be a ITypeRule instead
+	of IMethodRule.
+	* Test/AvoidLongParameterListsRule.cs: Updated tests for the new
+	refactoring and updated with the new Test utilites.
+	* Makefile.am: Added the Test.Smells reference.
+
+2008-04-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongParameterListsRule.cs: Handle constructors just like 
+	methods.
+
+2008-04-14  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* CodeDuplicatedLocator.cs: Improved the defect reporting.  When the
+	rule finds a code duplicated issue, put the current method in Location
+	and the other part in the comments, and put it with its complete
+	signature, not only with the method name. 
+
+2008-04-08  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs, CodeDuplicatedLocator.cs,
+	AvoidCodeDuplicatedInSiblingClassesRule.cs,
+	AvoidCodeDuplicatedInSameClassRule.cs: Fix a typo.
+
+2008-04-08  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Expression.cs: Moved to ExpressionCollection.cs
+	* ExpressionCollection.cs: Moved due the new class name.
+	* Makefile.am: Replaced Expression.cs with ExpressionCollection.cs
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CodeDuplicatedLocator.cs: Renamed Expression to ExpressionCollection
+	* Expression.cs: Add Equals(Expression) method to satisfy 
+	ImplementEqualsTypeRule. Renamed class to ExpressionCollection to
+	satisfy UseCorrectSuffixRule
+	* ExpressionFillerVisitor.cs: Renamed Expression to 
+	ExpressionCollection
+
+2008-03-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Change CheckMethods to static.
+
+2008-02-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Expression.cs: Avoid double-cast and don't throw an exception here
+	(not a good place). We need a rule for the later behaviour.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongMethodsRule.cs: Avoid NRE when processing System.Object.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidCodeDuplicatedInSameClassRule.cs: Ignore rule on generated 
+	code (e.g. C# compiler generates some duplication for anonymous 
+	methods).
+	* Expression.cs: Fix some parameters to match base class.
+	* ExpressionFillerVisitor.cs: Fix some parameters to match base class.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLongMethodsRule.cs: Display actual and maximum IL instruction 
+	counts if -v -v is supplied.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Fix rule check since we now use
+	a single collection for all rules.
+
+2008-02-15  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Test/*.cs: Refactor the tests for accept the new rule's format.
+	* *.cs: Adapt the rules to the new framework.
+	* Makefile.am: Removed the -langversion:linq option.  You should use at
+	least the 1.9 gmcs version to compile.
+
+2008-02-07  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs: Avoid positive when a class contains
+	constants or readonly fields.
+
+2008-02-07  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ExpressionFillerVisitor.cs, CodeDuplicatedLocator.cs, Expression.cs:
+	For performance issues types which aren't visible outside of the
+	assembly and haven't subclasses should be sealed.
+
+2008-02-07  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLongMethodsRule.cs: As suggested by Sebastien, the new
+	comparisons are better than a string comparison.
+
+2008-02-07  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidLongMethodsRule.cs: The rule should be applied to static
+	constructors.  Now we add several extra instructions for each field for
+	initialize, specially if the field is an array.
+
+2008-02-06  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidLongMethodsRule.cs: The rule shouldn't be applied to static
+	constructors.
+
+2008-01-16  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs: The rule shouldn't be applied to enums.
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLongParameterListsTest.cs: Don't report defects for p/invokes
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLongMethodsRule.cs: Use new Location ctor.
+	* AvoidLongParameterListsRule.cs: Use new Location ctor. Change 
+	two methods to static.
+	* AvoidSpeculativeGeneralityRule.cs: Use new Location ctor. Change
+	four methods to static.
+	* CodeDuplicatedLocator.cs: Use new Location ctor. Change two 
+	methods to static.
+	* Expression.cs: Change a method to static.
+	* ExpressionFillerVisitor.cs: Change two methods to static.
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLargeClassesRule.cs: Don't report defect if the fields are 
+	const or readonly or if they were generated (e.g. auto-implemented 
+	properties in C# 3).
+	* AvoidLongMethodsRule.cs: Move InitWellKnownAutogeneratedNames code
+	inside static ctor so we don't initialize the dictionary each time
+	the rule is called.
+	* Gendarme.Rules.Smells.mdp, Test/Test.Rules.Smells.mdp: MonoDevelop
+	removed the "./" prefix before each file.
+	* Makefile.am: Compile unit tests with -langversion:linq parameter.
+
+2008-01-05  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Compile with -langversion:linq parameter.
+	* AvoidLargeClassesRule.cs, AvoidSpeculativeGeneralityRule.cs: Remove
+	ugly IsCompilerGenerated helper method.  Use rocks instead.
+
+2007-12-21  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ExpressionFillerVisitor.cs: Add the ceq code to the acceptable
+	instructions set.  With this change, all the bugs in code compiled under
+	csc without optimization flag are fixed.
+
+2007-12-21  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ExpressionFillerVisitor.cs: Avoid creating empty expressions, because
+	the equals method in the Expression class checks for the same size, and
+	if the size is zero, then the equals returns true.  Fixes one of the 
+	bug in code compiled under csc without optimization flag.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs: As the rule is only applied to types, then
+	if the type is Compiler Generated, skip the type; instead of check the
+	field names.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs: Added the special case for the fields
+	prefixed as $$field-, when this happens, there aren't a common prefix.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Expression.cs, ExpressionFillerVisitor.cs: Added the code for
+	including the Stfld in the Expressions, and computate it for check the
+	code duplication.
+
+2007-11-30  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLargeClassesRule.cs: Extract a method and use a predicate for the
+	checking.  This fixes the code duplication warning.
+
+2007-11-29  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* CodeDuplicatedLocator.cs: Renamed field's for avoid the common prefix
+	that warn us for the LargeClass smell.
+
+2007-11-29  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidSpeculativeGeneralityRule.cs: Change the behavior of unnecessary
+	delegation.  A class with unnecessary delegation is a class that mostly
+	forwards and delegates the calls.
+
+2007-11-28  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* AvoidCodeDuplicatedInSameClassRule.cs,
+	AvoidCodeDuplicatedInSiblingClassesRule.cs, AvoidLongMethodsRule.cs,
+	AvoidLongParameterListsRule.cs, AvoidLargeClassesRule.cs,
+	AvoidSpeculativeGeneralityRule.cs: Avoid instantiating MessageCollection
+	unless we use it for returning a message.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Expression.cs: When overriding the Equals method, if the value is
+	null, then return false.  Fixes the EqualShouldHandleNullArgRule
+	violation.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Utilities.cs: Marked this class as static for avoid uninstantiated
+	internal class rule violation.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Smells.mdp: Update project file.
+	* Makefile.am: Use nunit-console2 to run the unit tests.
+
+2007-10-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Smells.mdp:  Removed empty directory entry in the
+	MonoDevelop project file.
+
+2007-10-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Smells.mdp:  New.  Created MonoDevelop project file for
+	the smell rules.
+
+2007-09-29  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Smells.xml.in:  Added Uri for these rules.
+
+2007-09-14  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidCodeDuplicatedInSameClassRule.cs,
+	AvoidCodeDuplicatedInSiblingClassesRule.cs, AvoidLargeClassesRule.cs,
+	AvoidLongMethodsRule.cs, AvoidLongParameterListsRule.cs,
+	AvoidSpeculativeGeneralityRule.cs, CodeDuplicatedLocator.cs,
+	Expression.cs, ExpressionFillerVisitor.cs, Utilities.cs:  Added svn
+	propset svn:eol-native.
+
+2007-09-14  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Build Gendarme.Rules.Smells rules and tests.
+	* Gendarme.Rules.Smells.xml.in: New.  Configuration for
+	Gendarme.Rules.Smells.
+	* AvoidCodeDuplicatedInSameClassRule.cs,
+	AvoidCodeDuplicatedInSiblingClassesRule.cs, AvoidLargeClassesRule.cs,
+	AvoidLongMethodsRule.cs, AvoidLongParameterListsRule.cs,
+	AvoidSpeculativeGeneralityRule.cs, CodeDuplicatedLocator.cs,
+	Expression.cs, ExpressionFillerVisitor.cs, Utilities.cs:  New.  Rules
+	for check smells in the code.
+

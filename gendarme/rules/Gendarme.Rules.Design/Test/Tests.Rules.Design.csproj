@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BC57A292-B4FC-415F-BF9A-714A5E62E0E1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Test</RootNamespace>
+    <AssemblyName>Tests.Rules.Design</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;CODE_ANALYSIS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework, Version=2.4.8.0, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\cecil\Test\libs\nunit-2.4.8\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractTypesShouldNotHavePublicConstructorsTest.cs" />
+    <Compile Include="AttributeArgumentsShouldHaveAccessorsTest.cs" />
+    <Compile Include="AvoidMultidimensionalIndexerTest.cs" />
+    <Compile Include="AvoidPropertiesWithoutGetAccessorTest.cs" />
+    <Compile Include="AvoidPublicInstanceFieldsTest.cs" />
+    <Compile Include="AvoidRefAndOutParametersTest.cs" />
+    <Compile Include="AvoidSmallNamespaceTest.cs" />
+    <Compile Include="AvoidVisibleNestedTypesTest.cs" />
+    <Compile Include="ConsiderAddingInterfaceTest.cs" />
+    <Compile Include="ConsiderConvertingFieldToNullableTest.cs" />
+    <Compile Include="ConsiderConvertingMethodToPropertyTest.cs" />
+    <Compile Include="ConsiderUsingStaticTypeTest.cs" />
+    <Compile Include="DeclareEventHandlersCorrectlyTest.cs" />
+    <Compile Include="DisposableTypesShouldHaveFinalizerTest.cs" />
+    <Compile Include="DoNotDeclareVirtualMethodsInSealedTypeTest.cs" />
+    <Compile Include="DontDeclareProtectedFieldsInSealedClassTest.cs" />
+    <Compile Include="AvoidEmptyInterfaceTest.cs" />
+    <Compile Include="EnsureSymmetryForOverloadedOperatorsTest.cs" />
+    <Compile Include="EnumeratorsShouldBeStronglyTypedTest.cs" />
+    <Compile Include="EnumsShouldDefineAZeroValueTest.cs" />
+    <Compile Include="EnumsShouldUseInt32Test.cs" />
+    <Compile Include="FinalizersShouldBeProtectedTest.cs" />
+    <Compile Include="FlagsShouldNotDefineAZeroValueTest.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="PreferUriOverStringTest.cs" />
+    <Compile Include="StronglyTypeICollectionMembersTest.cs" />
+    <Compile Include="ImplementEqualsAndGetHashCodeInPairTest.cs" />
+    <Compile Include="ImplementIComparableCorreclyTest.cs" />
+    <Compile Include="InternalNamespacesShouldNotExposeTypesTest.cs" />
+    <Compile Include="ListsAreStronglyTypedTest.cs" />
+    <Compile Include="MainShouldNotBePublicTest.cs" />
+    <Compile Include="MarkAssemblyWithAssemblyVersionTest.cs" />
+    <Compile Include="MarkAssemblyWithCLSCompliantTest.cs" />
+    <Compile Include="MarkAssemblyWithComVisibleTest.cs" />
+    <Compile Include="MissingAttributeUsageOnCustomAttributeTest.cs" />
+    <Compile Include="OperatorEqualsShouldBeOverloadedTest.cs" />
+    <Compile Include="OverrideEqualsMethodTest.cs" />
+    <Compile Include="PreferEventsOverMethodsTest.cs" />
+    <Compile Include="PreferIntegerOrStringForIndexersTest.cs" />
+    <Compile Include="PreferXmlAbstractionsTest.cs" />
+    <Compile Include="ProvideAlternativeNamesForOperatorOverloadsTest.cs" />
+    <Compile Include="ProvideTryParseAlternativeTest.cs" />
+    <Compile Include="TypesShouldBeInsideNamespacesTest.cs" />
+    <Compile Include="UseCorrectDisposeSignaturesTest.cs" />
+    <Compile Include="UseFlagsAttributeTest.cs" />
+    <Compile Include="UsingCloneWithoutImplementingICloneableTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\cecil\Mono.Cecil.csproj">
+      <Project>{D68133BD-1E63-496E-9EDE-4FBDBF77B486}</Project>
+      <Name>Mono.Cecil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\framework\Gendarme.Framework.csproj">
+      <Project>{CD6818D5-B398-486C-B180-92A07B143AFD}</Project>
+      <Name>Gendarme.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Test.Rules\Test.Rules.csproj">
+      <Project>{069148AF-86AB-4EE3-BFB9-429AE722461F}</Project>
+      <Name>Test.Rules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gendarme.Rules.Design.csproj">
+      <Project>{FC889577-F51A-469C-9F30-E967504E9E24}</Project>
+      <Name>Gendarme.Rules.Design</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <GtkDesignInfo />
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" ExecuteTargetName="run-test" IsAutotoolsProject="true" RelativeConfigureInPath="../../../..">
+          <BuildFilesVar />
+          <DeployFilesVar />
+          <ResourcesVar />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio />
+  </ProjectExtensions>
+</Project>

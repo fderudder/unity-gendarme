@@ -1,0 +1,63 @@
+2008-11-14  Jesse Jones  <jesjones@mindspring.com>
+
+	* common.make: Uses new options.make file.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Test.Rules.csproj: Activate makefile integration for all the rules
+	projects. Remove the old mdp files as they are no longer needed.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Added TESTS_OPTIONS which defines DEBUG and TRACE
+	and disables warnings.
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.mdp: Add Fixtures/AssemblyRuleTestFixture.cs
+
+2008-09-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add the AssemblyRuleTestFixture to the build (something
+	must have gone wrong in the last commit -or- it has been overwritten)
+
+2008-08-17  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Add the AssemblyRuleTestFixture to the build.
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: A bit simplified (but still different from "real"
+	rules Makefiles)
+
+2008-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Test.Rules.csproj to the dist. Make sure to clean
+	the bin/ copy of the assembly (even if we don't put it there with the
+	Makefile, the MD project does).
+
+2008-05-10  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.mdp: Update to fix build.
+
+2008-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Helpers/TestRunner to the build.
+
+2008-04-28  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.mdp: Workaround for bug#367145.
+
+2008-03-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Refer directly to Mono.Cecil assembly, not to a 
+	local copy, of it.
+
+2008-03-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: New. Makefile support for this new helper assembly.
+
+2008-03-11  Daniel Abramov  <ex@vingrad.ru>
+
+	* Test.Rules.mdp: New. MonoDevelop project file for common unit
+	tests functionalities.

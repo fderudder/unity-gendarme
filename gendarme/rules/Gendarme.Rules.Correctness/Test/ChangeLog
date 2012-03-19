@@ -1,0 +1,402 @@
+2010-08-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add new files to dist
+
+2010-08-06  Antoine Vandecreme  <avandecreme@sopragroup.com>
+
+	* Tests.Rules.Correctness.csproj: Add Resource.resx and
+	Resource.Designer.cs to project
+	* Resource.resx: Added
+	* Resource.Designer.cs: Added
+	* ProvideCorrectArgumentsToFormattingMethodsTest.cs: Add tests
+	cases with string resources as format
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeTest.cs: Duplicate
+	the namespace used by code contracts on FX4 and the latest 
+	Microsoft.Contracts.dll (for earlier releases like 3.5 and SL3)
+
+2010-04-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCanBeMadeStaticTest.cs: Add test case with [Conditional]
+	method. Update other test cases to the "newer" way of unit testing
+	rules.
+	* ProvideCorrectArgumentsToFormattingMethodsTest.cs: More test 
+	cases where an immediate if, e.g. cond ? "a" : "b", would result
+	in false positives (fixed in InstructionRock.TraceBack)
+
+2010-04-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedTest.cs: Add test case where C#
+	automatic properties are used (which creates a backing field).
+	Test case submitted by Guillaume Gautreau
+
+2010-04-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCodeWithSideEffectsInConditionalCodeTest.cs: Skip Bad2 if
+	debugging symbols are unavailable (more effective than comments)
+
+2010-04-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidCodeWithSideEffectsInConditionalCodeTest.cs: Add a comment
+	about why 'Bad2' could fail on Windows - i.e. failing to load
+	Mono.Cecil.Pdb.dll
+	* ProvideCorrectRegexPatternRule.cs: Make test cases consistent
+	and add new ones.
+
+2010-04-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsTest.cs: Additional
+	test cases provided by Antoine Vandecrème
+
+2010-01-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotRoundIntegersTest.cs: Fix test under non-English culture
+	(where ',' is used as a decimal separator). Issue reported by 
+	Guillaume Gautreau.
+
+2010-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsTest.cs: Add a generic
+	and a non-generic test case for #567817
+
+2010-01-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseNoInliningWithGetCallingAssemblyTest.cs: New. Unit tests for
+	UseNoInliningWithGetCallingAssemblyRule
+
+2009-11-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewInconsistentIdentityTest.cs: Add test case with abstract
+	methods. Make the test fixture public (otherwise it won't be
+	executed by nunit). Fix bug #550152 (also reported on the m-l).
+
+2009-04-30  Jesse Jones  <jesjones@mindspring.com> 
+
+	* AvoidMethodsWithSideEffectsInConditionalCodeTest.cs: 
+	Added new rule.
+
+2009-03-19  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewInconsistentIdentityTest.cs: Updated for rule tweaks.
+
+2009-01-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsTest.cs: Add test cases
+	for 'out' parameters.
+
+2008-12-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewUselessControlFlowTest.cs: Reorder and comment the cases
+	where a compiler (like CSC) can remove/optimize the useless control
+	flow (and making the test case fail).
+	* ReviewSelfAssignmentTest.cs: Add test cases for chaining with 
+	indexers.
+
+2008-12-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsTest.cs: Add test cases
+	where the null check condition is inverted, e.g. (null == obj) instead
+	of the more common (obj == null).
+
+2008-12-19  Jesse Jones  <jesjones@mindspring.com> 
+
+	* ReviewInconsistentIdentityTest.cs: Added.
+
+2008-12-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsTest.cs: Add test 
+	case where a string ends with '{'. This is likely what's happening 
+	in #458175
+
+2008-12-07  Jesse Jones  <jesjones@mindspring.com>
+ 
+	* DoNotRecurseInEqualityTest.cs: Added.
+
+2008-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyTest.cs: Change the
+	DoesNotApply into Success.
+
+2008-11-15  Jesse Jones  <jesjones@mindspring.com>
+ 
+	* ReviewCastOnIntegerMultiplicationTest.cs: Added some unchecked
+	epressions and a few checked tests.
+	* ReviewUseOfInt64BitsToDoubleTest.cs: StaticFieldGood uses unchecked
+	math.
+
+2008-11-13  Jesse Jones  <jesjones@mindspring.com>
+
+	* NullDerefTest.cs: Added a couple more false positives.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Correctness.csproj: Activate makefile integration for all
+	the rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsTest.cs: Remove unneeded
+	System.Drawing from the using clauses.
+
+2008-11-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CheckParametersNullityInVisibleMethodsTest.cs: New. Unit tests
+	for CheckParametersNullityInVisibleMethodsRule
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* NullDerefTest.cs: New. Only has a few tests for now. The rule
+	still reports too many false positives so for now the test and the
+	rule are not part of the official build.
+
+2008-10-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedTest.cs: Add more test cases 
+	for better coverage.
+	* FinalizersShouldCallBaseClassFinalizerTest.cs: Moved from 
+	Design.	Updated namespace.
+	* Test.Rules.Correctness.mdp: Add moved rule to the MD project
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedTest.cs: Moved from Design.
+
+2008-10-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewCastOnIntegerDivisionTest.cs: New. Unit tests for 
+	ReviewCastOnIntegerDivisionRule.
+	* ReviewCastOnIntegerMultiplicationTest.cs: New. Unit tests for
+	ReviewCastOnIntegerMultiplicationRule.
+
+2008-10-06  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* AttributeStringLiteralsShouldParseCorrectlyTest.cs: New.  Unit tests
+	for AttributeStringLiteralsShouldParseCorrectlyRule.
+	* Test.Rules.Correctness.mdp: Updated MD project file.
+
+2008-09-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentTest.cs: Change from Success to
+	DoesNotApply test cases where no DUP instructions are present.
+	* ReviewUselessControlFlowTest.cs: Add test case where no
+	conditional branches are present in a method (e.g. empty).
+	* ReviewUseOfInt64BitsToDoubleTest.cs: Change from Success
+	to DoesNotApply test cases where no CALL[VIRT] or CONV_[OVF_][I|U]
+	8[_UN] instructions are	present.
+	* ReviewUseOfModuloOneOnIntegersTest.cs: Change from Success
+	to DoesNotApply test cases where no REM[_UN] instructions are
+	present.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidFloatingPointEqualityTest.cs: New. Updated the old
+	FloatComparisonRuleTest to use the new test syntax and to have
+	better coverage.
+	* FloatComparisonRuleTest.cs: Removed (was renamed from above)
+	* DontCompareWithNaNTest.cs: Use the new test syntax and add
+	more coverage.
+
+2008-09-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesTest.cs: Add more coverage.
+	* BadRecursiveInvocationTest.cs: Add more coverage. Add test
+	cases with many parameters - one of them currently fails on mono
+	compiled assemblies (works when CSC compiles it).
+	* CallingEqualsWithNullArgTest.cs: Add more coverage. Ensure a 
+	LDNULL instruction is present in some test case so the rule does 
+	not ignore them.
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsRule.cs: Add test 
+	cases for using a method return value as an argument of String.Format
+	and for the special "{{" formatting code.
+
+2008-08-18  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* UseValueInPropertySetterTest.cs: Add an additional test case when
+	[MarshalAs] is used. In this case the parameter is not named value
+	at least not when compiled with [g]mcs (csc seems fine).
+
+2008-08-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CallingEqualsWithNullArgTest.cs: Convert test to new, simpler, API
+	and cover 100% of the rule.
+	* UseValueInPropertySetterTest.cs: Convert test to new, simpler, API
+	and cover 100% of the rule.
+
+2008-07-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotRoundIntegersTest.cs: Added new test case provided by 
+	Richard Birkby.
+
+2008-07-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationTest.cs: Update test cases to new format and 
+	add cases for generics and explicit interfaces.
+
+2008-07-18  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ProvideCorrectArgumentsToFormattingMethodsTest.cs: New.  Unit tests
+	for ProvideCorrectArgumentsToFormattingMethodsRule. 
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesTest.cs: Update unit tests to
+	the new format/api and to the small changes made to the rule.
+
+2008-07-07  Stephane Delcroix  <sdelcroix@novell.com>
+
+	* ConsoleRunner.cs: fix a typo
+
+2008-07-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewSelfAssignmentTest.cs: New. Unit tests for 
+	ReviewSelfAssignmentRule.
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-06-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewUseOfInt64BitsToDoubleTest.cs: New. Unit tests for
+	ReviewUseOfInt64BitsToDoubleRule.
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-06-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotRoundIntegersTest.cs: New. Unit tests for 
+	DoNotRoundIntegersRule
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-06-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewUselessControlFlowTest.cs: New. Unit tests for
+	ReviewUselessControlFlowRule
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentTest.cs: Add test case where the field comes
+	from differrent instances of the same type.
+	* ReviewUseOfModuloOneOnIntegersTest.cs: New. Unit tests for 
+	ReviewUseOfModuloOneOnIntegersRule
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-06-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewDoubleAssignmentTest.cs: New. Unit tests for 
+	ReviewDoubleAssignmentRule
+	* Test.Rules.Correctness.mdp: Add tests to the MD project file.
+
+2008-05-11  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.Correctness.mdp: Fix references.
+
+2008-05-10  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* UseValueInPropertySetterTest.cs,
+	  AvoidConstructorsInStaticTypesTest.cs, DontCompareWithNaNTest.cs,
+	  CallingEqualsWithNullArgTest.cs, BadRecursiveInvocationTest.cs,
+	  FloatComparisonRuleTest.cs, MethodCanBeMadeStaticTest.cs: Update
+	  (to fix build): somebody forgot to include the new namespace when
+	  moving TestRunner.
+
+2008-04-27  Jb Evain  <jbevain@novell.com>
+
+	* MethodCanBeMadeStaticTest.cs: test that ensure that
+	this rule doesn't apply on event callbacks.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DontCompareWithNaNTest.cs: Fix name change.
+	* FloatComparisonRuleTest.cs: Fix test not to depend on compiler.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesTest.cs
+	* BadRecursiveInvocationTest.cs
+	* CallingEqualsWithNullArgTest.cs
+	* DontCompareWithNaNTest.cs
+	* FloatComparisonRuleTest.cs
+	* MethodCanBeMadeStaticTest.cs
+	* UseValueInPropertySetterTest.cs:
+		Update unit tests wrt framework changes.
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FloatComparisonRuleTest.cs: Add test case where we compare with
+	"this".
+	* UseValueInPropertySetterTest.cs: Add test case where a "this []"
+	property is used.
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontCompareWithNaNTest.cs: New. Unit tests for NaN.
+	* UseValueInPropertySetterTest.cs: Fix Empty test case since we 
+	don't report them anymore (too many false positives).
+
+2008-01-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* BadRecursiveInvocationTest.cs: Add more complex test cases to hunt
+	for false positives (detected while scanning corlib).
+	* FloatComparisonRuleTest.cs: Duplicate test cases for Double. Add
+	test cases for FP conversion and FP in arrays.
+	* UseValueInPropertySetterTest.cs: Add test case for empty setter
+	and for a call on the setter value.
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesTest.cs: line endings
+	* FloatComparisonRuleTest.cs: line endings
+	* UseValueInPropertySetterTest.cs: line endings and new test cases
+	for static properties
+	* Test.Rules.Correctness.mdp: MonoDevelop removed the "./" prefix 
+	before each file.
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseValueInPropertySetterTest.cs: Add test cases where an exception
+	is thrown in the setter (i.e. value isn't used but this should not
+	be reported as an error).
+
+2007-11-03  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidConstructorsInStaticTypesTest.cs: Added test for avoid false
+	positives if the class doesn't contains fields or methods.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidConstructorsInStaticTypesTest.cs: Unit tests (Lukasz Knop, 
+	GSoC 2007)
+	* CallingEqualsWithNullArgTest.cs: Unit tests (Nidhi Rawal, GSoC 2007)
+	* FloatComparisonRuleTest.cs: Unit tests (Lukasz Knop, GSoC 2007)
+	* UseValueInPropertySetterTest.cs: Unit tests (Lukasz Knop, GSoC 2007)
+	* Test.Rules.Correctness.mdp: Update project files.
+
+2007-02-27  Jb Evain  <jbevain@gmail.com>
+
+	* MethodCanBeMadeStaticTest.cs:
+		Add tests for rule MethodCanBeMadeStatic.
+
+2006-10-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* BadRecursiveInvocationTest.cs: Modify existing test case to make 
+	sure parameter names aren't required to match in a recursive call
+	(e.g. calling base class).
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-20  Jonathan Chambers  <joncham@gmail.com>
+
+	* Test.Rules.Correctness.csproj: Make reference to nunit.framework
+	not a specific version for portability.
+	
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Correctness.mdp: New. Project file for MonoDevelop.
+	* BadRecursiveInvocationTest.cs: Convert (and add) tests to NUnit format.

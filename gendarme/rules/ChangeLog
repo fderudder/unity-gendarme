@@ -1,0 +1,308 @@
+2010-08-06  Antoine Vandecreme  <avandecreme@sopragroup.com>
+
+	* common.make: Add support for resources
+
+2009-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* common.make: Add a 'touch hack' so we only rebuild documentation
+	when a rule assembly is changed.
+
+2009-01-27  Jonathan Pryor  <jpryor@novell.com>
+
+	* common.make ($(rules_doc_source)): Change the .source file contents 
+	  so that rules are placed under the 'Commands and Files/Gendarme' node.
+
+2009-01-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefike.am: put rules target back in (needed for the new console
+	target).
+
+2008-12-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Simplify calls into subdirectories for test and 
+	run-test. Remove self-test at this stage (still possible globally
+	or on a specific rule assembly).
+
+2008-12-01  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Added rules target.
+	* common.make: Added rule target.
+
+2008-11-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Avoid re-building documentation needlessly. This
+	fix the case where a make install, under su, would fail to locate
+	mdoc.
+
+2008-11-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* common.make: Copy bin/gendarme.exe.config to $(tests_dll).config.
+	Also add the config file to CLEANFILES.
+
+2008-11-14  Jesse Jones  <jesjones@mindspring.com>
+
+	* common.make: Uses new options.make file.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* rules.mds:
+	* Makefile.am:
+	* common.make: Activate makefile integration for all the rules projects.
+	Remove the old mdp files as they are no longer needed.
+
+2008-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* common.make: Regenerate documentation if the .doc file has changed
+
+2008-10-31  Jesse Jones  <jesjones@mindspring.com>
+
+	* common.make: Empty make targets don't seem to build on OS-X which 
+	causes problems when we try to build xml files which aren't there.
+	Fixed this by adding a prereq on the doc directory in addition to
+	the xml files.
+
+	* common.make: tests_dll prereq was completely wrong: it used
+	test_build_sources which was never set instead of tests_build_sources.
+
+2008-10-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* config.make: Fix "make distcheck" that I broke when adding
+	AssemblyStaticInfo.cs to every rule assembly.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* Makefile.am: Added EXTRA_RULES_OPTIONS and EXTRA_TESTS_OPTIONS so 
+	that we can build the rules consistently. EXTRA_TESTS_OPTIONS now 
+	defines DEBUG and TRACE (which only one rule did before) and disables
+	warnings. EXTRA_RULES_OPTIONS also defines DEBUG and TRACE, enables 
+	all warnings, makes warnings errors, and enables checked arithmetic.
+
+2008-10-30  Jesse Jones  <jesjones@mindspring.com>
+
+	* common.make: Use 'expr x : y' instead of non-portable 'expr match x y'. 
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* common.make: Make all rule assemblies include AssemblyStaticInfo.cs
+	in its build.
+
+2008-10-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* common.make: Don't warn if XML documentation is incomplete (1591) 
+	since we only document the class (and nothing else) for the wiki.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* common.make: As we do when we compile, the doc directory is generated
+	if needed. 
+	* Gendarme.Rules.*/doc: We don't need to keep the doc directory for
+	every rule category, because it's created if needed.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* common.make: This target is not longer needed, because the artifacts
+	which will be built are placed in the SCRIPTS and DATA.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* common.make: Extracted some common code from Makefiles and put in this
+	file.  This reduces the duplication among Makefiles and make it easier
+	to maintain.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* common.make: Added the targets for generate the documentation from the
+	XML code comments in the source code.  It also packages and make it
+	installable in Monodoc.
+	* Makefile.am: This target is not longer needed because the doc building
+	is integrated in the build process.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added the doc target in order to update or generate the
+	rules documentation for each category.
+	* common.make: Added the doc target in order to generate or update the
+	documentation for the chosen category. It also generates a .doc file
+	with the comments in the source code for extracting in the
+	documentation.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Makefile.am: Add Gendarme.Rules.Design.Generic to the build.
+	* rules.xml: Add Gendarme.Rules.Design.Generic to default and 
+	into its own category.
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Makefile.am: Add Gendarme.Rules.Security.Cas to the build.
+	* rules.xml: Add Gendarme.Rules.Security.Cas to default and 
+	into its own category.
+
+2008-08-17  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* Makefile.am: Add Gendarme.Rules.Design.Linq to the build.
+	* rules.xml: Add Gendarme.Rules.Design.Linq to default and into
+	its own category.
+
+2008-07-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* rules.xml: Add Maintainability rules to "default" (found by
+	Richard Birky).
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add common.make to the dist
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* common.make: Cut down on Makefile.am copy/paste (and hopefully 
+	the errors inside them ;-)
+
+2008-04-27  Andres G. Aragoneses  <aaragoneses@novell.com>
+
+	* rules.mds, tests.mds: added new projects for
+	Gendarme.Rules.Maintainability.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* rules.xml: Add Maintainability rules to "self-test" and a new
+	"maintainability" ruleset.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Appended the Maintainability build.
+
+2008-03-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Re-order directories to start with Test.Rules
+
+2008-03-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Test.Rules to the build.
+	* tests.mds: Add Test.Rules to MD testing solution.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Gendarme.Rules.Serialization to the build.
+	* rules.xml: Add Serialization rules to "default", "self-test" and 
+	a new "serialization" ruleset.
+	* rules.mds: Add Serialization rules project to the solution.
+	* tests.mds: Add Serialization unit tests project to the solution.
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* rules.xml: Order rules alphabetically. Update mono-bcl rule set 
+	with newer rules.
+
+2008-01-28  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* rules.xml: In default only exclude NullDerefRule from Correctness
+	and stop excluding ToStringReturnsNullRule from BadPractice. In 
+	mono-bcl include everything except MethodCanBeMadeStaticRule and 
+	NullDerefRule from Correctness and exclude MonoCompatibilityReviewRule
+	from Portability.
+
+2008-01-02  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* rules.mds, tests.mds: Add Gendarme.Rules.Interoperability to
+	MonoDevelop solution files.
+	* rules.xml: Add Gendarme.Rules.Interoperability rules
+
+2007-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Gendarme.Rules.Interoperability to the build.
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* rules.xml: Added Correctness rules (except NullDeRef) to 
+	"self-test". Renamed monoBCL to mono-bcl to avoid mixed cases.
+	Re-active AvoidUninstantiatedInternalClassesRule in default.
+
+2007-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* rules.xml: Add a new "self-test" set used for testing Gendarme 
+	itself
+
+2007-11-18  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* rules.xml: Added ToStringReturnsNullRule to the profiles, because the
+	bug has been fixed.
+
+2007-10-19  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* rules.xml: Update with the profiles page in the group.  There are 2
+	rules deactivated because I should deal with and fix some bugs.
+
+2007-10-15  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* rules.xml: Added the design and badpractice rulesets.
+
+2007-10-09  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* rules.md-nunit: Fix the path for Test.Rules.BadDesign.dll assembly in
+	the unit tests.
+
+2007-10-09  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* rules.md-nunit: Update unit tests to load assemblies in ../bin
+	directory.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Gendarme.Rules.BadPractice to the build
+
+2007-09-26  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* rules.xml: Added Naming rules to "all" and new "naming" ruleset.
+	Added new "smells" ruleset.  Added "monoBCL" ruleset as part of the
+	profiles task.
+
+2007-09-14  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Smells: Merging GSoC 2007 work.
+	* Makefile.am: Added Gendarme.Rules.Smells.
+
+2007-09-13  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Naming: Merging GSoC 2007 work.
+	* Makefile.am: Added Gendarme.Rules.Naming.
+
+2007-03-12  Jb Evain  <jbevain@gmail.com>
+
+	* Update to match the new rules interfaces.
+
+2006-11-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add Gendarme.Rules.Ui to the build.
+	* rules.xml: Add UI rules to "all" and a new "ui" ruleset.
+	* rules.mds: Add UI rules project to the solution.
+	* tests.mds: Add UI unit tests project to the solution.
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+	* rules.xml: Disabling Gendarme.Rules.Correctness.dll until bug #79486
+	is fixed.
+
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* rules.mds: New. (Sub-)solution file for MonoDevelop.
+	* rules.md-unit: New. MonoDevelop NUnit project file.
+	* tests.mds: New. (Sub-)solution file for MonoDevelop.
+
+2006-06-19  Russell Morris  <russell@russellsprojects.com>
+
+	* Makefile.am: Added Gendarme.Rules.Exceptions
+	* rules.xml:  Added Gendarme.Rules.Exceptions entries
+
+2006-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Added self-test target to promote compliance ;-)
+
+2006-03-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Added Gendarme.Rules.Portability
+
+2006-03-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Added test and run-test targets.

@@ -1,0 +1,303 @@
+2010-07-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NewLineLiteralRule.cs: Fix decimal (needs hexadecimal) for
+	control characters. Remove XML doc (used for rules doc only)
+	and avoid a few allocations since we're using a StringBuilder
+	* Makefile.am: Compile tests without optimizations so GMCS
+	won't replace a "" with String.Empty
+
+2010-07-14  Antoine Vandecreme  <avandecreme@sopragroup.com>
+
+	* NewLineLiteralRule.cs: Format specials char to be
+	human readable and XML compliants
+
+2010-06-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: Apply AvoidLargeClassesRule
+
+2010-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs:
+	* ExitCodeIsLimitedOnUnixRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: Rename GetLastestLocalDefinition
+	to FindLastestLocalVersion (apply ConsiderConvertingMethodToPropertyRule)
+
+2010-04-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Avoid -pkg:dotnet since it refers to assemblies
+	that are not always installed by default (it it's pure laziness
+	to use that ;-)
+
+2010-04-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: Static-ify Filter and
+	ComparePublicKeyToken methods (make self-test)
+
+2009-12-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: Only check calls on assemblies
+	that are covered by MoMA (e.g. don't check Silverlight platform
+	assemblies, user code...)
+
+2009-08-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: Added a Version configurable
+	property to select between (local) definition files (e.g. a new
+	gendarme reviewing compoatibility with an older mono). Automatic
+	download of new difinition files when Gendarme is updated (since
+	a new version of mono is likely available). Updated documentation
+
+2009-08-26  Jesse Jones  <jesjones@mindspring.com>
+
+	* MonoCompatibilityReviewRule.cs: Edited the description.
+
+2009-07-07  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2008-12-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs: Use HasParameters and avoid calling
+	ToLower before comparing strings.
+	* NewLineLiteralRule.cs: Remove unneeded override on Initialize.
+
+2008-11-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs: Specify StringComparison.Ordinal when 
+	calling StartsWith.
+	* MonoCompatibilityReviewRule.cs: Use HashSet instead of Dictionnary
+	for both NotImplementedInternal and MissingInternal since there is
+	no second argument (comments). Avoid calling ToString three times
+	(one per list) on MethodReference (which needs to rebuild the string
+	each time).
+
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExitCodeIsLimitedOnUnixRule.cs: Clearly specify [Serializable] on 
+	the InspectionResult enum (self-test)
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Portability.mdp:
+	* Gendarme.Rules.Portability.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MoMAWebService.cs:Remove #pragma (even if from generated code) 
+	since I want to enable this across all rules.
+	* MonoCompatibilityReviewRule.cs: Avoid specialization of Read and 
+	Check methods parameters (self-test).
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Portability.xml,
+	doc/ns-MoMA.Analyzer.MoMAWebService.xml,
+	doc/MoMA.Analyzer.MoMAWebService, doc/Gendarme.Rules.Portability: With
+	the new code in the Makefiles we don't need to keep the documentation
+	files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs: Add XML documentation. Use OpCodeEngine
+	to avoid executing the rule unless an LDSTR instruction is present.
+	* ExitCodeIsLimitedOnUnixRule.cs: Add XML documentation. Use 
+	OpCodeEngine to avoid executing the rule unless Call[virt] 
+	instructions are present inside the method.
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Add XML documentation.
+	Use OpCodeEngine to avoid executing the rule unless Call[virt] or 
+	NewObj instructions are present inside the method.
+	* MonoCompatibilityReviewRule.cs: Add XML documentation. Use
+	OpCodeEngine to avoid executing the rule unless it can reference
+	a type or method not available, or incomplete, inside Mono.
+	* NewLineLiteralRule.cs: Add XML documentation. Use OpCodeEngine 
+	to avoid executing the rule unless an LDSTR instruction is present.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Don't check Ping if
+	Process was found earlier (the call goes to a single place). Rename
+	some variables to please rules (self-test).
+
+2008-08-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Override Initialize
+	to be able to detect both Process and Ping. Turn off the rule is both
+	are not used in a module, otherwise just look for the one(s) present.
+
+2008-08-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs: Fix case where we can't resolve the
+	method on which we want to check a parameter name.
+
+2008-08-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs: Remove unused parameters (self-test)
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExitCodeIsLimitedOnUnixRule.cs: Remove unused field (self-test)
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsRule.cs: Fix unused 'msg' (last minute change)
+	and static-ify some methods (self-test).
+
+2008-07-10  Daniel Abramov  <ex@vingrad.ru>
+
+	* DoNotHardcodePathsRule.cs: New rule that looks for hardcoded 
+	path strings like 'C:\something.txt' or '/usr/home' and warns the
+	developer that they may break application portability.
+	* Makefile.am, 
+	* Gendarme.Rules.Portability.mdp,
+	* Gendarme.Rules.Portability.csproj: Add new rule.
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Simplify logic a
+	bit. Handle the case where Resolve returns null (cannot find the 
+	required assemblies)
+	* MonoCompatibilityReviewRule.cs: Dispose as soon as possible.
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-05-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: Whine at the right stream 
+	(self-test).
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExitCodeIsLimitedOnUnixRule.cs: Simplify Initialize (using rocks).
+	Don't report a defect if we call a method that returns a byte (since
+	we're sure it's value is ok).
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExitCodeIsLimitedOnUnixRule.cs
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs
+	* MonoCompatibilityReviewRule.cs
+	* NewLineLiteralRule.cs:
+		Updated rules wrt framework changes.
+
+2008-02-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Portability.xml.in: Fix definition for
+	FeatureRequiresRootPrivilegeOnUnixRule.
+
+2008-02-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Split the checks
+	for Process and Ping out of CheckMethod (and please self-test).
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Don't report when 
+	analysis the Ping class itself (very special case but useful for 
+	Mono itself :)
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExitCodeIsLimitedOnUnixRule.cs: Use new Location ctors.
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: Use new Location ctors.
+	* MonoCompatibilityReviewRule.cs: Use new Location ctors.
+	* NewLineLiteralRule.cs: Use new Location ctors.
+
+2008-01-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExitCodeIsLimitedOnUnixRule.cs: Rename InspectionResult[s]
+	* MonoCompatibilityReviewRule.cs: Change some methods to static.
+
+2007-12-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExitCodeIsLimitedOnUnixRule.cs: New. Rule to detect usage of 
+	ExitCode (from Main or Environment.ExitCode / Exit) with values too
+	big for Unix systems.
+	* Gendarme.Rules.Portability.xml.in: Add new rule definition.
+	* Makefile.am: Add new rule/tests to the build.
+
+2007-12-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewRule.cs: New. Rule that use MoMA definition
+	files to report possible incompatibilities with Mono (Andreas Noever)
+	* MoMAWebService.cs: New. Wrapper for MoMA web service.
+	* Gendarme.Rules.Portability.xml.in: Add new rule definition.
+	* Gendarme.Rules.Portability.mdp: Add new rule to the MonoDevelop 
+	project file.
+	* Makefile.am: Add new rule/tests to the build.
+
+2007-12-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixRule.cs: New. Rule that check
+	for the use of features that requires to be root under Linux.
+	* NewLineLiteralRule.cs: Update to use latest best-practice since
+	it's a likely starting point for new rules.
+	* Gendarme.Rules.Portability.xml.in: Add new rule definition.
+	* Gendarme.Rules.Portability.mdp: Add new rule to the MonoDevelop 
+	project file.
+	* Makefile.am: Add new rule/tests to the build.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Portability.mdp: Update project file.
+
+2006-10-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Portability.xml.in: Update Uri for rules (to generate
+	more useful reports).	
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-28  Christian Birkl  <christian.birkl@gmail.com>
+
+	* Gendarme.Rules.Portability.csproj: Included ChangeLog
+	* NewLineLiteralRule.cs: Migrated untyped IList messages collection
+	to typed MessageCollection class.
+	
+2006-09-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NewLineLiteralRule.cs: Update rule to provide location (which 
+	results in better reports).
+
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Portability.mdp: New. Project file for MonoDevelop.
+
+2006-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Use -pkg:mono-nunit to reference nunit assemblies.
+	Added self-test target to promote compliance ;-)
+
+2006-03-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: New. Build Gendarme.Rules.Portability rules and tests.
+	* Gendarme.Rules.Portability.xml.in: New. Configuration for Gendarme.
+	Rules.Portability.
+	* NewLineLiteralRule.cs: New. Rule to check if a method is directly
+	using \r, \n or \r\n instead of Environment.NewLine.

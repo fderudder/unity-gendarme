@@ -1,0 +1,19 @@
+2008-10-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SimpleMethods.cs: Add a new definition for a method decorated 
+	with a [GeneratedCode] attribute.
+	* SimpleTypes.cs: Add a new definition for a class decorated with
+	a [GeneratedCode] attribute.
+
+2008-08-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SimpleTypes.cs: Add SimpleTypes.Delegate to ease testing.
+
+2008-04-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SimpleMethods.cs: Return MethodDefinition instead of Delegate.
+
+2008-03-11  Daniel Abramov  <ex@vingrad.ru>
+
+	* SimpleMethods.cs: New.
+	* SimpleTypes.cs: New.

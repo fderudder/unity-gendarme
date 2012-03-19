@@ -1,0 +1,43 @@
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeTest.cs: Add asserts for severity
+
+2010-01-19  Jb Evain  <jbevain@novell.com>
+
+	* AvoidMethodWithUnusedGenericTypeTest.cs: add test for the case
+	where the parameter type is an array of a generic parameter.
+
+2010-01-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidDeclaringCustomDelegatesTest.cs: New. Unit tests for
+	AvoidDeclaringCustomDelegatesRule
+
+2008-12-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotExposeNestedGenericSignaturesTest.cs: New. Unit tests for
+	DoNotExposeNestedGenericSignaturesRule
+
+2008-10-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferGenericsOverRefObjectTest.cs: New. Unit tests for
+	PreferGenericsOverRefObjectRule.
+	* Test.Rules.Design.Generic.mdp: Update MD project file.
+
+2008-09-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Design.Generic.mdp: New. Add MD project file.
+
+2008-09-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeTest.cs: New. Unit tests for
+	AvoidMethodWithUnusedGenericTypeRule
+
+2008-08-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseGenericEventHandlerTest.cs: New. Unit tests for
+	UseGenericEventHandlerRule
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementGenericCollectionInterfacesTest.cs: Moved from Design.
+	* Makefile.am: New. Build file.

@@ -1,0 +1,61 @@
+2010-06-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TestRunner.cs: Let the resolver looks at MONO_PATH to find
+	assemblies, like Gendarme.Framework.dll (fix two recent failures)
+
+2010-05-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TestRunner.cs: Adjust for IIgnoreList changes. Check ignored
+	targets while running unit tests. 
+
+2009-06-10  Jesse Jones  <jesjones@mindspring.com>
+
+	* TestRunner.cs: ctor updates Rules property.
+
+2009-01-28  Jb Evain  <jbevain@novell.com>
+
+	* AssemblyCache.cs: provide the assembly with the gendarme
+	custom assembly resolver.
+
+2008-10-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TestRunner.cs: Update TearDown call with API change.
+
+2008-09-18  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* TestRunner.cs: Added a PostCheck logic so that we are able to tests
+	rules which report defects in the TearDown step.
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TestRunner.cs: Change PreCheck logic so that engines are called
+	before running unit tests.
+
+2008-07-23  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DefinitionLoader.cs: Handle generic types inside GetCecilTypeName
+
+2008-05-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AssemblyCache.cs: Load debugging symbols when caching an assembly.
+
+2008-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TestRunner.cs: Move from Gendarme.Framework.dll. Change namespace.
+	Allow the runner to work with rules that works across several 
+	assemblies (i.e. populate Assemblies collection)
+
+2008-04-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DefinitionLoader.cs: Rework GetMethodDefinition so it can work
+	on constructors too.
+
+2008-04-03  Daniel Abramov  <ex@vingrad.ru>
+
+	* DefinitionLoader.cs: DefinitionLoader made public because
+	it seems to be useful for other test assemblies.
+
+2008-03-11  Daniel Abramov  <ex@vingrad.ru>
+
+	* AssemblyCache.cs: New.
+	* DefinitionLoader.cs: New.

@@ -1,0 +1,115 @@
+2010-07-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NewLineLiteralTest.cs: Complete test coverage for rule
+
+2009-12-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewTest.cs: Add test cases to ensure we're not
+	analyzing the calls inside the current assembly.
+
+2009-08-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewTest.cs: Adjust DeleteDefinitionData since
+	we are now keeping multiple zip files.
+
+2008-11-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewTest.cs: Adjust test wrt rule changes.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Portability.csproj: Activate makefile integration for all
+	the rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-09-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsTest.cs: Change some tests from Success to 
+	DoesNotApply as rules get better to avoid condition where they don't
+	need to be executed.
+	* ExitCodeIsLimitedOnUnixTest.cs: Change some tests from Success 
+	to DoesNotApply...
+	* NewLineLiteralTest.cs: Change some tests from Success to 
+	DoesNotApply. Comment a case where CSC and [G]MCS do things too
+	differently.
+
+2008-08-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixTest.cs: Remove unneeded 
+	using clauses.
+	* NewLineLiteralTest.cs: Convert to the new test API and add a 
+	bit more coverage.
+
+2008-08-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixTest.cs: Convert to the new
+	test API. Add a few more cases to get better unit tests coverage.
+
+2008-08-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotHardcodePathsTest.cs: Add test case from Richard Birkby 
+	and my (working) variation.
+
+2008-07-10  Daniel Abramov  <ex@vingrad.ru>
+
+	* DoNotHardcodePathsTest.cs: Unit tests for new rule.
+	* Test.Rules.Portability.mdp, 
+	* Tests.Rules.Portability.csproj: Add new rule.
+
+2008-05-11  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.Portability.mdp: Fix references.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MonoCompatibilityReviewTest.cs: Use the runner, not the rule, to
+	call CheckMethod (otherwise internal state won't be correct).
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExitCodeIsLimitedOnUnixTest.cs
+	* FeatureRequiresRootPrivilegeOnUnixTest.cs
+	* MonoCompatibilityReviewTest.cs
+	* NewLineLiteralTest.cs:
+		Updated unit tests wrt framework changes.
+
+2007-12-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ExitCodeIsLimitedOnUnixTest.cs: New. Unit tests by Daniel Abramov
+
+2007-12-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NewLineLiteralTest.cs: Remove unused variable (compiler warning).
+	* MonoCompatibilityReviewTest.cs: New. Unit tests by Andreas Noever
+	* Test.Rules.Portability.mdp: Add new test to MonoDevelop project 
+	file.
+
+2007-12-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FeatureRequiresRootPrivilegeOnUnixTest.cs: New. Unit tests for 
+	FeatureRequiresRootPrivilegeOnUnixRule.
+	* NewLineLiteralTest.cs: Fix namespace and remove unneeded variable.
+	* Test.Rules.Portability.mdp: Add new rule to the MonoDevelop 
+	project file.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Portability.mdp: Update project file.
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-20  Jonathan Chambers  <joncham@gmail.com>
+
+	* Test.Rules.Portability.csproj: Make reference to nunit.framework
+	not a specific version for portability.
+	
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Portability.mdp: New. Project file for MonoDevelop.
+	* NewLineLiteralTest.cs: Avoid compiler warnings.
+
+2006-03-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* NewLineLiteralTest.cs: New. Unit tests for the NewLineLiteralRule.

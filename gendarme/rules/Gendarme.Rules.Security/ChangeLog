@@ -1,0 +1,199 @@
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotShortCircuitCertificateCheckRule.cs: Apply AvoidRepetitive
+	CallsToPropertiesRule on MethodDefinition::get_Parameters
+
+2009-08-19  Jesse Jones  <jesjones@mindspring.com>
+
+	* StaticConstructorsShouldBePrivateRule.cs: Edited 
+	the rule description.
+
+2009-07-07  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2008-12-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotShortCircuitCertificateCheckRule.cs: New. Rule to check 
+	ICertificatePolicy and RemoteCertificateValidationCallback 
+	implementations.
+	* Makefile.am: Add new rule and tests to the build.
+
+2008-12-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ArrayFieldsShouldNotBeReadOnlyRule.cs: Use HasFields
+	* NativeFieldsShouldNotBeVisibleRule.cs: Use HasFields
+	* StaticConstructorsShouldBePrivateRule.cs: Use HasConstructors
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Security.mdp:
+	* Gendarme.Rules.Security.csproj: Activate makefile integration for all
+	the rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Security.xml,
+	doc/Gendarme.Rules.Security: With the new code in the Makefiles we don't
+	need to keep the documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ArrayFieldsShouldNotBeReadOnlyRule.cs,
+	NativeFieldsShouldNotBeVisibleRule.cs,
+	StaticConstructorsShouldBePrivateRule.cs: Add XML documentation 
+	for the	rules (then converted into media wiki format).
+
+2008-08-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ArrayFieldsShouldNotBeReadOnlyRule.cs: Ignore delegates. Use
+	shorter override for Runner.Report. Add [FxCopCompatibility].
+	* NativeFieldsShouldNotBeVisibleRule.cs: Ignore delegates. Use
+	shorter override for Runner.Report. Add [FxCopCompatibility].
+	* StaticConstructorsShouldBePrivateRule.cs: Ignore delegates. Use
+	shorter override for Runner.Report. Add [FxCopCompatibility].
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCallWithSubsetLinkDemandRule.cs,
+	NonVirtualMethodWithInheritanceDemandRule.cs,
+	SealedTypeWithInheritanceDemandRule.cs,
+	SecureGetObjectDataOverridesRule.cs, TypeExposeFieldsRule.cs,
+	TypeIsNotSubsetOfMethodSecurityRule.cs, TypeLinkDemandRule.cs:
+	All moved into Gendarme.Rules.Security.Cas
+	* Makefile.am: Remove references to moved files.
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-04-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCallWithSubsetLinkDemandRule.cs: Call Resolve before
+	reading the PermissionSet.
+	* SecureGetObjectDataOverridesRule.cs: Call Resolve before 
+	reading the PermissionSet. Fix bug #375368
+	* TypeIsNotSubsetOfMethodSecurityRule.cs: Call Resolve before
+	reading the PermissionSet.
+	* TypeLinkDemandRule.cs: Call Resolve before reading the 
+	PermissionSet.
+	* Makefile.am: Add reference to Test.Rules assembly.
+
+2008-04-08  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* SecureGetObjectDataOverridesRule.cs: Fixed a typo.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ArrayFieldsShouldNotBeReadOnlyRule.cs
+	* MethodCallWithSubsetLinkDemandRule.cs
+	* NativeFieldsShouldNotBeVisibleRule.cs
+	* NonVirtualMethodWithInheritanceDemandRule.cs
+	* SealedTypeWithInheritanceDemandRule.cs
+	* SecureGetObjectDataOverridesRule.cs
+	* StaticConstructorsShouldBePrivateRule.cs
+	* TypeExposeFieldsRule.cs
+	* TypeIsNotSubsetOfMethodSecurityRule.cs
+	* TypeLinkDemandRule.cs:
+		Update rules wrt framework changes.
+
+2008-01-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ArrayFieldsShouldNotBeReadOnlyRule.cs: New. Rule that warns 
+	about read-only array fields, since the value inside the array are 
+	not read-only [Andreas Noever]
+	* NativeFieldsShouldNotBeVisibleRule.cs: New. Rule that warns
+	about native, non read-only, fields since they can be directly 
+	modified [Andreas Noever].
+	* Gendarme.Rules.Security.xml.in: Add new rules description.
+	* Makefile.am: Add rules/tests to the build.
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StaticConstructorsShouldBePrivateRule.cs: New. Rule that checks 
+	for non-private static constructor in classes [Daniel Abramov]
+	* Gendarme.Rules.Security.mdp: Add new rule in MD project.
+	* Gendarme.Rules.Security.xml.in: Add new rule description.
+	* Makefile.am: Add rule/test to the build.
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MethodCallWithSubsetLinkDemandRule.cs: Use new Location ctors.
+
+2008-01-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCallWithSubsetLinkDemandRule.cs: Change Check method to 
+	static to fix warning.
+	*.mdp: MonoDevelop removed the . before filenames :|
+
+2007-12-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodCallWithSubsetLinkDemandRule.cs: Actualize one of the oldest
+	rule to return multiple message if appropriate (and update it's use
+	Cecil).
+
+2007-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypeIsNotSubsetOfMethodSecurityRule.cs: Refactor to reduce method 
+	size.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Security.mdp: Update project file.
+
+2006-10-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Security.xml.in: Update Uri for rules (to generate
+	more useful reports).	
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-28  Christian Birkl  <christian.birkl@gmail.com>
+
+	* Gendarme.Rules.Security.csproj: Included ChangeLog
+	* SealedTypeWithInheritanceDemandRule.cs, 
+	SecureGetObjectDataOverridesRule.cs, TypeExposeFieldsRule.cs, 
+	TypeIsNotSubsetOfMethodSecurityRule.cs, TypeLinkDemandRule.cs, 
+	MethodCallWithSubsetLinkDemandRule.cs, 
+	NonVirtualMethodWithInheritanceDemandRule.cs: Migrated untyped IList
+	messages collection to typed MessageCollection class.
+	
+2006-09-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SecureGetObjectDataOverridesRule.cs: Update FIXME.
+
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Security.mdp: New. Project file for MonoDevelop.
+
+2006-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Use -pkg:mono-nunit to reference nunit assemblies.
+	Added self-test target to promote compliance ;-)
+
+2006-03-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Fix deps on run-test

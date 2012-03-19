@@ -1,0 +1,73 @@
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarkEnumerationsAsSerializableTest.cs: New. Unit tests for
+	MarkEnumerationsAsSerializableRule
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Serialization.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementISerializableCorrectlyTest.cs: Add test case when 
+	GetObjectData is not present. This can means new fields were 
+	introduced and needs to be serialized (or not, e.g. no fields or
+	static fields).
+
+2008-08-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* CallBaseMethodsOnISerializableTypesTest.cs: Add more coverage.
+	* MissingSerializationConstructorTest.cs: Use newer, shorter, 
+	syntax for unit tests. Add more coverage.
+	* MissingSerializableAttributeOnISerializableTypeTest.cs: Use newer, 
+	shorter, syntax for unit tests. Add more coverage.
+	* UseCorrectSignatureForSerializationMethodsTest.cs: Use newer, 
+	shorter, syntax for unit tests. Add more coverage.
+
+2008-08-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeserializeOptionalFieldTest.cs: Use newer, shorter, syntax for
+	unit tests.
+
+2008-08-11  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ImplementISerializableCorrectlyTest.cs: New.  Unit tests for
+	ImplementISerializableCorrectlyRule.
+	* Test.Rules.Serialization.mdp: Update MD project file.
+
+2008-07-09  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* CallBaseMethodsOnISerializableTypesTest.cs: New. Unit tests for
+	CallBaseMethodsOnISerializableTypesRule.
+	* Test.Rules.Serialization.mdp: Update MD project file.
+
+2008-07-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MarkAllNonSerializableFieldsTest.cs: Add test for the serialization of
+	static fields.
+
+2008-07-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MarkAllNonSerializableFieldsTest.cs: New. Unit tests for
+	MarkAllNonSerializableFieldsRule.
+	* Test.Rules.Serialization.mdp: Update MD project file.
+
+2008-05-11  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Test.Rules.Serialization.mdp: Fix references.
+
+2008-02-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MissingSerializableAttributeOnISerializableTypeTest.cs: Add test
+	cases for inheritance and for delegates.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeserializeOptionalFieldTest.cs: New. unit tests.
+	* MissingSerializableAttributeOnISerializableTypeTest.cs: New. unit tests.
+	* MissingSerializationConstructorTest.cs: New. unit tests.
+	* UseCorrectSignatureForSerializationMethodsTest.cs: New. unit tests.
+	* Makefile.am: New.
+	* Test.Rules.Serialization.mdp: New. MonoDevelop project file.

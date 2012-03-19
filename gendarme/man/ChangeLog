@@ -1,0 +1,56 @@
+2010-03-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Added exit code descriptions
+
+2008-09-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Moved file format informations to gendarme.5.in
+	* gendarme.5.in: New. Contains the information about file formats
+	* Makefile.am: Update for gendarme.5.in
+
+2008-08-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* gendarme.1.in: Edited. Added sections for ignore and rules files.
+
+2009-01-27  Jonathan Pryor  <jpryor@novell.com>
+
+	* . (svn:ignore): Ignore generated files.
+	* gendarme.source: Added; Adds the gendarme man page under monodoc's
+	  'Commands and Files/Gendarme' node.
+	* gendarme.config: Added; mdoc-assemble config file to generate
+	  gendarme.tree, gendarme.zip (containing gendarme.1).
+	* Makefile.am: Build and install man pages for monodoc.
+
+2008-11-17  Jesse Jones  <jesjones@mindspring.com>
+
+	* gendarme.1.in: Document config file.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Document --severity and --confidence options.
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Document --limit option.
+
+2008-08-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Document --ignore and --version options.
+
+2008-04-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Document GENDARME_COLOR environment variable.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Update description and mailing-list. 
+	Change --debug to -v
+
+2008-02-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Fix version number (from Mono version to Gendarme)
+
+2006-09-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* gendarme.1.in: Added documentation for new options (--quiet, --log,
+	--xml and --html).

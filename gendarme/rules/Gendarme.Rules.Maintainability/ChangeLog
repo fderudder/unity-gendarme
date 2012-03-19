@@ -1,0 +1,461 @@
+2010-06-20  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ConsiderUsingStopwatchRule.cs:
+	* PreferStringIsNullOrEmptyRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-20  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Fix sparse (non consecutive)
+	switch/cases. Use a fast version of CC if no switch is present
+	(based on OpCodeEngine). Handle both xMCS and CSC
+
+2010-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs:
+	* RemoveDependenceOnObsoleteCodeRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidAlwaysNullFieldRule.cs:
+	* AvoidUnnecessarySpecializationRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-09  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUnnecessarySpecializationRule.cs: Split signature gathering
+	from UpdateParameterLeastType (fixing some self-test defects wrt 
+	size). Only compute signatures when we need them - saves 149kb 
+	while executing self-test
+
+2010-06-07  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidUnnecessarySpecializationRule.cs: Fix potential false 
+	positives when overriding a base method. Fix potential false
+	positives when analyzing methods assigned to events.
+
+2010-06-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Avoid using temporary 
+	List<Instruction> (reduce allocations) and avoid re-checking
+	known parameters.
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* RemoveDependenceOnObsoleteCodeRule.cs: Apply AvoidUnnecessarySpecializationRule
+
+2010-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Apply AvoidRepetitive
+	CallsToPropertiesRule. Remove condition check that can never
+	occur at this stage since it is checked earlier by the rule.
+
+2010-05-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Fix when "ldarg 0" is 
+	used instead of the, much more common, "ldarg_0"
+
+2010-04-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* RemoveDependenceOnObsoleteCodeRule.cs: Fix case where a property
+	setter or getter does not exists (on obsoleted property).
+
+2010-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidAlwaysNullFieldRule.cs: The rules was ignoring "components" 
+	member for windows forms but not for usercontrol and more generally
+	controls. Patch provided by Antoine V.
+
+2010-01-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add new rule and tests to the build
+	* RemoveDependenceOnObsoleteCodeRule.cs: New. Rule to warn you if
+	your code depends on code decorated with the [Obsolete] attribute
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Use shorter, unambiguous
+	.ctor to create MethodSignature
+
+2010-01-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferStringIsNullOrEmptyRule.cs: Fix regression on code compiled
+	using CSC.
+
+2009-08-13  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs, ConsiderUsingStopwatchRule.cs, 
+	AvoidDeepInheritanceTreeRule.cs, AvoidComplexMethodsRule.cs: 
+	Edited the rule descriptions.
+
+2009-07-04  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-01-28  Jb Evain  <jbevain@novell.com>
+
+	* AvoidUnnecessarySpecializationRule.cs:
+		in GetBaseImplementor: handle types with a null BaseType.
+
+2008-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Move some checks before
+	calling (expensive) Resolve on the interface. Check that resolved
+	interface is non-null before continuing. Based on patch from 
+	Tamara Roberson.
+	[partial fix for #462925]
+
+2008-13-10  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidAlwaysNullFieldRule.cs: Use the correct namespace. 
+
+2008-12-10  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidAlwaysNullFieldTest.cs: Also report fields explicitly set
+	to null but not used. 
+
+2008-12-10  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidAlwaysNullFieldRule.cs: Improved winforms check slightly. 
+
+2008-12-09  Jesse Jones  <jesjones@mindspring.com>
+
+	* AvoidAlwaysNullFieldRule.cs, Makefile.am: Added new rule. 
+
+2008-12-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: CSC dislike (CS1570) mixing //
+	comment, on a new line, inside a block of /// 
+
+2008-12-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Use HasMethods and 
+	HasFields to avoid computing cohesion if the minimums are not met.
+	Reuse the same (cleared) collections to reuse memory.
+	* AvoidUnnecessarySpecializationRule.cs: Use Has{x} to avoid 
+	creating empty collections. Moved checks in CheckMethod to start 
+	with the lighter ones (properties) then the more heavy ones (rocks).
+
+2008-12-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Fix documentation (wrong rule)
+	* AvoidDeepInheritanceTreeRule.cs: Fix documentation (wrong rule)
+
+2008-11-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderUsingStopwatchRule.cs: Use TraceBack rock instead of the
+	Previous property to ensure we get over things like unbox.
+
+2008-11-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Specify StringComparison.Ordinal when 
+	calling String.StartsWith.
+	* AvoidUnnecessarySpecializationRule.cs: Specify StringComparison.
+	Ordinal when calling String.StartsWith. Simplify namespace matching
+	method.
+
+2008-11-10  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Prettify the suggestion by
+	showing generic parameters as SomeType<T,U> instead of SomeType`2.
+
+2008-11-10  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Ignore non-generic
+	collection types suggestions as we do not check if the suggestion
+	would be possible to apply or not (wrt casts etc).
+
+2008-11-10  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Count LCOM correctly wrt
+	static and visible fields.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Maintainability.mdp:
+	* Gendarme.Rules.Maintainability.csproj: Activate makefile integration
+	for all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-11-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Fix double cast (self-test)
+
+2008-11-03  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Use generic parameter owner
+	instead of genericity of current method (GetConstructedGenericType).
+
+2008-11-03  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Handle correctly generic arguments
+	and/or non-generic arguments used as a generic argument of a generic method.
+	Fixes false positives on such cases and makes the rule suggests a proper
+	type instead of the infamous !!0 on real positive cases (such as
+	SpecializedClass.GenericMethodArgument testcase).
+
+2008-11-03  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Fix NRE when gp.Owner is not a TypeReference.
+	Regression tests pending, this needs more investigation.
+
+2008-10-31  Jesse Jones  <jesjones@mindspring.com> 
+
+	* AvoidComplexMethodsTest.cs: No longer relies on CustomAttributeCollection
+	returning attributes in the order they were declared in.
+
+2008-10-24  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Revert visibility change for
+	GetCohesivenessForType since it's used in the unit test. Add a null
+	check inside that method (self-test)
+
+2008-10-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Add null check in method
+	GetCyclomaticComplexityForMethod (self-test)
+	* AvoidLackOfCohesionOfMethodsRule.cs: Change visibility of
+	GetCohesivenessForType and GetCohesivenessSeverity to private.
+
+2008-10-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Handle 'ref' parameters
+	correctly. Ignore generic constraints if there's more than one (since
+	we don't consider them properly). Fix reporting to avoid stuff like 
+	"could be of '!0'."
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Maintainability.xml,
+	doc/Gendarme.Rules.Maintainability: With the new code in the Makefiles
+	we don't need to keep the documentation files in the repository.
+
+2008-10-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Remove dead code/line.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-10-15  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Fix style issues.
+	Remove unnecessary .ToArray()s.
+
+2008-10-15  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Do something sensible
+	if a resolution fails during the navigation of the depth inheritance.
+	This also fixes GenericAddBar test failure happening since rev.115089.
+
+2008-10-15  Cedric Vivier  <cedricv@neonux.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Refactoring to fix
+	FalsePositive test and another cases such as in the new
+	SuggestMethodReferenceInsteadOfIMethodSignature test when
+	a parameter is used through different interfaces.
+
+2008-10-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferStringIsNullOrEmptyRule.cs: Fix a false positive that can
+	happen when checking if a string is stricly empty - which generates
+	very similar IL to IsNullOrEmpty.
+
+2008-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferStringIsNullOrEmptyRule.cs: Fix typo in [Solution] attribute
+	and downgrade the confidence to High (test case show it's not Total).
+	Both found by Andy Hume.
+
+2008-09-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Change field visibility 
+	to private.
+	* ConsiderUsingStopwatchRule.cs: More explicit solution text.
+
+2008-09-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Be consistent when reporting
+	Cohesiveness factor (all checks for >=).
+
+2008-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Add XML documentation.
+	* AvoidDeepInheritanceTreeRule.cs: Add XML documentation.
+	* AvoidLackOfCohesionOfMethodsRule.cs: Add XML documentation.
+	* AvoidUnnecessarySpecializationRule.cs: Add XML documentation.
+	* ConsiderUsingStopwatchRule.cs: Add XML documentation.
+	* PreferStringIsNullOrEmptyRule.cs: Add XML documentation.
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidComplexMethodsRule.cs: Add [FxCopCompatibility] attribute.
+	* AvoidLackOfCohesionOfMethodsRule.cs: Don't apply to delegates.
+	Do not ignore properties (SpecialName). Add a few FIXME.
+	* ConsiderUsingStopwatchRule.cs: Use OpCodeEngine to ensure methods
+	contains call[virt] instructions.
+	* PreferStringIsNullOrEmptyRule.cs: : Use OpCodeEngine to ensure 
+	methods	contains call[virt] instructions.
+
+2008-08-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidDeepInheritanceTreeRule.cs: Return DoesNotApply on 
+	delegates. Modulate the severity based on inheritance depth. 
+	Add [FxCopCompatibility] attribute.
+
+2008-08-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Allocate arrays for
+	64 parameters and re-adjust if needed. This makes it possible to
+	allocate arrays once (well it's true for mono 2.0 class libs) and
+	not for each method.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Avoid computing the method's CC if 
+	the number of IL instructions is lower than the success threshold.
+
+2008-08-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidDeepInheritanceTreeRule.cs: Fix case where we can't resolve
+	a base type.
+	* AvoidUnnecessarySpecializationRule.cs: Fix case where we can't
+	resolve the least type.
+
+2008-08-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: Small fixes for self-test
+
+2008-08-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderUsingStopwatchRule.cs: Remove unneeded parameter on 
+	IsGetNow method (self-test).
+	* AvoidUnnecessarySpecializationRule.cs: Ignore methods where
+	the parameters are dictated by an interface that the type implements.
+	Also use new rocks to simplify rule and apply rule to itself ;-)
+
+2008-08-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Use automatic properties for all
+	Threadhold properties. Reuse (i.e. Clear) 'targets' between rule
+	executions (to reduce memory requirements).
+	* ConsiderUsingStopwatchRule.cs: Use new rocks to simplify code.
+	Rework parameter checks to consider Ref and Out parameters.
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ConsiderUsingStopwatchRule.cs: New. Rule to check if the use of
+	DateTime could not be replaced with the use of a Stopwatch to 
+	increase the code clarity. [committed for Cedric Vivier]
+	* Gendarme.Rules.Maintainability.mdp: Update MD project files.
+	* Makefile.am:  Add the rule and the test to the build.
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidUnnecessarySpecializationRule.cs: New. Rule to check if some
+	method parameters could use a type lower in the hierarchy than the one 
+	being used. [committed for Cedric Vivier]
+	* Gendarme.Rules.Maintainability.mdp: Update MD project files.
+	* Makefile.am:  Add the rule and the test to the build.
+
+2008-07-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidDeepInheritanceTreeRule.cs: Change the default rule behaviour
+	to check only inheritance inside the set of assemblies being analyzed
+	(instead of the whole resolvable class libraries). This can be
+	changed back using the configuration file. Patch by Cedric Vivier.
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidComplexMethodsRule.cs: Always report the calculated CC 
+	since it is useful to the end user (to see how much complexity 
+	there is ;-)
+	* AvoidLackOfCohesionOfMethodsRule.cs: Always report the 
+	calculated cohesion (for the same reasons).
+	* Makefile.am: Start using ../common.make
+
+2008-05-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferStringIsNullOrEmptyRule.cs: New. Rule to suggest using
+	String.IsNullOrEmpty over a null and length check on the same string
+	[Fix bug/request #362867]
+	* Makefile.am:  Add the rule and the test to the build.
+
+2008-05-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Refactor against 
+	AvoidLongMethodsRule (GetCohesivenessForType) and 
+	AvoidLargeClassesRule (common prefixes). Fix exception arguments
+	ordering.
+
+2008-05-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidDeepInheritanceTreeRule.cs: New. Rule to check if the 
+	inheritance tree of types gets deeper than 4 levels.
+
+2008-05-10  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidComplexMethodsRule.cs: Change default threshold to 25 (to 
+	match results from fxcop) and make all threshold configurable using
+	rules.xml.
+
+2008-05-01  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidComplexMethodsRule.cs: Remove empty static ctor.
+
+2008-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Maintainability.csproj: New. VS.NET project file.
+	* Makefile.am: Add project files to dist
+
+2008-04-27  Andres G. Aragoneses  <aaragoneses@novell.com>
+
+	* Gendarme.Rules.Maintainability.mdp: new project.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidComplexMethodsRule.cs: I forget change the header.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidComplexMethodsRule.cs: Move to Gendarme.Rules.Maintainability
+	namespace.
+	* Test/AvoidComplexMethodsTest.cs: Move to Test.Rules.Maintainability
+	namespace.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Improved the linq query.  It
+	avoids a .Where call, and it doesn't need the ToIEnumerable<T> call.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: Skip the empty methods whithout
+	body and move the accessors to the linq query.  Fixes the break in the
+	self-test target.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* AvoidLackOfCohesionOfMethodsRule.cs: New.  Rule for check the cohesion
+	in the methods.  Thanks Cedric !
+	* Makefile.am:  Add the rule and the test to the build.
+
+2008-04-27  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Build Gendarme.Rules.Maintainability rules.
+	* AvoidComplexMethodsRule.cs: New.  Rule for check the method
+	cyclomatic complexity.  Thanks Cedric !

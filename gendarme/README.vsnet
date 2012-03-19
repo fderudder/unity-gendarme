@@ -1,0 +1,95 @@
+README for VisualStudio.NET users
+
+Gendarme includes a two VS.NET solutions.
+
+1. gendarme.sln
+
+This solution is compatible with MonoDevelop and includes the projects
+needed to build/test Gendarme on Linux.
+
+2. gendarme-win.sln
+
+This solution include projects to compile Mono.Cecil.Pdb (along with 
+Mono.Cecil.Mdb) and to build the win32 (wix) installer. Otherwise it's
+identical to gendarme.sln. USE THIS FILE FOR VS.NET
+
+
+\/\/\/ DISCLAIMER \/\/\/
+
+This is NOT the main build tool used for Gendarme development (autofu +
+Makefiles are). So it's likely that the solution and projects will 
+sometimes be out of sync and not usable without some changes [1].
+
+These are unsupported, for your convenience, files. Use at your own risk!
+
+/\/\/\ DISCLAIMER /\/\/\
+
+
+Requirements
+
+The minimal requirements are:
+
+* Microsoft Visual Studio.NET 2010 [2];
+* Some modules from github
+	* 'jbevain/cecil' to get both Mono.Cecil and Mono.Cecil.[M|P]db
+	* 'mono/mono-tools' for Gendarme latest sources
+
+
+How To
+
+* Check out the source code from GIT. This is:
+
+	git clone git://github.com/mono/mono-tools.git
+	git clone git://github.com/jbevain/cecil.git
+	(Please clone both modules at the same level in the folder
+	hierarchy because mono-tools references cecil as a relative path.)
+
+* Optionally, install WIX [3] if you want to build the setup. If not 
+installed you will get some errors when opening the solution or doing a
+"Rebuild Solution" operation - but everything else will be fine.
+
+* Open the gendarme-win.sln solution inside VS.NET 2010
+
+* Build, execute, enjoy!
+
+
+Self-test
+
+Running Gendarme on Gendarme is something very important for (existing 
+and would be) contributors. On Linux this is done by executing 
+"make self-test" in a terminal. As a general rule the report should
+find no (zero) defect - i.e. all known defects should have (documented)
+ignore entries.
+
+The same "self-test" can be done using Visual Studio [4] by adding the 
+following lines in the 'gendarme's project Properties, Debug tab as the
+"Command line arguments"
+
+	--config ../../../rules/rules.xml --set self-test 
+	--xml ../../../self-test.xml --html ../../../self-test.html 
+	--ignore=../../../self-test.ignore --severity=all 
+	--confidence=all gendarme.exe GendarmeWizard.exe Gendarme.*.dll
+
+Make sure you have (re)built the whole solution in "Release" (not Debug)
+before executing the gendarme project - otherwise you'll have a report
+with hundreds of false positives (since CSC generates pretty bad code
+without optimizations).
+
+Once executed start your web browser and open the self-test.html file
+that was generated on the root directory of your gendarme solution.
+
+
+Notes
+
+[1] Please report such issues and they will, eventually, be fixed when
+someone gets to work with VS.NET. Remember this is not the primary 
+development platform for Gendarme.
+
+[2] Older version won't work since Gendarme uses C# 4 features.
+
+[3] Windows Installer XML Toolset 3.5
+http://wix.codeplex.com/releases/view/60102
+
+[4] This cannot be committed in GIT since this setting is kept in the
+gendarme.csproj.user file
+

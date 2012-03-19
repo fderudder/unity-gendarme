@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{732905E1-1FD4-403A-93DD-EC4CF120091E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gendarme.Rules.Correctness</RootNamespace>
+    <AssemblyName>Gendarme.Rules.Correctness</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Gendarme.Rules.Correctness/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\console\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\console\bin\Debug\Gendarme.Rules.Correctness.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <WarningsAsErrors>1570</WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\console\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\console\bin\Release\Gendarme.Rules.Correctness.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <WarningsAsErrors>1570</WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.XML" />
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\AssemblyStaticInfo.cs">
+      <Link>AssemblyStaticInfo.cs</Link>
+    </Compile>
+    <Compile Include="AvoidCodeWithSideEffectsInConditionalCodeRule.cs" />
+    <Compile Include="AvoidConstructorsInStaticTypesRule.cs" />
+    <Compile Include="AvoidMethodsWithSideEffectsInConditionalCodeRule.cs" />
+    <Compile Include="BadRecursiveInvocationRule.cs" />
+    <Compile Include="CallingEqualsWithNullArgRule.cs" />
+    <None Include="dataflow\BasicBlock.cs" />
+    <None Include="dataflow\CFG.cs" />
+    <None Include="dataflow\CFGEdge.cs" />
+    <None Include="dataflow\Dataflow.cs" />
+    <None Include="dataflow\IDataflowAnalysis.cs" />
+    <Compile Include="DoNotRecurseInEqualityRule.cs" />
+    <Compile Include="DoNotRoundIntegersRule.cs" />
+    <Compile Include="DontCompareWithNaNRule.cs" />
+    <Compile Include="EnsureLocalDisposalRule.cs" />
+    <Compile Include="FloatComparisonRule.cs" />
+    <None Include="graph\DFS.cs" />
+    <None Include="graph\Edge.cs" />
+    <None Include="graph\Graph.cs" />
+    <None Include="graph\IEdge.cs" />
+    <None Include="graph\IGraph.cs" />
+    <None Include="graph\INode.cs" />
+    <None Include="graph\Node.cs" />
+    <Compile Include="MethodCanBeMadeStaticRule.cs" />
+    <None Include="NonNullAttribute.cs" />
+    <None Include="NonNullAttributeCollector.cs" />
+    <None Include="NullDerefAnalysis.cs" />
+    <None Include="NullDerefFrame.cs" />
+    <None Include="NullDerefRule.cs" />
+    <None Include="Nullity.cs" />
+    <Compile Include="ProvideCorrectArgumentsToFormattingMethodsRule.cs" />
+    <Compile Include="ProvideCorrectRegexPatternRule.cs" />
+    <Compile Include="ProvideValidXmlStringRule.cs" />
+    <Compile Include="ProvideValidXPathExpressionRule.cs" />
+    <Compile Include="ReviewDoubleAssignmentRule.cs" />
+    <Compile Include="ReviewInconsistentIdentityRule.cs" />
+    <Compile Include="ReviewSelfAssignmentRule.cs" />
+    <Compile Include="ReviewUseOfInt64BitsToDoubleRule.cs" />
+    <Compile Include="ReviewUselessControlFlowRule.cs" />
+    <Compile Include="ReviewUseOfModuloOneOnIntegersRule.cs" />
+    <Compile Include="TypesShouldBeDisposableBaseRule.cs" />
+    <Compile Include="TypesWithDisposableFieldsShouldBeDisposableRule.cs" />
+    <Compile Include="TypesWithNativeFieldsShouldBeDisposableRule.cs" />
+    <Compile Include="UseNoInliningWithGetCallingAssemblyRule.cs" />
+    <Compile Include="UseValueInPropertySetterRule.cs" />
+    <None Include="ChangeLog" />
+    <Compile Include="AvoidFloatingPointEqualityRule.cs" />
+    <Compile Include="CheckParametersNullityInVisibleMethodsRule.cs" />
+    <Compile Include="DisposableFieldsShouldBeDisposedRule.cs" />
+    <Compile Include="FinalizersShouldCallBaseClassFinalizerRule.cs" />
+    <Compile Include="ReviewCastOnIntegerDivisionRule.cs" />
+    <Compile Include="ReviewCastOnIntegerMultiplicationRule.cs" />
+    <Compile Include="AttributeStringLiteralsShouldParseCorrectlyRule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\cecil\Mono.Cecil.csproj">
+      <Project>{D68133BD-1E63-496E-9EDE-4FBDBF77B486}</Project>
+      <Name>Mono.Cecil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\framework\Gendarme.Framework.csproj">
+      <Project>{CD6818D5-B398-486C-B180-92A07B143AFD}</Project>
+      <Name>Gendarme.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>
+      </ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" IsAutotoolsProject="true" RelativeConfigureInPath="../../..">
+          <BuildFilesVar Sync="true" Name="rules_sources" />
+          <DeployFilesVar />
+          <ResourcesVar />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio />
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,418 @@
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Tests.Rules.Performance.csproj: Fix unit tests for solution
+	(non makefile) builds
+
+2010-05-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* GlobalSuppressions.cs:
+	* MarkAssemblyWithAssemblyVersionTest.cs:
+	* MarkAssemblyWithCLSCompliantTest.cs:
+	* MarkAssemblyWithComVisibleTest.cs:
+		Add FxCop compatibility unit tests
+
+2010-01-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideTryParseAlternativeTest.cs: New. Unit tests for
+	ProvideTryParseAlternativeRule
+
+2010-01-19  Jb Evain  <jbevain@novell.com>
+
+	* DisposableTypesShouldHaveFinalizerTest.cs: add test for generated
+	types closing on a native field.
+
+2009-12-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableTypesShouldHaveFinalizerTest.cs: Add test cases for 
+	structs
+
+2009-02-21  Jesse Jones  <jesjones@mindspring.com>
+
+	* UseCorrectDisposeSignaturesTest.cs: added new rule.
+
+2009-01-12  Jesse Jones  <jesjones@mindspring.com>
+
+	* UseFlagsAttributeRule.cs: added.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Tests.Rules.Design.csproj: Activate makefile integration for all the
+	rules projects. Remove the old mdp files as they are no longer
+	needed.
+
+2008-10-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FinalizersShouldBeProtectedTest.cs: Updated not to depend on
+	another (moved) test type definition.
+	* FinalizersShouldCallBaseClassFinalizerTest.cs: Moved to 
+	Correctness since this is not (API) design.
+	* Test.Rules.Design.mdp: remove the moved test from the MD project 
+	file.
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarkAssemblyWithAssemblyVersionTest.cs: New. Unit tests for
+	MarkAssemblyWithAssemblyVersionRule.
+	* MarkAssemblyWithCLSCompliantTest.cs: New. Unit tests for
+	MarkAssemblyWithCLSCompliantRule.
+	* MarkAssemblyWithComVisibleTest.cs: New. Unit tests for
+	MarkAssemblyWithComVisibleRule.
+	* DisposableFieldsShouldBeDisposedTest.cs: Moved to Correctness
+	since this is not (API) design.
+	* Test.Rules.Design.mdp: Add new tests and remove the moved test
+	from the MD project file.
+
+2008-10-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferEventsOverMethodsTest.cs: New. Unit tests for 
+	PreferEventsOverMethodsRule
+
+2008-10-19  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMultidimensionalIndexerTest.cs: Fix namespace.
+	* AvoidSmallNamespaceTest.cs: New. Unit tests for 
+	AvoidSmallNamespaceRule.
+	* AvoidVisibleNestedTypesTest.cs: Fix namespace.
+	* InternalNamespacesShouldNotExposeTypesTest.cs: New. Unit tests for
+	InternalNamespacesShouldNotExposeTypesRule.
+	* PreferIntegerOrStringForIndexersTest.cs: Fix namespace.
+	* Test.Rules.Design.mdp: Add new test to MD project file.
+
+2008-10-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidVisibleNestedTypesTest.cs: Remove unneeded 'using' clauses.
+	* ConsiderConvertingFieldToNullableTest.cs: Remove unneeded 'using' 
+	clauses.
+	* ConsiderConvertingMethodToPropertyTest.cs: Add more coverage. 
+	Remove unneeded 'using' clauses.
+	* ConsiderUsingStaticTypeTest.cs: Add more coverage.
+	* DeclareEventHandlersCorrectlyTest.cs: Add more coverage. Remove 
+	unneeded 'using' clauses.
+
+2008-10-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedTest.cs:  Add more coverage.
+	* DisposableTypesShouldHaveFinalizerTest.cs: Use new, shorter, 
+	syntax for tests. Remove unneeded 'using' clauses.
+	* DoNotDeclareVirtualMethodsInSealedTypeTest.cs: New. Unit tests 
+	for DoNotDeclareVirtualMethodsInSealedTypeRule.
+	* DontDeclareProtectedFieldsInSealedClassTest.cs: Use new, shorter,
+	syntax for tests. Add test cases for new features (members) and more 
+	coverage. Remove unneeded 'using' clauses.
+	* EnsureSymmetryForOverloadedOperatorsTest.cs: Use new, shorter, 
+	syntax for tests. Add more coverage. Remove unneeded 'using' clauses.
+
+2008-10-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EnumsShouldDefineAZeroValueTest.cs, EnumsShouldUseInt32Test.cs,
+	FinalizersShouldBeProtectedTest.cs, 
+	FinalizersShouldCallBaseClassFinalizerTest.cs, 
+	FlagsShouldNotDefineAZeroValueTest.cs, 
+	ImplementEqualsAndGetHashCodeInPairTest.cs: Use new, shorter, syntax 
+	for tests. Add more coverage. Remove unneeded 'using' clauses.
+
+2008-10-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MainShouldNotBePublicTest.cs: Use new, shorter, syntax for tests.
+	Add more coverage. Remove unneeded 'using' clauses.
+	* OperatorEqualsShouldBeOverloadedTest.cs: Use new, shorter, 
+	syntax for tests. Add more coverage. Remove unneeded 'using' clauses.
+	* OverrideEqualsMethodTest.cs: Use new, shorter, syntax for tests.
+	Add more coverage. Remove unneeded 'using' clauses.
+	* PreferIntegerOrStringForIndexersTest.cs: Remove unneeded 
+	'using' clauses.
+	* ProvideAlternativeNamesForOperatorOverloadsTest.cs: Use 
+	new, shorter, syntax for tests. Add more coverage. Remove unneeded 
+	'using' clauses.
+
+2008-10-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypesShouldBeInsideNamespacesTest.cs: Use new, shorter, syntax 
+	for tests. Remove unneeded 'using' clauses.
+	* TypesWithDisposableFieldsShouldBeDisposableTest.cs: Use 
+	new, shorter, syntax for tests. Add more coverage. Remove unneeded
+	'using' clauses.
+	* TypesWithNativeFieldsShouldBeDisposableTest.cs: Use new, shorter,
+	syntax for tests. Add more coverage. Remove unneeded 'using' clauses.
+	* UsingCloneWithoutImplementingICloneableTest.cs: Rename type. 
+	Remove unneeded 'using' clauses.
+
+2008-09-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AbstractTypesShouldNotHavePublicConstructorsTest.cs: Convert 
+	to new test syntax. Add more coverage.
+	* AttributeArgumentsShouldHaveAccessorsTest.cs: Convert to new 
+	test syntax.
+	* AvoidEmptyInterfaceTest.cs: Convert to new test syntax.
+	* AvoidMultidimensionalIndexerTest.cs: Remove unneeded "using".
+	* AvoidPropertiesWithoutGetAccessorTest.cs: Convert to new test 
+	syntax.
+	* AvoidPublicInstanceFieldsTest.cs: Convert to new test syntax.
+	Add more coverage. Remove some warnings.
+
+2008-09-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* DeclareEventHandlersCorrectlyTest.cs: A little test for the false
+	positive found with EventHandler<TEventArgs>.  The compiler forces us to
+	write a valid signature.
+
+2008-09-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeclareEventHandlersCorrectlyTest.cs: With the "fixed" logic there
+	are now two defects reported for ClassWithTwoFields.
+
+2008-09-18  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* DeclareEventHandlersCorrectlyTest.cs:  New.  Unit tests for
+	DeclareEventHandlersCorrectlyRule.
+	* Test.Rules.Design.mdp: Updated MD project file.
+
+2008-09-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedTest.cs: Add two ignored test
+	cases where the Dispose calls are done by anonymous delegates. Also
+	converted tests to the new, shorter, syntax.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementGenericCollectionInterfacesTest.cs: Move to Design.Generic
+	* Test.Rules.Design.mdp, Tests.Rules.Design.csproj: Update
+
+2008-08-06  Peter Johanson  <peter@peterjohanson.com>
+
+	* AvoidPublicInstanceFieldsTest.cs: Test nested types
+	with various visibilities. The rule does not apply
+	to private or internal nested types.
+
+2008-08-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderConvertingFieldToNullableTest.cs: Add test case for
+	FX version (Initialize check) and a few others to complete coverage.
+	* ImplementGenericCollectionInterfacesTest.cs: Change FX version 
+	test case to check Initialize (not CheckType) method.
+
+2008-07-23  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ConsiderUsingStaticTypeTest.cs: Fix the existing tests because they
+	are a bit confusing.  This new tests removes several false positives.
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidMultidimensionalIndexerTest.cs: New. Unit tests for 
+	AvoidMultidimensionalIndexerRule.
+	* PreferIntegerOrStringForIndexersTest.cs: New. Unit tests for 
+	PreferIntegerOrStringForIndexersRule.
+	* Test.Rules.Design.mdp: Add tests to MD project file.
+
+2008-07-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidRefAndOutParametersTest.cs: New. Unit tests for 
+	AvoidRefAndOutParametersRule.
+	* Test.Rules.Design.mdp: Add tests to MD project file.
+
+2008-07-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderUsingStaticTypeTest.cs: New. Unit tests for 
+	ConsiderUsingStaticTypeRule.
+
+2008-06-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidVisibleNestedTypesTest.cs: New. Unit tests for 
+	AvoidVisibleNestedTypesRule.
+	* Test.Rules.Design.mdp: Add tests to MD project file.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UsingCloneWithoutImplementingICloneableTest.cs: Update test
+	cases to new format. Change expected result when Clone does not 
+	return System.Object.
+
+2008-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderConvertingFieldToNullableRuleTest.cs: New. Test cases 
+	for ConsiderConvertingFieldToNullableRule [Cedric Vivier].
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderConvertingMethodToPropertyTest.cs: Add test cases for 
+	Has. Patch from Cedric Vivier.
+
+2008-04-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ConsiderConvertingMethodToPropertyTest.cs: Ignore Set* without
+	a Get* methods. Ignore overrides (can be out of developer's control,
+	but the base virtual method will be reported if not). Update to use
+	new test helpers.
+
+2008-04-03  Daniel Abramov <ex@vingrad.ru>
+
+	* ImplementGenericCollectionInterfacesTest.cs: New. Unit tests
+	for ImplementGenericCollectionInterfacesRule.
+	* Test.Rules.Design.mdp: Add rule to MD project file.
+
+2008-04-03  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Design.mdp: Add missing reference to Test.Rules
+	assembly [Daniel Abramov]
+
+2008-03-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementIComparableCorreclyTest.cs: New. Unit tests for
+	ImplementIComparableCorreclyRule.
+	* Test.Rules.Design.mdp: Add new rule to MD project.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDeclareProtectedFieldsInSealedClassTest.cs: Fix name change.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AbstractTypesShouldNotHavePublicConstructorsTest.cs
+	* AttributeArgumentsShouldHaveAccessorsTest.cs
+	* AvoidEmptyInterfaceTest.cs
+	* AvoidPropertiesWithoutGetAccessorTest.cs
+	* AvoidPublicInstanceFieldsTest.cs
+	* ConsiderConvertingMethodToPropertyTest.cs
+	* DisposableFieldsShouldBeDisposedTest.cs
+	* DisposableTypesShouldHaveFinalizerTest.cs
+	* DontDeclareProtectedFieldsInSealedClassTest.cs
+	* EnsureSymmetryForOverloadedOperatorsTest.cs
+	* EnumsShouldDefineAZeroValueTest.cs
+	* EnumsShouldUseInt32Test.cs
+	* FinalizersShouldBeProtectedTest.cs
+	* FinalizersShouldCallBaseClassFinalizerTest.cs
+	* FlagsShouldNotDefineAZeroValueTest.cs
+	* ImplementEqualsAndGetHashCodeInPairTest.cs
+	* MainShouldNotBePublicTest.cs
+	* MissingAttributeUsageOnCustomAttributeTest.cs
+	* OperatorEqualsShouldBeOverloadedTest.cs
+	* OverrideEqualsMethodTest.cs
+	* ProvideAlternativeNamesForOperatorOverloadsTest.cs
+	* TypesShouldBeInsideNamespacesTest.cs
+	* TypesWithDisposableFieldsShouldBeDisposableTest.cs
+	* TypesWithNativeFieldsShouldBeDisposableTest.cs
+	* UsingCloneWithoutImplementingICloneableTest.cs:
+		Update unit tests wrt framework changes
+
+2008-02-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EnumsShouldUseInt32Test.cs: New. Unit tests.
+	* Test.Rules.Design.mdp: Update project file.
+
+2008-02-07  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* FinalizersShouldCallBaseClassFinalizerTest.cs:Replaced TypeDefinition.GetFinalizer
+	with TypeDefinition.GetMethod for avoid some warnings when compiling.
+
+2008-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ProvideAlternativeNamesForOperatorOverloadsTest.cs: Add 
+	"override Equals" in EverythingIsThere class.
+
+2008-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* TypesShouldBeInsideNamespacesTest.cs: Adapt nested types test 
+	cases because we don't report them anymore.
+
+2008-01-24  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementEqualsAndGetHashCodeInPairTest.cs: Tests (updated and) 
+	moved from BadPractice.
+
+2008-01-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* EnsureSymmetryForOverloadedOperatorsTest.cs: New. Unit tests by 
+	Andreas Noever
+	* OperatorEqualsShouldBeOverloadedTest.cs: New. Unit tests by 
+	Andreas Noever
+	* OverrideEqualsMethodTest.cs: New. Unit tests by Andreas Noever
+	* ProvideAlternativeNamesForOperatorOverloadsTest.cs: New. Unit 
+	tests by Andreas Noever
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* FinalizersShouldBeProtectedTest.cs: New. Unit tests by Daniel 
+	Abramov
+	* FinalizersShouldCallBaseClassFinalizerTest.cs: New. Unit tests by 
+	Daniel Abramov
+	* Test.Rules.Design.mdp: Added new tests to MD project file.
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DisposableFieldsShouldBeDisposedTest.cs: Add test case for static 
+	fields.
+	* DisposableTypesShouldHaveFinalizerTest.cs: Add test case for 
+	static fields.
+	* TypesWithDisposableFieldsShouldBeDisposableTest.cs: Add test 
+	cases for structs and static fields.
+	* TypesWithNativeFieldsShouldBeDisposableTest.cs: Add test cases 
+	for structs and static fields.
+
+2008-01-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DisposableFieldsShouldBeDisposedTest.cs: New. Unit tests by 
+	Andreas Noever.
+	* DisposableTypesShouldHaveFinalizerTest.cs: New. Unit tests by 
+	Andreas Noever.
+	* TypesWithDisposableFieldsShouldBeDisposableTest.cs: New. Unit 
+	tests by Andreas Noever.
+	* TypesWithNativeFieldsShouldBeDisposableTest.cs: New. Unit 
+	tests by Andreas Noever.
+	* Test.Rules.Design.mdp: Added new tests to MD project file.
+
+2008-01-12  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AttributeArgumentsShouldHaveAccessorsTest.cs: New. Unit tests from
+	Daniel Abramov.
+
+2008-01-05  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MissingAttributeUsageOnCustomAttributeTest.cs: New. Unit tests 
+	from Daniel Abramov.
+	* Test.Rules.Design.mdp: Add new unit tests to MonoDevelop 
+	project	file.
+
+2008-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidPublicInstanceFieldsTest.cs: New. Unit tests from Adrian Tsai
+	* ConsiderConvertingMethodToPropertyTest.cs: New. Unit tests from 
+	Adrian Tsai
+	* Test.Rules.Design.mdp: Add new unit tests to MonoDevelop 
+	project	file.
+
+2007-12-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MainShouldNotBePublicTest.cs: New. Unit tests from Daniel Abramov.
+	* Test.Rules.Design.mdp: Add new unit test to MonoDevelop project 
+	file.
+
+2007-12-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AbstractTypesShouldNotHavePublicConstructorsTest.cs: New. Unit tests
+	* AvoidEmptyInterfaceTest.cs: New. Unit tests
+	* AvoidPropertiesWithoutGetAccessorTest.cs: New. Unit tests
+	* EnumsShouldDefineAZeroValueTest.cs: New. Unit tests
+	* FlagsShouldNotDefineAZeroValueTest.cs: New. Unit tests
+	* TypesShouldBeInsideNamespacesTest.cs: New. Unit tests
+	* UsingCloneWithoutImplementingICloneableTest.cs: Add test cases 
+	for inheritance.
+	* Test.Rules.Design.mdp: Add new unit test to MonoDevelop project 
+	file.
+
+2007-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UsingCloneWithoutImplementingICloneableTest.cs: Add a test case
+	where the Clone method return the type itself (not System.Object) 
+	since this is also a good candidate for ICloneable
+
+2007-10-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Add missing file
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDeclareProtectedFieldsInSealedClassTest.cs: Unit tests (Nidhi 
+	Rawal, GSoC 2007)
+	* UsingCloneWithoutImplementingICloneableTest.cs: Unit tests (Nidhi 
+	Rawal, GSoC 2007)
+	* Test.Rules.Design.mdp: New. Project file for MonoDevelop.

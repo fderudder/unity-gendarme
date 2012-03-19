@@ -1,0 +1,131 @@
+2010-06-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Apply AvoidRepetitiveCalls
+	ToPropertiesRule on GenericParameter.get_FullName
+
+2010-06-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Reduce severity to low 
+	if the generic type is used for the return value
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Apply AvoidUnnecessarySpecializationRule
+
+2010-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidDeclaringCustomDelegatesRule.cs:
+	* DoNotExposeNestedGenericSignaturesRule.cs:
+	* UseGenericEventHandlerRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-01-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Apply AvoidRepetitiveCalls
+	ToPropertiesRule on GenericParameter.get_FullName
+
+2010-01-19  Jb Evain  <jbevain@novell.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Fix the case where the
+	parameter type is a type specification of a generic type, such
+	as an array.
+
+2010-01-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidDeclaringCustomDelegatesRule.cs: New. Rule to check
+	if custom delegates could be replaced with Action/Func for
+	.net 2.0 and later
+	* Makefile.am: Add new rule and tests to the build
+
+2009-07-03  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2008-12-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotExposeNestedGenericSignaturesRule.cs: New. Rule to check
+	if nested generics are being exposed in visible API.
+	* Makefile.am: Add new rule and test to the build.
+
+2008-11-30  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Use HasParameters.
+	* PreferGenericsOverRefObjectRule.cs: Use HasGenericParameters.
+	* UseGenericEventHandlerRule.cs: Use HasParameters.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Design.Generic.mdp:
+	* Gendarme.Rules.Design.Generic.csproj: Activate makefile integration
+	for all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* PreferGenericsOverRefObjectRule.cs: New. Rule that check method
+	parameters to look for reference to System.Object that could be, with
+	2.0 and later, replaced by generics.
+	* Makefile.am: Add new rule and test to the build.
+	* Gendarme.Rules.Design.Generic.mdp: Update MD project file.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+	* Gendarme.Rules.Design.Generic.csproj: Added an empty placeholder file
+	in order to avoid breaking the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Design.Generic.xml,
+	Gendarme.Rules.Design.Generic: With the new code in the Makefiles we
+	don't need to keep the documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: Recursively check
+	GenericInstanceType and GenericParameter.
+	* UseGenericEventHandlerRule.cs: Handle System.MulticastDelegate 
+	special case (since there's no Invoke).
+
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs,
+	ImplementGenericCollectionInterfacesRule.cs,
+	UseGenericEventHandlerRule.cs: Add XML documentation for the
+	rules (then converted into media wiki format).
+
+2008-09-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Design.Generic.mdp: New. Add MD project file.
+
+2008-09-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidMethodWithUnusedGenericTypeRule.cs: New. This rule warns 
+	if some generic parameters types are not being used by the method 
+	parameters.
+	* Makefile.am: Add new files to the build.
+
+2008-08-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseGenericEventHandlerRule.cs: New. Rule to promote the use of
+	generic based EventHandler<TEventArg> instead of using delegates 
+	(like fx 1.x required).
+	* Makefile.am: Add new files to the build.
+
+2008-08-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ImplementGenericCollectionInterfacesRule.cs: Moved from Design.
+	Added FxCopCompatibility attribute.
+	* Makefile.am: New. Build file.

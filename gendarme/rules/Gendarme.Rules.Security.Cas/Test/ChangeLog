@@ -1,0 +1,25 @@
+2008-09-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ReviewSealedTypeWithInheritanceDemandTest.cs: Complete rename.
+
+2008-09-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Test.Rules.Security.Cas.mdp: New. Add MD project file.
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AddMissingTypeInheritanceDemandTest.cs, 
+	DoNotExposeFieldsInSecuredTypeTest.cs, 
+	DoNotExposeMethodsProtectedByLinkDemandTest.cs, 
+	DoNotReduceTypeSecurityOnMethodsTest.cs, 
+	ReviewNonVirtualMethodWithInheritanceDemandTest.cs,
+	ReviewSealedTypeWithInheritanceDemandTest.cs,
+	SecureGetObjectDataOverridesTest.cs: Moved, and renamed, from
+	Gendarme.Rules.Security. Most upgrade to the new syntax for unit
+	tests.
+
+2008-08-25  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* ReviewSuppressUnmanagedCodeSecurityUsageTest.cs: New. Unit tests
+	for ReviewSuppressUnmanagedCodeSecurityUsageRule.
+	* Makefile.am: New. Build file.

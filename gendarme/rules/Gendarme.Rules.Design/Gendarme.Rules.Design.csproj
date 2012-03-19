@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FC889577-F51A-469C-9F30-E967504E9E24}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Gendarme.Rules.Design</RootNamespace>
+    <AssemblyName>Gendarme.Rules.Design</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\console\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\console\bin\Debug\Gendarme.Rules.Design.xml</DocumentationFile>
+    <NoWarn>1591</NoWarn>
+    <WarningsAsErrors>1570</WarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\console\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoWarn>1591</NoWarn>
+    <WarningsAsErrors>1570</WarningsAsErrors>
+    <DocumentationFile>..\..\console\bin\Release\Gendarme.Rules.Design.xml</DocumentationFile>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\AssemblyStaticInfo.cs">
+      <Link>AssemblyStaticInfo.cs</Link>
+    </Compile>
+    <Compile Include="AbstractTypesShouldNotHavePublicConstructorsRule.cs" />
+    <Compile Include="AttributeArgumentsShouldHaveAccessorsRule.cs" />
+    <Compile Include="AvoidMultidimensionalIndexerRule.cs" />
+    <Compile Include="AvoidPropertiesWithoutGetAccessorRule.cs" />
+    <Compile Include="AvoidPublicInstanceFieldsRule.cs" />
+    <Compile Include="AvoidRefAndOutParametersRule.cs" />
+    <Compile Include="AvoidSmallNamespaceRule.cs" />
+    <Compile Include="AvoidVisibleNestedTypesRule.cs" />
+    <Compile Include="ConsiderConvertingFieldToNullableRule.cs" />
+    <Compile Include="ConsiderConvertingMethodToPropertyRule.cs" />
+    <Compile Include="ConsiderUsingStaticTypeRule.cs" />
+    <Compile Include="DeclareEventHandlersCorrectlyRule.cs" />
+    <Compile Include="DefineAZeroValueRule.cs" />
+    <Compile Include="DisposableTypesShouldHaveFinalizerRule.cs" />
+    <Compile Include="DoNotDeclareVirtualMethodsInSealedTypeRule.cs" />
+    <Compile Include="DontDeclareProtectedFieldsInSealedClassRule.cs" />
+    <Compile Include="AvoidEmptyInterfaceRule.cs" />
+    <Compile Include="EnsureSymmetryForOverloadedOperatorsRule.cs" />
+    <Compile Include="EnumeratorsShouldBeStronglyTypedRule.cs" />
+    <Compile Include="EnumsShouldDefineAZeroValueRule.cs" />
+    <Compile Include="EnumsShouldUseInt32Rule.cs" />
+    <Compile Include="FinalizersShouldBeProtectedRule.cs" />
+    <Compile Include="FlagsShouldNotDefineAZeroValueRule.cs" />
+    <Compile Include="PreferUriOverStringRule.cs" />
+    <Compile Include="StronglyTypeICollectionMembersRule.cs" />
+    <Compile Include="ImplementEqualsAndGetHashCodeInPairRule.cs" />
+    <Compile Include="ImplementIComparableCorreclyRule.cs" />
+    <Compile Include="InternalNamespacesShouldNotExposeTypesRule.cs" />
+    <Compile Include="ListsAreStronglyTypedRule.cs" />
+    <Compile Include="MainShouldNotBePublicRule.cs" />
+    <Compile Include="MarkAssemblyWithAssemblyVersionRule.cs" />
+    <Compile Include="MarkAssemblyWithAttributeRule.cs" />
+    <Compile Include="MarkAssemblyWithCLSCompliantRule.cs" />
+    <Compile Include="MarkAssemblyWithComVisibleRule.cs" />
+    <Compile Include="MissingAttributeUsageOnCustomAttributeRule.cs" />
+    <Compile Include="OperatorEqualsShouldBeOverloadedRule.cs" />
+    <Compile Include="OverrideEqualsMethodRule.cs" />
+    <Compile Include="PreferEventsOverMethodsRule.cs" />
+    <Compile Include="PreferIntegerOrStringForIndexersRule.cs" />
+    <Compile Include="PreferXmlAbstractionsRule.cs" />
+    <Compile Include="ProvideAlternativeNamesForOperatorOverloadsRule.cs" />
+    <Compile Include="ProvideTryParseAlternativeRule.cs" />
+    <Compile Include="StronglyTypedRule.cs" />
+    <Compile Include="TypesShouldBeInsideNamespacesRule.cs" />
+    <Compile Include="UseCorrectDisposeSignaturesRule.cs" />
+    <Compile Include="UseFlagsAttributeRule.cs" />
+    <Compile Include="UsingCloneWithoutImplementingICloneableRule.cs" />
+    <Compile Include="ConsiderAddingInterfaceRule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\cecil\Mono.Cecil.csproj">
+      <Project>{D68133BD-1E63-496E-9EDE-4FBDBF77B486}</Project>
+      <Name>Mono.Cecil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\framework\Gendarme.Framework.csproj">
+      <Project>{CD6818D5-B398-486C-B180-92A07B143AFD}</Project>
+      <Name>Gendarme.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <MonoDevelop>
+      <Properties>
+        <MonoDevelop.Autotools.MakefileInfo IntegrationEnabled="true" RelativeMakefileName="Makefile.am" IsAutotoolsProject="true" RelativeConfigureInPath="../../..">
+          <BuildFilesVar Sync="true" Name="rules_sources" />
+          <DeployFilesVar />
+          <ResourcesVar />
+          <OthersVar />
+          <GacRefVar />
+          <AsmRefVar />
+          <ProjectRefVar />
+        </MonoDevelop.Autotools.MakefileInfo>
+      </Properties>
+    </MonoDevelop>
+    <VisualStudio />
+  </ProjectExtensions>
+</Project>

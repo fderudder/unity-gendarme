@@ -1,0 +1,425 @@
+2010-06-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* UseObjectDisposedExceptionRule.cs: Apply AvoidLargeClassesRule
+
+2010-06-13  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* UseObjectDisposedExceptionRule.cs: Fis bitmask to include
+	Newobj since the rule could applies if the method's IL contains
+	this instruction
+
+2010-06-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationRule.cs:
+	* InstantiateArgumentExceptionCorrectlyRule.cs:
+	* UseObjectDisposedExceptionRule.cs:
+		Apply AvoidRepetitiveCallsToPropertiesRule
+
+2010-06-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationRule.cs: Remove InitType hack
+	on use the AnalyzeType event from the runner. Extract AreCastsOk
+	from (too large) ProcessMethod. Rename fields with same prefix
+
+2010-06-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotDestroyStackTraceRule.cs:
+	* InstantiateArgumentExceptionCorrectlyRule.cs:
+	* MissingExceptionConstructorsRule.cs:
+		Apply AvoidUnnecessarySpecializationRule
+
+2010-05-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: Turn
+	IsForbiddenTypeInCatches into a static method (self test)
+
+2010-05-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Exceptions.csproj: Remove deleted files from
+	project
+	* DoNotSwallowErrorsCatchingNonSpecificExceptionsRule.cs: Use
+	OpCodeEngine to detect 'rethrow' instruction and skip
+	ThrowsGeneralException. Quick out using HasExceptionHandlers
+	instead of using Count (which would allocate a collection if
+	empty).
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotThrowInUnexpectedLocationRule.cs: Quick-out optimization
+	in HasCatchBlock using method.Body.HasExceptionHandlers. Split
+	huge PreflightMethod and reduce the number of checks required
+	to get a match (or not). Remove collections (and associated 
+	memory allocations)
+
+2010-05-01  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotDestroyStackTraceRule.cs: Quick-out optimization using
+	method.Body.HasExceptionHandlers. Simplify and reduce memory 
+	allocations.
+	* Makefile.am: Remove Impl/ExceptionBlockParser.cs and Impl/
+	SEH*.cs from the build
+
+2010-01-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationTest.cs: Document the addition of
+	the TryParse method.
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotThrowInUnexpectedLocationTest.cs: Add TryParse as a 
+	location where exceptions should never be thrown. Fix unbox 
+	by adding unbox.any opcode. Do not use a OpCodeBitmask for a
+	single opcode (ckfinite). Avoid creating equalityComparerEquals
+	and equalityComparerHashCode for each new type.
+
+2010-01-21  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs: Apply Avoid
+	RepetitiveCallsToPropertiesRule
+	* DoNotThrowInUnexpectedLocationRule.cs: Apply MethodCanBeMadeStatic
+	Rule
+	* MissingExceptionConstructorsRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule
+	* UseObjectDisposedExceptionRule.cs: Apply MethodCanBeMadeStaticRule
+
+2010-01-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotThrowInUnexpectedLocationRule.cs: Fix bitmask to include
+	Code.Unbox_Any. This will fix unit tests under both Mono 2.6 and
+	MS .NET (unbox was likely used in earlier Mono releases)
+
+2010-01-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstantiateArgumentExceptionCorrectlyRule.cs: Fix bug #567995
+	for indexers. Also reduce to Severity.Low (won't be shown by
+	default) the usage of "value" in properties (since it's somewhat
+	popular even if unhelpful as a name).
+
+2009-07-24  Jesse Jones  <jesjones@mindspring.com>
+
+	* MissingExceptionConstructorsRule.cs: Rewrote the description.
+
+2009-07-03  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-03-15  Jesse Jones  <jesjones@mindspring.com> 
+
+	* UseObjectDisposedExceptionRule.cs, Makefile.am: Added new rule.
+
+2009-01-10  Jesse Jones  <jesjones@mindspring.com> 
+
+	* DoNotThrowInUnexpectedLocationRule.cs: Fixed an assert which
+	broke when the code was switched from Mono.Cecil.Cil.Code.ToString
+	to Mono.Cecil.Cil.OpCode.Name.
+
+2008-12-30  Jesse Jones  <jesjones@mindspring.com> 
+
+	* DoNotThrowInUnexpectedLocationRule.cs: Added.
+
+2008-12-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstantiateArgumentExceptionCorrectlyRule.cs: Make sure the 
+	strings are always compared ordinally - to remove any culture 
+	specific differences on metadata item names.
+
+2008-12-14  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: Patch 
+	received from Gonzalo that fix #458173. No test case yet (for unit
+	tests).
+
+2008-12-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidThrowingBasicExceptionsRule.cs: CSC dislike (CS1570) mixing //
+	comment, on a new line, inside a block of /// 
+
+2008-11-30  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs: Use HasParameters
+	* InstantiateArgumentExceptionCorrectlyRule.cs: Use HasParameters
+	* MissingExceptionConstructorsRule.cs: Use HasParameters
+
+2008-11-18  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs: Specify 
+	StringComparison.Ordinal when calling EndsWith.
+
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* SEHHandlerType.cs: Clearly specify [Serializable] on enum (self-test)
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Exceptions.mdp:
+	* Gendarme.Rules.Exceptions.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* InstantiateArgumentExceptionCorrectlyRule.cs: Ignore method 
+	without	parameters unless it's a special name (e.g. a property). 
+	Fix yield/iterator and "check here delegate throw" cases.
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs,
+	AvoidThrowingBasicExceptionsRule.cs, DoNotThrowReservedExceptionRule.cs,
+	InstantiateArgumentExceptionCorrectlyRule.cs: A few fixes to XML docs
+	so it looks better on the wiki.
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Exceptions.Impl.xml,
+	doc/ns-Gendarme.Rules.Exceptions.xml, doc/Gendarme.Rules.Exceptions,
+	doc/Gendarme.Rules.Exceptions.Impl: With the new code in the Makefiles
+	we don't need to keep the documentation files in the repository.
+
+2008-10-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotDestroyStackTraceRule.cs: Fix wrt API change for 
+	ExecutionPathFactory.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-09-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs,
+	AvoidThrowingBasicExceptionsRule.cs, DoNotDestroyStackTraceRule.cs,
+	DoNotThrowReservedExceptionRule.cs, 
+	DontSwallowErrorsCatchingNonspecificExceptionsRule.cs,
+	ExceptionShouldBeVisibleRule.cs, 
+	InstantiateArgumentExceptionCorrectlyRule.cs, 
+	MissingExceptionConstructorsRule.cs: Add XML documentation.
+	* SEHHandlerType.cs: Change XML documentation into normal comments.
+
+2008-09-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs: Use 
+	OpCodeEngine to skip methods that don't	use the Newobj instruction.
+	* AvoidThrowingBasicExceptionsRule.cs: Add FxCopCompatibility for
+	CA2201.
+	* DoNotDestroyStackTraceRule.cs: Use OpCodeEngine to skip methods
+	that don't use the Throw instruction. Add FxCopCompatibility for 
+	CA2200. Use shorter Runner.Report override. Remove unneeded 
+	Initialize method.
+	* DoNotThrowReservedExceptionRule.cs: Add FxCopCompatibility for
+	CA2201.
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: Add 
+	FxCopCompatibility for CA1031. Use shorter Runner.Report override.
+	Return DoesNotApply if no exception block is present in the method.
+	* ExceptionShouldBeVisibleRule.cs: Add FxCopCompatibility for CA1064.
+	Remove unneeded constant and use shorter Runner.Report override.
+	* InstantiateArgumentExceptionCorrectlyRule.cs: Use OpCodeEngine
+	to skip methods that don't use the Newobj instruction. Change logic 
+	to use TraceBack and work on all constructors. Add FxCopCompatibility
+	for CA2208.
+	* MissingExceptionConstructorsRule.cs: Add FxCopCompatibility for
+	CA1032.
+	* NewExceptionRule.cs: Use OpCodeEngine to skip methods that don't
+	use the Newobj instruction.
+
+2008-08-16  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Build all the tests.
+
+2008-08-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* InstantiateArgumentExceptionCorrectlyRule.cs: New. Rule to check the
+	correct instantiation of ArgumentException and derived.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-07-10  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-06-29  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotDestroyStackTraceRule.cs: Simplify using InstructionRocks.
+
+2008-06-25  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* AvoidThrowingBasicExceptionsRule.cs: Extract common code into
+	NewExceptionRule abstract class.
+	* DoNotThrowReservedExceptionRule.cs: New. Rule to check if 
+	reserved exceptions types are created inside methods.
+	* NewExceptionRule.cs: New. Abstract base class for both 
+	AvoidThrowingBasicExceptionsRule and DoNotThrowReservedExceptionRule
+	* Gendarme.Rules.Exceptions.mdp: Update MD project file.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-05-26  Daniel Abramov <ex@vingrad.ru> 
+
+	* AvoidThrowingBasicExceptions.cs: New. Rule to ensure
+	that specific types of exceptions are used instead of basic ones.
+	* Gendarme.Rules.Exceptions.mdp, Gendarme.Rules.Exceptions.csproj:
+	Add rule to project files.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-05-19  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* DoNotDestroyStackTraceRule.cs: Revert r103436 (the last case wasn't
+	  checked this way), definitely I need some sleep...
+
+2008-05-19  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* DoNotDestroyStackTraceRule.cs: Tiny optimization. I would become nuts
+	  if this is not correct because it's so simple (however I cannot
+	  test it because of some exception http://monoport.com/12016 I'm
+	  getting... :-? Probably I need SVN mono).
+
+2008-05-11  Andres G. Aragoneses <aaragoneses@novell.com> 
+
+	* Gendarme.Rules.Exceptions.mdp: Fix references.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotDestroyStackTraceRule.cs: More refactoring. Use Initialize
+	to void_reference. Reuse executionPaths collection. Adjust to SHE 
+	changes.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotDestroyStackTraceRule.cs: Adapt to SEH* changes.
+	* ISEHCatchBlock.cs, ISEHGuardedBlock.cs, ISEHHandlerBlock.cs: 
+	Removed interfaces.
+	* Makefile.am: Remove unneeded/removed files.
+
+2008-05-04  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MissingExceptionConstructorsRule.cs: Refactor to reduce complexity
+	and size of the CheckType method (self-test).
+
+2008-05-02  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DoNotDestroyStackTraceRule.cs: Refactor to avoid 2 defects (long 
+	and complex methods) in self-test. Smaller IL size for GetVarIndex.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MissingExceptionConstructorsRule.cs: New. Check if every exception
+	type provides the basic four consructors.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-04-26  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* ExceptionShouldBeVisibleRule.cs: New. Check that exception 
+	inheriting from base exception types are visible.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* AvoidArgumentExceptionDefaultConstructorRule.cs: New. Rule to 
+	check if exception derived from ArgumentException are created with 
+	some useful information (i.e. not the default constructor).
+	* Gendarme.Rules.Exceptions.mdp: Add rule to MD project file.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-04-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDestroyStackTraceRule.cs: Rename to DoNotDestroyStackTraceRule.
+	Rename ExecutionPath to *Collection.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: Rename
+	parameter to match interface parameter name.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DoNotDestroyStackTraceRule.cs: (renamed from DontDestroyStackTrace.cs)
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs:
+		Updated rules wrt framework changes.
+	* Makefile.am: Adjusted for file name changes.
+
+2008-01-11  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* DontDestroyStackTrace.cs: Use new Location ctors. Change some 
+	methods to static.
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: Don't 
+	create MessageCollection until needed. Use new Location ctors. Change
+	a method to static.
+
+2007-11-29  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DontDestroyStackTrace.cs: Don't use a static field (it fails a rule)
+	as the rules are reusable and created only a single time by runners.
+
+2007-10-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Exceptions.mdp: Update project file.
+
+2007-10-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Gendarme.Rules.Exceptions.mdp, Test.Rules.Exceptions.mdp:  Added
+	DontSwallowErrorsCatchingNonspecificExceptions rule, and the respective
+	unit test to the MonoDevelop project file.
+
+2007-09-29  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Gendarme.Rules.Exceptions.xml.in:  Added Uri for
+	DontSwallowErrorsCatchingNonspecificExceptionsRule.
+
+2007-09-24  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: Change rule
+	name for adhere to coding guidelines.  With this change, the rule
+	information in the xml file will be shown.
+
+2007-09-01  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* Gendarme.Rules.Exceptions.xml.in: Added the rule information for
+	DontSwallowErrorsCatchingNonSpecificExceptions rule in the xml file.
+
+2007-09-01  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added the sources of new rule and unit tests.
+	* DontSwallowErrorsCatchingNonspecificExceptionsRule.cs: New. Rule for
+	check error swallowing.
+
+2006-10-15  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Exceptions.xml.in: Update Uri for rules (to generate
+	more useful reports).	
+
+2006-09-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Adjust EXTRA_DIST to include project files in tarballs.
+
+2006-09-28  Christian Birkl  <christian.birkl@gmail.com>
+
+	* Gendarme.Rules.Exceptions.csproj: Included ChangeLog
+	* DontDestroyStackTrace.cs: Migrated untyped IList messages collection
+	to typed MessageCollection class.
+	
+2006-08-15  Russell Morris  <russell@russellsprojects.com>
+
+	* DontDestroyStackTrace.cs: Fix possible NRE when processing invalid 
+	IL. http://blog.russellsprojects.com/?p=3
+
+2006-07-31  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Gendarme.Rules.Exceptions.mdp: New. Project file for MonoDevelop.
+
+2006-06-19  Russell Morris  <russell@russellsprojects.com>
+
+	* Initial import of exception-management rule assembly

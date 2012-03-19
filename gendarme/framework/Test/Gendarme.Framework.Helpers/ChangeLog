@@ -1,0 +1,30 @@
+2010-01-28  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignatureTest.cs: More test cases to complete coverage.
+
+2010-01-27  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignatureTest.cs: Remove assertion on API about to be nuked.
+
+2008-07-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MethodSignatureTest.cs: Update test case for the new behavior of 
+	Match (null).
+
+2008-06-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* StackEntryAnalysisTest.cs: Rename StackEntryAnalysis.UsageResult 
+	to StackEntryUsageResult
+
+2008-02-16  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MethodSignatureTest.cs, StackEntryAnalysisTest.cs: Use the
+	Gendarme.Framework.Helpers namespace.  This fixes the error when
+	the unit tests are compiled.
+
+2008-02-15  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MethodSignatureTest.cs
+	* MethodSignaturesTest.cs
+	* StackEntryAnalysisTest.cs:
+		Move helper unit tests into new namespace.

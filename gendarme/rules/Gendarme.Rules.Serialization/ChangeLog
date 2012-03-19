@@ -1,0 +1,195 @@
+2010-05-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeserializeOptionalFieldRule.cs: Apply AvoidRepetitiveCallsTo
+	PropertiesRule.
+	* MarkAllNonSerializableFieldsRule.cs: Fix typo
+
+2009-08-19  Jesse Jones  <jesjones@mindspring.com>
+
+	* DeserializeOptionalFieldRule.cs: Edited the rule description.
+
+2009-07-07  Jesse Jones  <jesjones@mindspring.com>
+
+	* *Rule.cs: Edited most of the rule descriptions.
+
+2009-01-28  Jb Evain  <jbevain@novell.com>
+
+	* CallBaseMethodsOnISerializableTypesRule.cs:
+		in InheritsFromISerializableImplementation: handle types
+		with a null BaseType.
+
+2008-12-13  Jesse Jones  <jesjones@mindspring.com> 
+
+	* UseCorrectSignatureForSerializationMethodsRule.cs,
+	DeserializeOptionalFieldRule.cs: Fix 
+	AnalyzeModule so that it activates the rule properly when 
+	multiple assemblies or modules are being checked.
+
+2008-12-06  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeserializeOptionalFieldRule.cs: Use HasFields, HasMethods and
+	HasCustomAttributes
+	* ImplementISerializableCorrectlyRule.cs: Use HasFields and
+	HasParameters
+	* MarkAllNonSerializableFieldsRule.cs: Use HasFields
+	* UseCorrectSignatureForSerializationMethodsRule.cs: Use 
+	HasCustomAttributes
+
+2008-11-22  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeserializeOptionalFieldRule.cs: Enable the rule only when
+	[OptionalField] is used/referenced inside a module (quite rare).
+	* UseCorrectSignatureForSerializationMethodsRule.cs: Enabled the
+	rule only when one of the On[Des|S]erializ[ed|ing]Attribute type
+	is referenced in the module (quite rare).
+
+2008-11-07  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarkEnumerationsAsSerializableRule.cs: New. Rule to suggest to
+	mark all enumerations as serializable (since they are) to improve 
+	source code readability.
+	* Makefile.am: Add rule and tests to the build.
+
+2008-11-07  Alan McGovern  <amcgovern@novell.com>
+
+	* Makefile.am:
+	* Gendarme.Rules.Serialization.mdp:
+	* Gendarme.Rules.Serialization.csproj: Activate makefile integration for
+	all the rules projects. Remove the old mdp files as they are no
+	longer needed.
+
+2008-10-21  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CallBaseMethodsOnISerializableTypesRule.cs: Avoid specialization
+	of CheckCallingBaseMethod parameters (self-test).
+
+2008-10-21  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Removed common stuff in order to reduce duplication with
+	other Makefiles.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* Makefile.am: Added support for generating the documentation files to
+	the build process.
+
+2008-10-19  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/index.xml, doc/ns-Gendarme.Rules.Serialization.xml,
+	doc/Gendarme.Rules.Serialization: With the new code in the Makefiles we
+	don't need to keep the documentation files in the repository.
+
+2008-10-15  Néstor Salceda  <nestor.salceda@gmail.com>
+
+	* doc/: Initial import documentation for the rules which belongs to this
+	category.
+
+2008-10-13  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* CallBaseMethodsOnISerializableTypesRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute. Use OpCodeEngine to avoid processing
+	methods that don't have any call[virt] inside them.
+	* DeserializeOptionalFieldRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute.
+	* ImplementISerializableCorrectlyRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute. Rework logic to use the TraceBack
+	rock and to handle all cases when GetObjectData is not present.
+	* MarkAllNonSerializableFieldsRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute.
+	* MissingSerializableAttributeOnISerializableTypeRule.cs: Add XML
+	documentation and [FxCopCompatibility] attribute. Use shorter overload
+	for Runner.Report.
+	* MissingSerializationConstructorRule.cs: Add XML documentation 
+	and [FxCopCompatibility] attribute.
+	* UseCorrectSignatureForSerializationMethodsRule.cs: Add XML
+	documentation and [FxCopCompatibility] attribute.
+
+2008-08-11  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MarkAllNonSerializableFieldsRule.cs: Fix case where we can't resolve
+	a field's type.
+
+2008-07-11  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ImplementISerializableCorrectlyRule.cs: Change the foreach loop for an
+	inverted for loop.  Change the order of evaluation in order to achieve a
+	bit more of performance.  Make clearer the message errors.
+
+2008-07-11  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* ImplementISerializableCorrectlyRule.cs: New.  Rule for ensuring the
+	correct implementation of the ISerializable interface.  It also makes
+	sure you use the [NonSerialized] attribute if you aren't serializing a
+	field.
+	* Gendarme.Rules.Serialization.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-07-09  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Start using ../common.make
+
+2008-07-09  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* CallBaseMethodsOnISerializableTypesRule.cs: New. Rule for checking
+	the correct implementation (calling the base methods) of the custom
+	serialization.
+	* Gendarme.Rules.Serialization.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-07-08  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* Makefile.am: Rebuild if the framework has changed.
+
+2008-07-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MarkAllNonSerializableFieldsRule.cs: Skip the static fields.
+
+2008-07-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MarkAllNonSerializableFieldsRule.cs: Inline the const strings for
+	reporting warnings.
+
+2008-07-04  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MarkAllNonSerializableFieldsRule.cs: New. Rule that checks that all
+	fields in a serializable class are also serializable.
+	* Gendarme.Rules.Serialization.mdp: Update MD project file.
+	* Makefile.am: Add rule/test to the build.
+
+2008-04-08  Nestor Salceda  <nestor.salceda@gmail.com>
+	
+	* MissingSerializableAttributeOnISerializableTypeRule.cs: Replace 
+	"[Serialization]" with "[Serializable]".
+
+2008-04-08  Nestor Salceda  <nestor.salceda@gmail.com>
+
+	* MissingSerializableAttributeOnISerializableTypeRule.cs: Improving the
+	comprehension of the solution.
+
+2008-02-17  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* MissingSerializableAttributeOnISerializableTypeRule.cs: Does not
+	apply to delegates.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com> 
+
+	* MissingSerializableAttributeOnISerializableTypeRule.cs: Avoid NRE
+	on ISerializable itself. Also make the rule a bit faster by ignoring
+	all interfaces.
+
+2008-02-16  Sebastien Pouliot  <sebastien@ximian.com>
+
+	* DeserializeOptionalFieldRule.cs: New. Rule to check that fields 
+	marked with [OptionalField] are deserialized correctly.
+	* MissingSerializableAttributeOnISerializableTypeRule.cs: New. Rule 
+	that checks that types implementing ISerializable are also marked 
+	with a [Serializable] attribute.
+	* MissingSerializationConstructorRule.cs: New. Rule to ensure the
+	constructor required for ISerializable is present (since interfaces
+	can't force you to declare ctors)
+	* UseCorrectSignatureForSerializationMethodsRule.cs: New. Rule to 
+	ensure the correct signature is using when using the [de]serialization
+	attributes.
+	* Gendarme.Rules.Serialization.mdp: New. MonoDevelop project file.
+	* Makefile.am: New. Build rules and tests.
+
