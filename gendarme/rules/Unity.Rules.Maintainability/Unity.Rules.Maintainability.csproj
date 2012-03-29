@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{E7E071EC-E6D5-453D-987B-F41BC4282DDB}</ProjectGuid>
+    <ProjectGuid>{DEE05772-9951-48E4-B27A-2E671CECD331}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Tests.Unity.Rules.Maintenability</RootNamespace>
-    <AssemblyName>Tests.Unity.Rules.Maintenability</AssemblyName>
+    <RootNamespace>Unity.Rules.Maintainability</RootNamespace>
+    <AssemblyName>Unity.Rules.Maintainability</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -17,21 +17,24 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\..\console\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\console\bin\Debug\Unity.Rules.Maintainability.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>..\..\console\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;RELEASE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\console\bin\Release\Unity.Rules.Maintainability.xml</DocumentationFile>
+    <WarningsAsErrors>1570</WarningsAsErrors>
+    <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=2.5.10.11092, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="UnityEngine">
@@ -39,27 +42,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PrefereGenericVersionOfTheMethodTest.cs" />
+    <Compile Include="PrefereGenericVersionOfTheMethodRule.cs" />
+    <Compile Include="Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\cecil\Mono.Cecil.csproj">
+    <ProjectReference Include="..\..\..\..\cecil\Mono.Cecil.csproj">
       <Project>{D68133BD-1E63-496E-9EDE-4FBDBF77B486}</Project>
       <Name>Mono.Cecil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\framework\Gendarme.Framework.csproj">
+    <ProjectReference Include="..\..\framework\Gendarme.Framework.csproj">
       <Project>{CD6818D5-B398-486C-B180-92A07B143AFD}</Project>
       <Name>Gendarme.Framework</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Test.Rules\Test.Rules.csproj">
-      <Project>{069148AF-86AB-4EE3-BFB9-429AE722461F}</Project>
-      <Name>Test.Rules</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Unity.Rules.Maintenability.csproj">
-      <Project>{DEE05772-9951-48E4-B27A-2E671CECD331}</Project>
-      <Name>Unity.Rules.Maintenability</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

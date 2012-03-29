@@ -7,7 +7,7 @@ using Gendarme.Framework;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-namespace Unity.Rules.Maintenability
+namespace Unity.Rules.Maintainability
 {
     [Problem("")]
     [Solution("")]

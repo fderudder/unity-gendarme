@@ -1,10 +1,9 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 using Test.Rules.Definitions;
 using Test.Rules.Fixtures;
 
-using Unity.Rules.Maintenability;
+using Unity.Rules.Maintainability;
 
 using UnityEngine;
 

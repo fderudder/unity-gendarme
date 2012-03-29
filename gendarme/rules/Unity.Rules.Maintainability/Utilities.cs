@@ -1,6 +1,6 @@
 ﻿using Mono.Cecil;
 
-namespace Unity.Rules.Maintenability
+namespace Unity.Rules.Maintainability
 {
     public class Utilities
     {
