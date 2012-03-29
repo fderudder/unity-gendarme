@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
@@ -8,7 +7,7 @@ using Gendarme.Framework;
 using Mono.Cecil;
 using Mono.Cecil.Cil;
 
-// TODO : update the severity with a severity threshold based of the number of occurences of Component lookups
+// TODO : update the severity report with a severity threshold based of the number of occurences of Component lookups
 namespace Unity.Rules.Performance
 {
 

@@ -1,6 +1,7 @@
-﻿
-using System.Globalization;
+﻿using System.Globalization;
+
 using Gendarme.Framework;
+
 using Mono.Cecil;
 
 namespace Unity.Rules.Performance
