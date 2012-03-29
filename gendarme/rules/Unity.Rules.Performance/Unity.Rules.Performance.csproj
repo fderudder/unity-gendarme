@@ -39,15 +39,18 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files (x86)\Unity\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\AssemblyStaticInfo.cs">
+      <Link>AssemblyStaticInfo.cs</Link>
+    </Compile>
     <Compile Include="AvoidEmptyComponentsMethodsRule.cs" />
     <Compile Include="AvoidUsingFindObjectInUpdateRule.cs" />
     <Compile Include="CacheComponentLookupRule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UseBuiltInArraysRule.cs" />
     <Compile Include="Utilities.cs" />
   </ItemGroup>
@@ -77,6 +80,9 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
