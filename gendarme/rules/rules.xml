@@ -21,7 +21,7 @@
 		<rules include="*" from="Gendarme.Rules.Gendarme.dll"/>
 		<rules include="*" from="Gendarme.Rules.Globalization.dll"/>
 	</ruleset>
-
+  
 	<ruleset name="default">
 		<rules include="*" from="Gendarme.Rules.BadPractice.dll"/>
 		<rules include="*" from="Gendarme.Rules.Concurrency.dll" />
@@ -98,7 +98,7 @@
 		<rules include="*" from="Gendarme.Rules.Smells.dll"/>
 	</ruleset>
 	<ruleset name="badpractice">
-		<rules include="*" from="Gendarme.Rules.BadPractice.dll"/>
+    <rules include="*" from="Gendarme.Rules.BadPractice.dll"/>
 	</ruleset>
 	<ruleset name="design">
 		<rules include="*" from="Gendarme.Rules.Design.dll"/>
@@ -127,4 +127,26 @@
 	<ruleset name="globalization">
 		<rules include="*" from="Gendarme.Rules.Globalization.dll"/>
 	</ruleset>
+
+  <ruleset name="unity-performance">
+    <rules include="*" from="Unity.Rules.Performance.dll"/>
+    <rules include="*" from="Gendarme.Rules.Performance.dll" />
+    <rules include="*" from="Gendarme.Rules.Smells.dll"/>
+  </ruleset>
+
+  <ruleset name="unity-full">
+    <rules include="*" from="Unity.Rules.Performance.dll"/>
+    <rules include="*" from="Unity.Rules.Maintainability.dll"/>
+    <rules include="*" from="Gendarme.Rules.Performance.dll" />
+    <rules include="*" from="Gendarme.Rules.Corectness.dll" />
+    <rules include="*" from="Gendarme.Rules.Maintainability.dll" />
+    <rules include="*" from="Gendarme.Rules.BadPractice.dll"/>
+    <rules include="*" from="Gendarme.Rules.Smells.dll"/>
+  </ruleset>
+
+  <ruleset name="unity-only">
+    <rules include="*" from="Unity.Rules.Performance.dll"/>
+    <rules include="*" from="Unity.Rules.Maintainability.dll"/>
+  </ruleset>
+  
 </gendarme>
