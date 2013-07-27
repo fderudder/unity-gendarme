@@ -105,13 +105,32 @@ namespace Gendarme.Rules.Performance {
 			// copy all fields into an hashset
 			fields.Clear ();
 			foreach (FieldDefinition field in type.Fields) {
-				if (!field.IsPrivate || field.IsLiteral)
+				if (!field.IsPrivate || field.IsLiteral || field.IsGeneratedCode ())
 					continue;
 
 				fields.Add (field);
 			}
 
 			// scan all methods, including constructors, to find if the field is used
+			if (fields.Count > 0) {
+				CheckFieldsUsageInType (type);
+
+				// scan nested types becuase they also have access to private fields of their parent
+				if (type.HasNestedTypes) {
+					foreach (TypeDefinition nested in type.NestedTypes)
+						CheckFieldsUsageInType (nested);
+				}
+
+				// check remaining (private) fields in the set
+				foreach (FieldDefinition field in fields) {
+					Runner.Report (field, Severity.Medium, Confidence.Normal);
+				}
+			}
+			return Runner.CurrentRuleResult;
+		}
+
+		private void CheckFieldsUsageInType (TypeDefinition type)
+		{
 			foreach (MethodDefinition method in type.Methods) {
 				if (!method.HasBody)
 					continue;
@@ -127,14 +146,12 @@ namespace Gendarme.Rules.Performance {
 
 					fields.Remove (fd);
 				}
+				
+				if (fields.Count == 0)
+					break;				
 			}
-
-			// check remaining (private) fields in the set
-			foreach (FieldDefinition field in fields) {
-				Runner.Report (field, Severity.Medium, Confidence.Normal);
-			}
-			return Runner.CurrentRuleResult;
 		}
+
 #if false
 		public void Bitmask ()
 		{
