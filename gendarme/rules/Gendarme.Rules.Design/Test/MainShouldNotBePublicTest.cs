@@ -44,7 +44,7 @@ namespace Test.Rules.Design {
 		private AssemblyDefinition vbBadAssembly;
 		private AssemblyDefinition noEntryPointAssembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			GenerateRequiredAssemblies ();

@@ -105,13 +105,13 @@ namespace Tests.Unity.Rules.Performance
 
         void DirectLookupMethod()
         {
-            camera.transform.Translate( Vector3.one );
+            GetComponent<Camera>().transform.Translate( Vector3.one );
         }
 
         void IndirectLookupMethod()
         {
             Transform theTransform = this.transform;
-            theTransform.RotateAround( Vector3.zero, 5f );
+            theTransform.Rotate( Vector3.zero, 5f );
         }
     }
 }

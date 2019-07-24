@@ -61,7 +61,7 @@ namespace Test.Rules.BadPractice {
 		private CheckNewThreadWithoutStartRule rule;
 		private TestRunner runner;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

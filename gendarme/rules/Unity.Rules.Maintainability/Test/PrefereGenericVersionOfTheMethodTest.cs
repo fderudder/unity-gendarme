@@ -86,11 +86,6 @@ namespace Tests.Unity.Rules.Maintenability
             Rigidbody body = ( Rigidbody ) GetComponent( "Rigidbody" );
         }
 
-        private void StringCallAddComponent()
-        {
-            Rigidbody body = ( Rigidbody ) gameObject.AddComponent( "Rigidbody" );
-        }
-
         private void StringCallCreateInstance()
         {
             DatScript script = ( DatScript ) ScriptableObject.CreateInstance( "DatScript" );

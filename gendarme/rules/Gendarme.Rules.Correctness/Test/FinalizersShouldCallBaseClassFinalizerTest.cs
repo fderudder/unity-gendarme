@@ -59,7 +59,7 @@ namespace Test.Rules.Correctness {
 
 		TypeDefinition finalizer_not_calling_base_class; 
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = System.Reflection.Assembly.GetExecutingAssembly ().Location;

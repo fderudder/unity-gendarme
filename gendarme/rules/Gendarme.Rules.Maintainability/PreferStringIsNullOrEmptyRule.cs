@@ -111,10 +111,10 @@ namespace Gendarme.Rules.Maintainability {
 			case Code.Ldloc_2:
 			case Code.Ldloc_3:
 				int vindex = ins.OpCode.Code - Code.Ldloc_0;
-				return method.Body.Variables [vindex].Name;
+				return method.Body.Variables [vindex].ToString();
 			case Code.Ldloc:
 			case Code.Ldloc_S:
-				return (ins.Operand as VariableDefinition).Name;
+				return (ins.Operand as VariableDefinition).ToString();
 			default:
 				object o = ins.Operand;
 				MemberReference mr = (o as MemberReference);

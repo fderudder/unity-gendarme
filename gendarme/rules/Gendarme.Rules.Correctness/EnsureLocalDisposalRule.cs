@@ -206,7 +206,7 @@ namespace Gendarme.Rules.Correctness {
 				if (!IsInsideFinallyBlock (method, ins)) {
 					string msg = String.Format (CultureInfo.InvariantCulture,
 						"Local {0}is not guaranteed to be disposed of.",
-						GetFriendlyNameOrEmpty (v));
+						GetFriendlyNameOrEmpty (v, method));
 					Runner.Report (method, Severity.Medium, Confidence.Normal, msg);
 				}
 				locals.Clear (index);
@@ -235,7 +235,7 @@ namespace Gendarme.Rules.Correctness {
 			if (locals.Get (index)) {
 				string msg = String.Format (CultureInfo.InvariantCulture,
 					"Local {0}is not disposed before being re-assigned.",
-					GetFriendlyNameOrEmpty (v));
+					GetFriendlyNameOrEmpty (v, method));
 				Runner.Report (method, ins, Severity.High, Confidence.Normal, msg);
 			} else {
 				locals.Set (index);
@@ -314,7 +314,7 @@ namespace Gendarme.Rules.Correctness {
 					continue;
 				string msg = String.Format (CultureInfo.InvariantCulture,
 					"Local {0}is not disposed of (at least not locally).",
-					GetFriendlyNameOrEmpty (method.Body.Variables [(int) i]));
+					GetFriendlyNameOrEmpty (method.Body.Variables [(int) i], method));
 				Runner.Report (method, Severity.High, Confidence.Normal, msg);
 			}
 		}
@@ -339,12 +339,12 @@ namespace Gendarme.Rules.Correctness {
 			Runner.Report (method, ins, Severity.High, fluent ? Confidence.Normal : Confidence.High, msg);
 		}
 
-		static string GetFriendlyNameOrEmpty (VariableReference variable)
+		static string GetFriendlyNameOrEmpty(VariableReference variable, MethodDefinition method)
 		{
 			string tname = variable.VariableType.Name;
-			if (variable.IsGeneratedName ())
+			if (variable.IsGeneratedName (method.DebugInformation))
 				return String.Format (CultureInfo.InvariantCulture, "of type '{0}' ", tname);
-			return String.Format (CultureInfo.InvariantCulture, "'{0}' of type '{1}' ", variable.Name, tname);
+			return String.Format (CultureInfo.InvariantCulture, "'{0}' of type '{1}' ", variable, tname);
 		}
 
 		static OpCodeBitmask BuildCallsAndNewobjOpCodeBitmask ()

@@ -41,7 +41,7 @@ namespace Test.Framework.Rocks {
 		
 		private TypeDefinition type_def;
 		
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = System.Reflection.Assembly.GetExecutingAssembly ().Location;
@@ -126,12 +126,12 @@ namespace Test.Framework.Rocks {
 			foreach (Instruction ins in method.Body.Instructions) {
 				VariableDefinition v = ins.GetVariable (method);
 				if (v != null) {
-					bool userName = userNames.Any (n => n == v.Name);
+					bool userName = userNames.Any (n => n == v.ToString());
 					if (userName) {
-						Assert.IsFalse (v.IsGeneratedName (), "{0} was reported as a generated name", v.Name);
+						Assert.IsFalse (v.IsGeneratedName (method.DebugInformation), "{0} was reported as a generated name", v.ToString());
 					} else {
 						++count;
-						Assert.IsTrue (v.IsGeneratedName (), "{0} was not reported as a generated name", v.Name);
+						Assert.IsTrue (v.IsGeneratedName (method.DebugInformation), "{0} was not reported as a generated name", v.ToString());
 					}
 				}
 			}

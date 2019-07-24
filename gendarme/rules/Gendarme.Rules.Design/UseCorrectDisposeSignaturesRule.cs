@@ -235,7 +235,8 @@ namespace Gendarme.Rules.Design {
 		static bool DirectlyImplementsIDisposable (TypeDefinition type)
 		{
 			if (type.HasInterfaces) {
-				foreach (TypeReference candidate in type.Interfaces) {
+				foreach (InterfaceImplementation impl in type.Interfaces) {
+                    TypeReference candidate = impl.InterfaceType;
 					if (candidate.IsNamed ("System", "IDisposable"))
 						return true;
 				}

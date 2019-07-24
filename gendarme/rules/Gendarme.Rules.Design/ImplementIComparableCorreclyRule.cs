@@ -109,7 +109,8 @@ namespace Gendarme.Rules.Design {
 			// rule only applies if the type implements IComparable or IComparable<T>
 			// Note: we do not use Implements rock because we do not want a recursive answer
 			bool icomparable = false;
-			foreach (TypeReference iface in type.Interfaces) {
+			foreach (InterfaceImplementation impl in type.Interfaces) {
+                var iface = impl.InterfaceType;
 				if (iface.Namespace != "System")
 					continue;
 				// catch both System.IComparable and System.IComparable`1<X>

@@ -96,8 +96,8 @@ namespace Gendarme.Rules.Design {
 			if (td == null)
 				return false;
 
-			foreach (TypeReference intf_ref in td.Interfaces) {
-				TypeDefinition intr = intf_ref.Resolve ();
+			foreach (InterfaceImplementation impl in td.Interfaces) {
+				TypeDefinition intr = impl.InterfaceType.Resolve ();
 				if (intr == null)
 					continue;
 

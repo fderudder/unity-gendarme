@@ -66,7 +66,7 @@ namespace Test.Rules.Performance {
 	[TestFixture]
 	public class AvoidUnusedParametersTest : MethodRuleTestFixture<AvoidUnusedParametersRule> {
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void SetUp ()
 		{
 			Runner.Engines.Subscribe ("Gendarme.Framework.Engines.SuppressMessageEngine");

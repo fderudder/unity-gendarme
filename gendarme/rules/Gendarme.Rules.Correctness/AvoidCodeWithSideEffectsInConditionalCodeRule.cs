@@ -145,8 +145,8 @@ namespace Gendarme.Rules.Correctness {
 					
 					} else if (ins.IsStoreLocal ()) {
 						VariableDefinition vd = ins.GetVariable (method);
-						if (!vd.IsGeneratedName ())
-							name = "local " + vd.Name;
+						if (!vd.IsGeneratedName (method.DebugInformation))
+							name = "local " + vd;
 					
 					} else if (ins.OpCode.Code == Code.Stfld || ins.OpCode.Code == Code.Stsfld) {
 						FieldReference fr = ins.Operand as FieldReference;

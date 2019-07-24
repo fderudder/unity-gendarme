@@ -46,7 +46,7 @@ namespace Test.Rules.BadPractice {
 
 		private AssemblyDefinition assembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = System.Reflection.Assembly.GetExecutingAssembly ().Location;

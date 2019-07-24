@@ -42,7 +42,7 @@ namespace Test.Framework.Rocks {
 		private TypeDefinition type_def;
 		private MethodBody body;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = System.Reflection.Assembly.GetExecutingAssembly ().Location;

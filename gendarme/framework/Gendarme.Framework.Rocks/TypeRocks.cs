@@ -73,7 +73,8 @@ namespace Gendarme.Framework.Rocks {
 				if (type != null) {
 					yield return type;
 					
-					foreach (TypeReference super in type.Interfaces) {
+					foreach (InterfaceImplementation impl in type.Interfaces) {
+                        TypeReference super = impl.InterfaceType;
 						types.AddIfNew (super);
 					}
 					
@@ -268,7 +269,8 @@ namespace Gendarme.Framework.Rocks {
 			while (type != null) {
 				// does the type implements it itself
 				if (type.HasInterfaces) {
-					foreach (TypeReference iface in type.Interfaces) {
+					foreach (InterfaceImplementation impl in type.Interfaces) {
+                        var iface = impl.InterfaceType;
 						if (iface.IsNamed (nameSpace, iname))
 							return true;
 						//if not, then maybe one of its parent interfaces does

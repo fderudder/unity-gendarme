@@ -130,11 +130,11 @@ namespace Gendarme.Rules.Performance {
 					// to determine if the variable is "genuine" or a compiler
 					// (*) seen in a while (true) loop over a switch
 					VariableDefinition variable = variables [i];
-					if (variable.IsGeneratedName ())
+					if (variable.IsGeneratedName (method.DebugInformation))
 						continue;
 
 					string s = String.Format (CultureInfo.InvariantCulture, "Variable '{0}' of type '{1}'", 
-						variable.Name, variable.VariableType.GetFullName ());
+						variable, variable.VariableType.GetFullName ());
 					Runner.Report (method, Severity.Low, Confidence.Normal, s);
 				}
 			}

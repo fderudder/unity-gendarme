@@ -97,11 +97,10 @@ namespace Test.Framework {
 		}
 
 		[Test]
-		[ExpectedException (typeof (ArgumentException))]
 		public void Invalid ()
-		{
-			new ThreadModelAttribute ((ThreadModel) Int32.MinValue);
-		}
+        {
+            Assert.That(() => { new ThreadModelAttribute((ThreadModel) Int32.MinValue); }, Throws.TypeOf<ArgumentException>());
+        }
 	}
 }
 

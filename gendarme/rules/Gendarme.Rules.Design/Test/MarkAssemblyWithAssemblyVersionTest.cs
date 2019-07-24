@@ -40,7 +40,7 @@ namespace Test.Rules.Design {
 	[TestFixture]
 	public class MarkAssemblyWithAssemblyVersionTest : AssemblyRuleTestFixture<MarkAssemblyWithAssemblyVersionRule> {
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			Runner.Engines.Subscribe ("Gendarme.Framework.Engines.SuppressMessageEngine");

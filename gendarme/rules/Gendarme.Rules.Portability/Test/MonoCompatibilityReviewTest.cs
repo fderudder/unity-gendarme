@@ -88,7 +88,7 @@ namespace Test.Rules.Portability {
 			new object ().Equals (null);
 		}
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

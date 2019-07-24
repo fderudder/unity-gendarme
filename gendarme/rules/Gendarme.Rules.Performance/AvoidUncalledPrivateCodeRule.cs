@@ -233,8 +233,8 @@ namespace Gendarme.Rules.Performance {
 			// check if this method is needed to satisfy an interface
 			TypeDefinition type = (method.DeclaringType as TypeDefinition);
 			if (type.HasInterfaces) {
-				foreach (TypeReference tr in type.Interfaces) {
-					TypeDefinition intf = tr.Resolve ();
+				foreach (InterfaceImplementation impl in type.Interfaces) {
+					TypeDefinition intf = impl.InterfaceType.Resolve ();
 					if (intf != null) {
 						foreach (MethodReference member in intf.Methods) {
 							if (name == member.Name)

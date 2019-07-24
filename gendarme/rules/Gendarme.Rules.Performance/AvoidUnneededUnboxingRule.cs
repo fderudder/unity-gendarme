@@ -129,12 +129,12 @@ namespace Gendarme.Rules.Performance {
 			case Code.Ldloc_3:
 				kind = "Variable";
 				int vindex = previous_op_code - Code.Ldloc_0;
-				name = method.Body.Variables [vindex].GetName ();
+				name = method.Body.Variables [vindex].GetName (method.DebugInformation);
 				break;
 			case Code.Ldloc:
 			case Code.Ldloc_S:
 				kind = "Variable";
-				name = (ins.Operand as VariableDefinition).GetName ();
+				name = (ins.Operand as VariableDefinition).GetName (method.DebugInformation);
 				break;
 			default:
 				return String.Empty;

@@ -159,7 +159,8 @@ namespace Gendarme.Rules.Maintainability {
 		{
 			TypeDefinition ifaceDef = null;
 
-			foreach (TypeReference iface in type.Interfaces) {
+			foreach (InterfaceImplementation impl in type.Interfaces) {
+                TypeReference iface = impl.InterfaceType;
 				// ignore non-cls-compliant interfaces
 				if (iface.Name.StartsWith ("_", StringComparison.Ordinal))
 					continue;
@@ -428,8 +429,8 @@ namespace Gendarme.Rules.Maintainability {
 
 		static bool IsSignatureDictatedByInterface (IMemberDefinition method, MethodSignature sig)
 		{
-			foreach (TypeReference intf_ref in method.DeclaringType.Interfaces) {
-				TypeDefinition intr = intf_ref.Resolve ();
+			foreach (InterfaceImplementation impl in method.DeclaringType.Interfaces) {
+				TypeDefinition intr = impl.InterfaceType.Resolve ();
 				if (intr == null)
 					continue;
 				foreach (MethodDefinition md in intr.Methods) {

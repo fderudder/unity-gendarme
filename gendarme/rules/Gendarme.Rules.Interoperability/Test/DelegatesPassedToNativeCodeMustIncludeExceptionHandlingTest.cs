@@ -186,7 +186,7 @@ namespace Test.Rules.Interoperability {
 		}
 		#endregion
 		
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

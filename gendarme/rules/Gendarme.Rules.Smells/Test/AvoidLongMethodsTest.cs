@@ -1368,7 +1368,7 @@ namespace Test.Rules.Smells {
 			Rule.UseIlApproximation = false;
 		}
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			AssemblyDefinition assembly = DefinitionLoader.GetAssemblyDefinition<AvoidLongMethodsTest> ();

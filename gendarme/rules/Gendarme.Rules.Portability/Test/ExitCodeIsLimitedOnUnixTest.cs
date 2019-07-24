@@ -189,7 +189,7 @@ namespace Test.Rules.Portability {
 		private TypeDefinition envSetExitCodeTester;
 		private TypeDefinition envExitTester;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = System.Reflection.Assembly.GetExecutingAssembly ().Location;

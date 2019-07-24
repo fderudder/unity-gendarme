@@ -101,7 +101,7 @@ namespace Test.Rules.Security.Cas {
 		private TestRunner runner;
 		private AssemblyDefinition assembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

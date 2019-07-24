@@ -81,7 +81,7 @@ namespace Test.Rules.Interoperability {
 	[TestFixture]
 	public class PInvokeShouldNotBeVisibleTest : MethodRuleTestFixture<PInvokeShouldNotBeVisibleRule> {
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void SetUp ()
 		{
 			// since C# compiler won't compile an instance p/invoke we'll need to hack our own

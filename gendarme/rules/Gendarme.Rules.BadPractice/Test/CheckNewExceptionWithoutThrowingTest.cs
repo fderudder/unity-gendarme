@@ -60,7 +60,7 @@ namespace Test.Rules.BadPractice {
 		private CheckNewExceptionWithoutThrowingRule rule;
 		private TestRunner runner;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

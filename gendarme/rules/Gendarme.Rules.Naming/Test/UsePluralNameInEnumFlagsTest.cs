@@ -61,7 +61,7 @@ namespace Test.Rules.Naming {
 		private TypeDefinition type;
 		private TestRunner runner;
 	
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

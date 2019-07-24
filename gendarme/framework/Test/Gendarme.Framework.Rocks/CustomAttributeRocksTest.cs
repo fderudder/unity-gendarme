@@ -41,7 +41,7 @@ namespace Test.Framework.Rocks {
 
 		private AssemblyDefinition assembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;
@@ -49,19 +49,17 @@ namespace Test.Framework.Rocks {
 		}
 
 		[Test]
-		[ExpectedException (typeof (ArgumentNullException))]
 		public void HasAttribute_Namespace_Null ()
 		{
 			TypeDefinition type = assembly.MainModule.GetType ("Test.Framework.Rocks.CustomAttributeRocksTest");
-			type.HasAttribute (null, "a");
+            Assert.That(() => { type.HasAttribute (null, "a"); }, Throws.TypeOf<ArgumentNullException>());
 		}
 
 		[Test]
-		[ExpectedException (typeof (ArgumentNullException))]
 		public void HasAttribute_Name_Null ()
 		{
 			TypeDefinition type = assembly.MainModule.GetType ("Test.Framework.Rocks.CustomAttributeRocksTest");
-			type.HasAttribute ("a", null);
+			Assert.That(() => { type.HasAttribute ("a", null); }, Throws.TypeOf<ArgumentNullException>());
 		}
 		
 		[Test]

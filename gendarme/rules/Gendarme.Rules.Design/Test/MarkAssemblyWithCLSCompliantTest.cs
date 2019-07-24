@@ -43,7 +43,7 @@ namespace Test.Rules.Design {
 		private CustomAttribute comvisible;
 		private CustomAttribute clscompliant;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			assembly = AssemblyDefinition.CreateAssembly (new AssemblyNameDefinition ("CLSCompliant", new Version ()), "CLSCompliant", ModuleKind.Dll);

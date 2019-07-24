@@ -80,7 +80,7 @@ namespace Test.Rules.Design {
 
 		private AssemblyDefinition assembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

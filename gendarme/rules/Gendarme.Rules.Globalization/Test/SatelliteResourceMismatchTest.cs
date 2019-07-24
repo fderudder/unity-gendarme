@@ -42,7 +42,7 @@ namespace Tests.Rules.Globalization {
 
 		AssemblyDefinition assembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			// We use CodeBase insteed of Location to find the satellites assemblies

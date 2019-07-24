@@ -113,7 +113,7 @@ namespace Test.Rules.Naming {
 
 		AssemblyDefinition assembly;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetup ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

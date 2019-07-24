@@ -276,8 +276,11 @@ namespace Gendarme.Rules.Smells {
 		{
 			int sloc = 0;
 			int current_line = -1;
+
+            MethodDebugInformation debugInfo = method.DebugInformation;
+
 			foreach (Instruction ins in method.Body.Instructions) {
-				SequencePoint sp = ins.SequencePoint;
+				SequencePoint sp = debugInfo.GetSequencePoint (ins);
 				if (sp == null)
 					continue;
 

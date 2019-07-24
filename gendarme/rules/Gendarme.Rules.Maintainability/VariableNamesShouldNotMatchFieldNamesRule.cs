@@ -111,10 +111,10 @@ namespace Gendarme.Rules.Maintainability {
 					// Iterate through all variables in the method body.
 					foreach (VariableDefinition var in body.Variables) {
 						// if the name is compiler generated or if we do not have debugging symbols...
-						if (var.IsGeneratedName ())
+						if (var.IsGeneratedName (method.DebugInformation))
 							continue;
-						if (fields.Contains (var.Name))
-							Runner.Report (method, Severity.Medium, Confidence.Normal, var.Name);
+						if (fields.Contains (var.ToString()))
+							Runner.Report (method, Severity.Medium, Confidence.Normal, var.ToString());
 					}
 				}
 			}

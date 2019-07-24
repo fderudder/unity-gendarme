@@ -7,3 +7,5 @@ AssemblyInfo.cs
 *.suo
 *.user
 /_ReSharper.gendarme-win/
+.vs
+packages

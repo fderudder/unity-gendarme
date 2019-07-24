@@ -43,7 +43,7 @@ namespace Test.Framework {
 
 		private TypeDefinition type;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = System.Reflection.Assembly.GetExecutingAssembly ().Location;

@@ -121,7 +121,7 @@ namespace Test.Rules.Interoperability {
 			Marshal.GetLastWin32Error ();
 		}
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

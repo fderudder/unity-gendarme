@@ -159,7 +159,8 @@ namespace Gendarme.Rules.Maintainability {
 
 		void CheckInterfaces (TypeDefinition type)
 		{
-			foreach (TypeReference intf in type.Interfaces) {
+			foreach (InterfaceImplementation impl in type.Interfaces) {
+                TypeReference intf = impl.InterfaceType;
 				if (IsObsolete (intf)) {
 					string msg = String.Format (CultureInfo.InvariantCulture, "Implement obsolete interface '{0}'.", intf);
 					Runner.Report (type, type.IsVisible () ? Severity.Medium : Severity.Low, Confidence.Total, msg);

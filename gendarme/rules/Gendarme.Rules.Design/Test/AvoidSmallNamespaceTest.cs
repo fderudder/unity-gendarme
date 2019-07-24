@@ -50,7 +50,7 @@ namespace Test.Rules.Design {
 			return method;
 		}
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			assembly = AssemblyDefinition.CreateAssembly (
@@ -130,10 +130,9 @@ namespace Test.Rules.Design {
 		}
 
 		[Test]
-		[ExpectedException (typeof (ArgumentOutOfRangeException))]
 		public void Minimum ()
 		{
-			Rule.Minimum = Int32.MinValue;
+            Assert.That(() => { Rule.Minimum = Int32.MinValue; }, Throws.TypeOf<ArgumentOutOfRangeException>());
 		}
 	}
 }

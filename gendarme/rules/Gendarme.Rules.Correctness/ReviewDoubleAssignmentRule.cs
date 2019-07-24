@@ -114,7 +114,7 @@ namespace Gendarme.Rules.Correctness {
 			if (stfld.TraceBack (method).GetOperand (method) != next.TraceBack (method).GetOperand (method))
 				return String.Empty;
 
-			return String.Format (CultureInfo.InvariantCulture, "Instance field '{0}' on same variable '{1}'.", fd1.Name, vd1.Name);
+			return String.Format (CultureInfo.InvariantCulture, "Instance field '{0}' on same variable '{1}'.", fd1.Name, vd1);
 		}
 
 		static string CheckDoubleAssignement (MethodDefinition method, Instruction ins, Instruction next)
@@ -142,7 +142,7 @@ namespace Gendarme.Rules.Correctness {
 					if (vd1.Index != vd2.Index)
 						return String.Empty;
 
-					return String.Format (CultureInfo.InvariantCulture, "Local variable '{0}'.", vd1.Name);
+					return String.Format (CultureInfo.InvariantCulture, "Local variable '{0}'.", vd1);
 				} else if (next.OpCode.Code == Code.Stfld) {
 					// instance fields are a bit more complex...
 					return CheckDoubleAssignementOnInstanceFields (method, ins, next);

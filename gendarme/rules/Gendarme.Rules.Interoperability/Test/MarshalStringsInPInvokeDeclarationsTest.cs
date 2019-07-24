@@ -137,7 +137,7 @@ namespace Test.Rules.Interoperability {
 
 		void EmptyMethod () { } // FIXME: replace with PerfectMethods.EmptyMethod when porting to new tests model
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void FixtureSetUp ()
 		{
 			string unit = Assembly.GetExecutingAssembly ().Location;

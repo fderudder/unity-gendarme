@@ -82,7 +82,7 @@ namespace Test.Rules.Maintainability {
 
 		private TypeDefinition DoesNotApplyClassSpecial;
 
-		[TestFixtureSetUp]
+		[OneTimeSetUp]
 		public void SetUp()
 		{
 			// A type always has a method (implicit constructor) so we have to hack our own
