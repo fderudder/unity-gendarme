@@ -62,7 +62,8 @@ namespace Test.Rules.Fixtures {
 		/// <summary>
 		/// Creates a RuleTestFixture instance, the runner and the rule itself.
 		/// </summary>
-		protected RuleTestFixture ()		{
+		protected RuleTestFixture ()
+		{
 			rule = new TRule ();
 			runner = new TestRunner (rule);
 		}

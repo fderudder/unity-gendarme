@@ -1,14 +1,19 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-
-using Gendarme.Framework;
-
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-namespace Unity.Rules.Performance
+﻿namespace Unity.Rules.Performance
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+
+    using Gendarme.Framework;
+
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+    
+    using Unity.Rules.Utility;
+
+    /// <summary>
+    /// Find Methods are usually terrible in the hot path, this attempts to detect them
+    /// </summary>
     [Problem("Object.FindObjectOfType(), Object.FindObjectsOfType() and GameObject.Find(name) are time consuming methods. You shouldnt use them each frame, in the Update() methods")]
     [Solution("Use those methods in Start() or Awake(), and cache a reference to the found object.")]
     public class AvoidUsingFindObjectInUpdateRule : Rule, IMethodRule
@@ -19,6 +24,11 @@ namespace Unity.Rules.Performance
                                                     "FixedUpdate"
                                                 };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
         public RuleResult CheckMethod( MethodDefinition method )
         {
             if ( !Utilities.IsMonoBehaviour( method.DeclaringType ) ) return RuleResult.DoesNotApply;

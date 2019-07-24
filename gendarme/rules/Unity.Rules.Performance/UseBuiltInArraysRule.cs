@@ -1,15 +1,25 @@
-﻿using System.Globalization;
-
-using Gendarme.Framework;
-
-using Mono.Cecil;
-
-namespace Unity.Rules.Performance
+﻿namespace Unity.Rules.Performance
 {
+    using System.Globalization;
+
+    using Gendarme.Framework;
+
+    using Mono.Cecil;
+    
+    using Unity.Rules.Utility;
+
+    /// <summary>
+    /// Lots of programmers still use ArrayList when List{T} exist. It's a bit sad.
+    /// </summary>
     [Problem("Array() and ArrayList() are not as optimized as BuiltIn arrays or Generic collections.")]
     [Solution("Replace by BuiltIn arrays when you know the number of elements and it does not vary. Replace by a Generic data structure if the number of elements often changes.")]
     public class UseBuiltInArraysRule : Rule, ITypeRule
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public RuleResult CheckType( TypeDefinition type )
         {
             if ( !Utilities.IsMonoBehaviour( type ) ) return RuleResult.DoesNotApply;

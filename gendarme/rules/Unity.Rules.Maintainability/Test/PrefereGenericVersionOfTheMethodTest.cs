@@ -33,7 +33,6 @@ namespace Tests.Unity.Rules.Maintenability
         public void StringCall()
         {
             AssertRuleFailure<FailClass>( "StringCallGetComponent" );
-            AssertRuleFailure<FailClass>( "StringCallAddComponent" );
             AssertRuleFailure<FailClass>( "StringCallCreateInstance" );
         }
 
@@ -46,6 +45,8 @@ namespace Tests.Unity.Rules.Maintenability
             AssertRuleSuccess<SuccessClass>( "GenericCallGetComponentsInChildren" );
             AssertRuleSuccess<SuccessClass>( "GenericCallAddComponent" );
             AssertRuleSuccess<SuccessClass>( "GenericCallCreateInstance" );
+
+            AssertRuleSuccess<DerivedSuccessClass>( "GenericCallGetComponent" );
         }
     }
 
@@ -122,6 +123,14 @@ namespace Tests.Unity.Rules.Maintenability
         private void GenericCallCreateInstance()
         {
             DatScript script = ScriptableObject.CreateInstance<DatScript>();
+        }
+    }
+
+    public class DerivedSuccessClass : SuccessClass
+    {
+        private void GenericCallGetComponent()
+        {
+            Rigidbody body = GetComponent<Rigidbody>();
         }
     }
 

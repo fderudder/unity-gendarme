@@ -1,16 +1,19 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-
-using Gendarme.Framework;
-
-using Mono.Cecil;
-using Mono.Cecil.Cil;
-
-// TODO : update the severity report with a severity threshold based of the number of occurences of Component lookups
-namespace Unity.Rules.Performance
+﻿namespace Unity.Rules.Performance
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
 
+    using Gendarme.Framework;
+
+    using Mono.Cecil;
+    using Mono.Cecil.Cil;
+    
+    using Unity.Rules.Utility;
+
+    /// <summary>
+    /// Better to cache the get component in start/awake
+    /// </summary>
     [Problem( "Recurrent components calls in update can leads to performance loss." )]
     [Solution( "Cache the component call in a local member, on Start() or Awake()." )]
     public class CacheComponentLookupRule : Rule, IMethodRule
@@ -21,6 +24,11 @@ namespace Unity.Rules.Performance
                                                             "FixedUpdate",
                                                         };
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
         public RuleResult CheckMethod( MethodDefinition method )
         {
             // Check if we're in a MonoBehaviour
@@ -29,6 +37,7 @@ namespace Unity.Rules.Performance
             // Check if we're in an heavily used method
             if ( methodNames.Contains( method.Name ) )
             {
+                // TODO : update the severity report with a severity threshold based of the number of occurrences of Component lookups
                 ComputeNumberOfComponentLookup( method, 0 );
             }
             

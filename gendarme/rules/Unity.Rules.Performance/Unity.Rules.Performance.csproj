@@ -51,6 +51,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\..\..\..\..\Program Files\Unity\Hub\Editor\2019.1.10f1\Editor\Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\AssemblyStaticInfo.cs">
@@ -60,12 +63,15 @@
     <Compile Include="AvoidUsingFindObjectInUpdateRule.cs" />
     <Compile Include="CacheComponentLookupRule.cs" />
     <Compile Include="UseBuiltInArraysRule.cs" />
-    <Compile Include="Utilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\framework\Gendarme.Framework.csproj">
       <Project>{CD6818D5-B398-486C-B180-92A07B143AFD}</Project>
       <Name>Gendarme.Framework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Unity.Rules.Utility\Unity.Rules.Utility\Unity.Rules.Utility.csproj">
+      <Project>{61cb3b85-baaf-4e4f-b3ef-59b72f9580a4}</Project>
+      <Name>Unity.Rules.Utility</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

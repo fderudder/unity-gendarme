@@ -1,13 +1,18 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-
-using Gendarme.Framework;
-
-using Mono.Cecil;
-
-namespace Unity.Rules.Performance
+﻿namespace Unity.Rules.Performance
 {
+    using System;
+    using System.Globalization;
+    using System.Linq;
+
+    using Gendarme.Framework;
+
+    using Mono.Cecil;
+    
+    using Unity.Rules.Utility;
+
+    /// <summary>
+    /// Empty Methods from MonoBehaviours have a slight performance hit. Better get rid of them
+    /// </summary>
     [Problem( "Empty methods coming from MonoBehaviour (such as Start() or Update() can causes overhead at runtime, which leads to a loss of performances." )]
     [Solution( "Delete the empty methods." )]
     public class AvoidEmptyComponentsMethodsRule : Rule, IMethodRule
@@ -72,7 +77,11 @@ namespace Unity.Rules.Performance
             // check if the method name is one of the native methods of MonoBehaviour
             if( methodNames.Contains( method.Name ) )
             {
+#if DEBUG // when built in debug with msbuild, the empty methods have 2 instructions, and 0 in release
+                if ( method.Body.CodeSize > 2 ) return RuleResult.Success;
+#else
                 if ( method.Body.CodeSize > 1 ) return RuleResult.Success;
+#endif
 
                 string message = String.Format( CultureInfo.CurrentCulture, "The method is empty, and can cause some performance overhead that you could get rid of." );
                 Runner.Report( method, Severity.High, Confidence.High, message );
